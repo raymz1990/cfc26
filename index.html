@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CFC Suficiência — Plano de Aprovação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0f12;
+  --bg2: #13161b;
+  --bg3: #1a1e25;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8eaed;
+  --text2: #9aa3b2;
+  --text3: #5c6478;
+  --accent: #4f8ef7;
+  --accent2: #7eb8f7;
+  --green: #3ecf8e;
+  --amber: #f5a623;
+  --red: #f26b6b;
+  --purple: #a78bfa;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+[data-theme="light"] {
+  --bg: #f5f6f8;
+  --bg2: #ffffff;
+  --bg3: #ebedf1;
+  --border: rgba(0,0,0,0.07);
+  --border2: rgba(0,0,0,0.12);
+  --text: #111318;
+  --text2: #4b5563;
+  --text3: #9ca3af;
+  --accent: #2563eb;
+  --accent2: #3b82f6;
+  --green: #059669;
+  --amber: #d97706;
+  --red: #dc2626;
+  --purple: #7c3aed;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;transition:background .3s,color .3s}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;background:rgba(13,15,18,.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 2rem;gap:1.5rem}
+[data-theme="light"] header{background:rgba(245,246,248,.9)}
+.logo{font-family:var(--font-display);font-size:1.25rem;color:var(--text);letter-spacing:-.02em;flex:1}
+.logo span{color:var(--accent)}
+.header-nav{display:flex;gap:.5rem}
+.header-nav a{font-size:.8rem;font-weight:500;color:var(--text2);text-decoration:none;padding:.35rem .7rem;border-radius:6px;border:1px solid transparent;transition:all .2s}
+.header-nav a:hover{color:var(--text);background:var(--bg3);border-color:var(--border)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:8px;color:var(--text2);cursor:pointer;padding:.35rem .6rem;font-size:.8rem;transition:all .2s;font-family:var(--font-body)}
+.theme-btn:hover{background:var(--bg3);color:var(--text)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse at center,black 20%,transparent 75%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:500;font-family:var(--font-mono);color:var(--accent2);background:rgba(79,142,247,.1);border:1px solid rgba(79,142,247,.25);border-radius:100px;padding:.35rem .9rem;margin-bottom:1.75rem;letter-spacing:.05em}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero h1{font-family:var(--font-display);font-size:clamp(2.5rem,6vw,4.5rem);line-height:1.1;letter-spacing:-.03em;margin-bottom:1.25rem;max-width:700px}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--text2);max-width:520px;line-height:1.7;margin-bottom:3rem}
+
+/* DAYS GRID */
+.days-section{padding:2rem 2rem 6rem;max-width:900px;margin:0 auto;width:100%}
+.days-section h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:.5rem;text-align:center}
+.days-section p{color:var(--text2);text-align:center;margin-bottom:2.5rem;font-size:.95rem}
+.days-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:1.25rem}
+.day-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:1.75rem;text-decoration:none;color:var(--text);transition:all .25s;position:relative;overflow:hidden;display:block}
+.day-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 60%,rgba(79,142,247,.04));pointer-events:none}
+.day-card:hover{border-color:var(--border2);transform:translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+[data-theme="light"] .day-card:hover{box-shadow:0 8px 24px rgba(0,0,0,.1)}
+.day-number{font-family:var(--font-mono);font-size:.75rem;color:var(--text3);letter-spacing:.1em;margin-bottom:.75rem;text-transform:uppercase}
+.day-title{font-family:var(--font-display);font-size:1.35rem;margin-bottom:.5rem;line-height:1.2}
+.day-desc{font-size:.85rem;color:var(--text2);line-height:1.6;margin-bottom:1.25rem}
+.day-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.25rem}
+.day-tag{font-size:.7rem;font-weight:500;padding:.25rem .6rem;border-radius:6px;border:1px solid var(--border2)}
+.tag-blue{color:var(--accent2);border-color:rgba(79,142,247,.25);background:rgba(79,142,247,.07)}
+.tag-green{color:var(--green);border-color:rgba(62,207,142,.25);background:rgba(62,207,142,.07)}
+.tag-amber{color:var(--amber);border-color:rgba(245,166,35,.25);background:rgba(245,166,35,.07)}
+.tag-purple{color:var(--purple);border-color:rgba(167,139,250,.25);background:rgba(167,139,250,.07)}
+.day-topics{font-size:.8rem;color:var(--text2);line-height:1.8}
+.day-topics li{list-style:none;padding-left:.9rem;position:relative}
+.day-topics li::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:.7rem;top:.05rem}
+.day-cta{margin-top:1.25rem;display:flex;align-items:center;justify-content:space-between;padding-top:1.25rem;border-top:1px solid var(--border)}
+.day-cta-label{font-size:.8rem;font-weight:600;color:var(--accent)}
+.day-cta-arrow{color:var(--accent);font-size:1.1rem;transition:transform .2s}
+.day-card:hover .day-cta-arrow{transform:translateX(4px)}
+.day-available{border-color:rgba(79,142,247,.3)}
+.day-soon{opacity:.55;pointer-events:none}
+.day-soon .day-cta-label{color:var(--text3)}
+
+/* STATS */
+.stats-row{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.stat{text-align:center}
+.stat-n{font-family:var(--font-display);font-size:2.2rem;color:var(--accent)}
+.stat-l{font-size:.8rem;color:var(--text2);margin-top:.2rem}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center;font-size:.8rem;color:var(--text3)}
+footer strong{color:var(--text2)}
+
+@media(max-width:640px){
+  .days-grid{grid-template-columns:1fr}
+  .header-nav{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">CFC <span>Suficiência</span></div>
+  <nav class="header-nav">
+    <a href="index.html">Início</a>
+    <a href="dia1.html">Dia 1</a>
+    <a href="dia2.html">Dia 2</a>
+    <a href="dia3.html">Dia 3</a>
+    <a href="dia4.html">Dia 4</a>
+  </nav>
+  <button class="theme-btn" onclick="toggleTheme()">☀ Modo Claro</button>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <span class="hero-badge">Plano Intensivo · FGV · 4 dias</span>
+    <h1>Aprovação no Exame de <em>Suficiência</em> CFC</h1>
+    <p class="hero-sub">Material completo baseado nas provas 2024.1, 2024.2 e 2025.1. Foco total no estilo FGV: normas, lançamentos, cálculos e pegadinhas.</p>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-n">50</div><div class="stat-l">Questões na prova</div></div>
+      <div class="stat"><div class="stat-n">25+</div><div class="stat-l">Acertos para aprovação</div></div>
+      <div class="stat"><div class="stat-n">4h</div><div class="stat-l">Duração da prova</div></div>
+      <div class="stat"><div class="stat-n">12</div><div class="stat-l">Questões de Contab. Geral</div></div>
+    </div>
+  </section>
+
+  <section class="days-section">
+    <h2>Plano de 4 Dias</h2>
+    <p>Cada arquivo cobre um dia completo: teoria ultraobjetiva, fórmulas, NBCs, pegadinhas e simulado estilo FGV.</p>
+
+    <div class="days-grid">
+
+      <a href="dia1.html" class="day-card day-available">
+        <div class="day-number">// dia 01</div>
+        <div class="day-title">Contabilidade Geral I + Teoria</div>
+        <div class="day-desc">Base da prova. O bloco com maior número de questões (~17 questões combinadas). Dominar aqui garante metade da aprovação.</div>
+        <div class="day-tags">
+          <span class="day-tag tag-blue">NBC TG 25</span>
+          <span class="day-tag tag-blue">NBC TG 27</span>
+          <span class="day-tag tag-green">Estrutura Conceitual</span>
+          <span class="day-tag tag-amber">Lançamentos</span>
+          <span class="day-tag tag-purple">Pegadinhas FGV</span>
+        </div>
+        <ul class="day-topics">
+          <li>Provisões e Contingências (Provável / Possível / Remota)</li>
+          <li>Ativo Imobilizado: custo, depreciação, impairment, venda</li>
+          <li>Estrutura Conceitual: definições e características qualitativas</li>
+          <li>Lançamentos completos com IR retido, salários e despesas</li>
+          <li>Simulado com 15 questões estilo FGV comentadas</li>
+        </ul>
+        <div class="day-cta">
+          <span class="day-cta-label">Acessar Dia 1 →</span>
+          <span class="day-cta-arrow">↗</span>
+        </div>
+      </a>
+
+      <div class="day-card day-soon">
+        <div class="day-number">// dia 02</div>
+        <div class="day-title">Contabilidade Geral II + Custos</div>
+        <div class="day-desc">Estoques, DFC, DVA e equivalência patrimonial + custeio variável vs absorção, custo padrão, ponto de equilíbrio e ABC.</div>
+        <div class="day-tags">
+          <span class="day-tag tag-blue">NBC TG 16</span>
+          <span class="day-tag tag-blue">NBC TG 03</span>
+          <span class="day-tag tag-green">NBC TG 09</span>
+          <span class="day-tag tag-amber">Custeio</span>
+          <span class="day-tag tag-purple">PEPS / Médio</span>
+        </div>
+        <ul class="day-topics">
+          <li>PEPS, custo médio, VRL — cálculo e pegadinhas</li>
+          <li>DFC: método direto vs indireto, classificação dos fluxos</li>
+          <li>DVA: valor adicionado recebido em transferência</li>
+          <li>Custeio variável vs absorção: resultado e estoque</li>
+          <li>Simulado com 15 questões estilo FGV comentadas</li>
+        </ul>
+        <div class="day-cta">
+          <span class="day-cta-label">Em breve</span>
+        </div>
+      </div>
+
+      <div class="day-card day-soon">
+        <div class="day-number">// dia 03</div>
+        <div class="day-title">Ética + Auditoria + Perícia + CASP</div>
+        <div class="day-desc">Questões conceituais de alta incidência. Código de Ética item 7/8/20, NBCs TA 265/705 e setor público completo.</div>
+        <div class="day-tags">
+          <span class="day-tag tag-blue">NBC PG 01</span>
+          <span class="day-tag tag-green">NBC TA 265</span>
+          <span class="day-tag tag-amber">NBC TA 705</span>
+          <span class="day-tag tag-purple">NBC TP 01</span>
+        </div>
+        <ul class="day-topics">
+          <li>Penalidades, honorários e vedações do Código de Ética</li>
+          <li>Tipos de opinião: ressalva, adversa, abstenção, ênfase</li>
+          <li>Laudo (nomeado) vs Parecer (assistente técnico)</li>
+          <li>Receitas e despesas orçamentárias no setor público</li>
+          <li>Simulado com 15 questões estilo FGV comentadas</li>
+        </ul>
+        <div class="day-cta">
+          <span class="day-cta-label">Em breve</span>
+        </div>
+      </div>
+
+      <div class="day-card day-soon">
+        <div class="day-number">// dia 04</div>
+        <div class="day-title">Simulado Final + Estratégia de Prova</div>
+        <div class="day-desc">Simulado completo com 50 questões, correção comentada, estratégia de resolução e revisão de véspera com tudo que cai.</div>
+        <div class="day-tags">
+          <span class="day-tag tag-blue">Simulado 50Q</span>
+          <span class="day-tag tag-green">Estratégia</span>
+          <span class="day-tag tag-amber">Revisão Final</span>
+          <span class="day-tag tag-purple">Véspera</span>
+        </div>
+        <ul class="day-topics">
+          <li>50 questões no formato exato da FGV cronometradas</li>
+          <li>Gabarito com comentário técnico por questão</li>
+          <li>Ordem ideal de resolução e gestão dos 240 minutos</li>
+          <li>Fórmulas e NBCs para revisar na manhã da prova</li>
+          <li>Checklist final de véspera</li>
+        </ul>
+        <div class="day-cta">
+          <span class="day-cta-label">Em breve</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>Exame de Suficiência CFC</strong> · Plano baseado nas provas 2024.1, 2024.2 e 2025.1 aplicadas pela FGV · Material de estudo intensivo
+</footer>
+
+<script>
+function toggleTheme(){
+  const d=document.documentElement;
+  const btn=document.querySelector('.theme-btn');
+  if(d.getAttribute('data-theme')==='light'){
+    d.removeAttribute('data-theme');
+    btn.textContent='☀ Modo Claro';
+    localStorage.setItem('theme','dark');
+  } else {
+    d.setAttribute('data-theme','light');
+    btn.textContent='☾ Modo Escuro';
+    localStorage.setItem('theme','light');
+  }
+}
+const saved=localStorage.getItem('theme');
+if(saved==='light'){
+  document.documentElement.setAttribute('data-theme','light');
+  document.querySelector('.theme-btn').textContent='☾ Modo Escuro';
+}
+</script>
+</body>
+</html>
