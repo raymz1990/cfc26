@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dia 2 — Contabilidade Geral II + Custos · CFC Suficiência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0f12;--bg2:#13161b;--bg3:#1a1e25;--bg4:#20242d;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#e8eaed;--text2:#9aa3b2;--text3:#5c6478;
+  --accent:#4f8ef7;--accent2:#7eb8f7;
+  --green:#3ecf8e;--green-bg:rgba(62,207,142,.1);--green-border:rgba(62,207,142,.25);
+  --amber:#f5a623;--amber-bg:rgba(245,166,35,.1);--amber-border:rgba(245,166,35,.25);
+  --red:#f26b6b;--red-bg:rgba(242,107,107,.1);--red-border:rgba(242,107,107,.25);
+  --purple:#a78bfa;--purple-bg:rgba(167,139,250,.1);--purple-border:rgba(167,139,250,.25);
+  --blue-bg:rgba(79,142,247,.1);--blue-border:rgba(79,142,247,.25);
+  --teal:#2dd4bf;--teal-bg:rgba(45,212,191,.1);--teal-border:rgba(45,212,191,.25);
+  --font-display:'DM Serif Display',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+[data-theme="light"]{
+  --bg:#f4f5f7;--bg2:#ffffff;--bg3:#eceef2;--bg4:#e5e7eb;
+  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
+  --text:#111318;--text2:#4b5563;--text3:#9ca3af;
+  --accent:#2563eb;--accent2:#3b82f6;
+  --green:#059669;--green-bg:rgba(5,150,105,.08);--green-border:rgba(5,150,105,.25);
+  --amber:#d97706;--amber-bg:rgba(217,119,6,.08);--amber-border:rgba(217,119,6,.25);
+  --red:#dc2626;--red-bg:rgba(220,38,38,.08);--red-border:rgba(220,38,38,.25);
+  --purple:#7c3aed;--purple-bg:rgba(124,58,237,.08);--purple-border:rgba(124,58,237,.25);
+  --blue-bg:rgba(37,99,235,.08);--blue-border:rgba(37,99,235,.25);
+  --teal:#0d9488;--teal-bg:rgba(13,148,136,.08);--teal-border:rgba(13,148,136,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;background:rgba(13,15,18,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:1rem}
+[data-theme="light"] header{background:rgba(244,245,247,.92)}
+.logo{font-family:var(--font-display);font-size:1.1rem;color:var(--text);text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
+.logo span{color:var(--accent)}
+.header-sep{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.day-label{font-family:var(--font-mono);font-size:.72rem;color:var(--teal);letter-spacing:.08em;white-space:nowrap}
+.header-nav{display:flex;gap:.3rem;margin-left:auto}
+.header-nav a{font-size:.78rem;font-weight:500;color:var(--text2);text-decoration:none;padding:.3rem .6rem;border-radius:6px;transition:all .2s}
+.header-nav a:hover,.header-nav a.active{color:var(--text);background:var(--bg3)}
+.header-nav a.active{color:var(--accent)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;padding:.3rem .7rem;font-size:.78rem;transition:all .2s;font-family:var(--font-body);white-space:nowrap;flex-shrink:0}
+.theme-btn:hover{background:var(--bg3);color:var(--text)}
+.progress-wrap{position:fixed;top:58px;left:0;right:0;z-index:199;height:2px;background:var(--bg3)}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--teal),var(--green));width:0%;transition:width .1s}
+
+/* LAYOUT */
+.layout{display:flex;padding-top:60px;min-height:100vh}
+.sidebar{width:260px;flex-shrink:0;position:fixed;top:60px;left:0;bottom:0;overflow-y:auto;border-right:1px solid var(--border);padding:1.25rem .75rem;background:var(--bg2)}
+.sidebar-section{margin-bottom:1.25rem}
+.sidebar-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;padding:0 .5rem;margin-bottom:.4rem}
+.sidebar-link{display:flex;align-items:center;gap:.6rem;padding:.45rem .6rem;border-radius:8px;text-decoration:none;font-size:.82rem;color:var(--text2);transition:all .18s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--font-body)}
+.sidebar-link:hover{color:var(--text);background:var(--bg3)}
+.sidebar-link.active{color:var(--teal);background:var(--teal-bg)}
+.sidebar-link .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--border2)}
+.sidebar-link.active .dot{background:var(--teal)}
+.sidebar-progress{margin-top:1.5rem;padding:.75rem;background:var(--bg3);border-radius:10px}
+.sidebar-progress-label{font-size:.72rem;color:var(--text2);margin-bottom:.5rem;display:flex;justify-content:space-between}
+.sidebar-progress-bar{height:5px;background:var(--border2);border-radius:3px;overflow:hidden}
+.sidebar-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--green));border-radius:3px;transition:width .4s}
+.sidebar-score{font-size:.78rem;color:var(--green);margin-top:.4rem;font-weight:500}
+
+/* MAIN */
+.main{margin-left:260px;flex:1;min-width:0;padding:2rem 2.5rem 4rem;max-width:900px}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0;padding:1.25rem 1rem 4rem}}
+
+/* HERO */
+.page-hero{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-family:var(--font-mono);color:var(--teal);background:var(--teal-bg);border:1px solid var(--teal-border);border-radius:100px;padding:.3rem .85rem;margin-bottom:1rem;letter-spacing:.05em}
+.page-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.page-title{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;letter-spacing:-.03em;margin-bottom:.75rem}
+.page-title em{font-style:italic;color:var(--teal)}
+.page-sub{color:var(--text2);font-size:.95rem;max-width:640px;line-height:1.7}
+.page-stats{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.pstat{text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.6rem 1.1rem}
+.pstat-n{font-family:var(--font-display);font-size:1.6rem;color:var(--teal)}
+.pstat-l{font-size:.72rem;color:var(--text2);margin-top:.1rem}
+
+/* SECTIONS */
+.section-title{font-family:var(--font-display);font-size:1.6rem;margin-bottom:.25rem;scroll-margin-top:75px}
+.section-sub{font-size:.88rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.6}
+.section-divider{height:1px;background:var(--border);margin:2.5rem 0}
+
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.card-title{font-weight:600;font-size:.88rem;margin-bottom:.85rem;color:var(--text)}
+
+/* ALERTS */
+.alert{border-radius:10px;padding:.85rem 1.1rem;margin:.6rem 0;font-size:.85rem;line-height:1.65;border-left:3px solid}
+.alert-amber{background:var(--amber-bg);border-color:var(--amber)}
+.alert-green{background:var(--green-bg);border-color:var(--green)}
+.alert-red{background:var(--red-bg);border-color:var(--red)}
+.alert-blue{background:var(--blue-bg);border-color:var(--accent)}
+.alert-teal{background:var(--teal-bg);border-color:var(--teal)}
+.alert-title{font-weight:600;display:block;margin-bottom:.25rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.alert p,.alert li{color:var(--text)}
+.alert ul{padding-left:1.1rem;margin-top:.3rem}
+.alert ul li{margin:.15rem 0}
+
+/* FORMULAS */
+.formula{background:var(--bg3);border:1px solid var(--border2);border-radius:9px;padding:.7rem 1rem;font-family:var(--font-mono);font-size:.82rem;color:var(--accent2);margin:.4rem 0;line-height:1.5}
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.5rem;margin:.75rem 0}
+.formula.teal{color:var(--teal)}
+.formula.green{color:var(--green)}
+.formula.amber{color:var(--amber)}
+
+/* TABLES */
+.table-wrap{overflow-x:auto;margin:.75rem 0;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+thead tr{background:var(--bg3)}
+th{padding:.6rem .9rem;text-align:left;font-weight:600;font-size:.75rem;color:var(--text2);letter-spacing:.04em;white-space:nowrap}
+td{padding:.55rem .9rem;border-top:1px solid var(--border);vertical-align:top}
+tr:hover td{background:var(--bg3)}
+
+/* BADGES */
+.badge{display:inline-block;font-size:.7rem;font-weight:500;padding:.22rem .6rem;border-radius:6px;border:1px solid}
+.b-green{color:var(--green);background:var(--green-bg);border-color:var(--green-border)}
+.b-amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-border)}
+.b-red{color:var(--red);background:var(--red-bg);border-color:var(--red-border)}
+.b-blue{color:var(--accent2);background:var(--blue-bg);border-color:var(--blue-border)}
+.b-purple{color:var(--purple);background:var(--purple-bg);border-color:var(--purple-border)}
+.b-teal{color:var(--teal);background:var(--teal-bg);border-color:var(--teal-border)}
+
+/* LANCAMENTO */
+.lancamento{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:1rem 1.25rem;margin:.6rem 0;font-family:var(--font-mono);font-size:.82rem}
+.lancamento-title{font-family:var(--font-body);font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:.6rem;letter-spacing:.03em;text-transform:uppercase}
+.lancamento .d{color:var(--red)}
+.lancamento .c{color:var(--green)}
+.lancamento .linha{display:flex;justify-content:space-between;padding:.15rem 0;border-bottom:1px solid var(--border);gap:1rem}
+.lancamento .linha:last-child{border-bottom:none}
+.lancamento .linha span:first-child{flex:1}
+.lancamento .linha span:last-child{white-space:nowrap;color:var(--accent2)}
+
+/* FICHA PEPS */
+.ficha{width:100%;border-collapse:collapse;font-size:.8rem;font-family:var(--font-mono)}
+.ficha th{background:var(--bg4);padding:.5rem .7rem;text-align:center;font-size:.72rem;color:var(--text2);border:1px solid var(--border2)}
+.ficha td{padding:.45rem .7rem;text-align:center;border:1px solid var(--border2)}
+.ficha tr.entrada td{background:rgba(62,207,142,.06)}
+.ficha tr.saida td{background:rgba(242,107,107,.06)}
+.ficha tr.saldo td{background:rgba(79,142,247,.06)}
+.ficha tr.total td{background:var(--bg4);font-weight:600;color:var(--accent2)}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+
+/* MNEMONIC */
+.mnemonic{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:1rem 1.25rem;margin:.75rem 0;text-align:center}
+.mnemonic-word{font-family:var(--font-display);font-size:1.5rem;color:var(--teal);letter-spacing:.03em;margin-bottom:.4rem}
+.mnemonic-exp{font-size:.82rem;color:var(--text2);line-height:1.7}
+.mnemonic-exp strong{color:var(--text)}
+
+/* NBC PILLS */
+.nbc-row{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0}
+.nbc-pill{font-family:var(--font-mono);font-size:.72rem;padding:.3rem .7rem;border-radius:6px;background:var(--teal-bg);border:1px solid var(--teal-border);color:var(--teal)}
+
+ul.styled{padding-left:1.1rem}
+ul.styled li{margin:.3rem 0;font-size:.85rem;line-height:1.6}
+ul.styled li::marker{color:var(--teal)}
+
+/* SIMULADO */
+.sim-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
+.sim-score{font-family:var(--font-mono);font-size:.85rem;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;padding:.35rem .85rem}
+.sim-progress-wrap{height:5px;background:var(--border2);border-radius:3px;margin-bottom:1.5rem;overflow:hidden}
+.sim-progress-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--green));border-radius:3px;transition:width .3s}
+.q-block{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+.q-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;flex-wrap:wrap}
+.q-num{font-family:var(--font-mono);font-size:.72rem;color:var(--text3)}
+.q-text{font-size:.92rem;line-height:1.75;margin-bottom:1.1rem;color:var(--text)}
+.q-opts{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.9rem}
+.q-opt{display:flex;align-items:flex-start;gap:.75rem;padding:.7rem .9rem;border:1px solid var(--border2);border-radius:9px;cursor:pointer;font-size:.85rem;line-height:1.5;transition:all .18s;background:transparent;width:100%;text-align:left;font-family:var(--font-body);color:var(--text)}
+.q-opt:hover:not(:disabled){background:var(--bg3);border-color:var(--border2)}
+.q-opt:disabled{cursor:default}
+.q-opt.selected{border-color:var(--teal);background:var(--teal-bg)}
+.q-opt.correct{border-color:var(--green)!important;background:var(--green-bg)!important;color:var(--green)}
+.q-opt.wrong{border-color:var(--red)!important;background:var(--red-bg)!important;color:var(--red)}
+.q-opt-letter{font-family:var(--font-mono);font-size:.78rem;font-weight:500;min-width:18px;color:var(--text3);flex-shrink:0;margin-top:.05rem}
+.q-opt.correct .q-opt-letter{color:var(--green)}
+.q-opt.wrong .q-opt-letter{color:var(--red)}
+.q-btn-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;border:1px solid var(--border2);border-radius:8px;cursor:pointer;font-size:.82rem;font-family:var(--font-body);font-weight:500;background:transparent;color:var(--text);transition:all .18s}
+.btn:hover{background:var(--bg3)}
+.btn-primary{background:var(--teal);color:#fff;border-color:var(--teal)}
+.btn-primary:hover{opacity:.88}
+.btn-success{background:var(--green);color:#fff;border-color:var(--green)}
+.gabarito{display:none;margin-top:1rem;padding:1rem 1.1rem;background:var(--bg3);border-radius:10px;border:1px solid var(--border2)}
+.gabarito.show{display:block}
+.gab-correct-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:6px;padding:.2rem .6rem;margin-bottom:.6rem}
+.gab-title{font-size:.78rem;font-weight:600;color:var(--text);margin:.6rem 0 .3rem}
+.gab-text{font-size:.83rem;color:var(--text2);line-height:1.7}
+.gab-just{margin-top:.5rem}
+.gab-just-item{font-size:.8rem;padding:.2rem 0;display:flex;gap:.5rem;line-height:1.55}
+.gab-just-item span:first-child{font-family:var(--font-mono);font-size:.74rem;min-width:24px;font-weight:500}
+.gab-just-item.ok span:first-child{color:var(--green)}
+.gab-just-item.ko span:first-child{color:var(--red)}
+.gab-just-item.ko span:last-child{color:var(--text2)}
+
+/* RESULT */
+.result-panel{display:none;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;margin-top:1.5rem}
+.result-panel.show{display:block}
+.result-score{font-family:var(--font-display);font-size:3.5rem;color:var(--teal);line-height:1}
+.result-label{font-size:1rem;color:var(--text2);margin:.5rem 0 1.5rem}
+.result-analysis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem;margin:1.25rem 0}
+.ra-card{background:var(--bg3);border-radius:10px;padding:.75rem;border:1px solid var(--border)}
+.ra-n{font-family:var(--font-display);font-size:1.8rem}
+.ra-l{font-size:.72rem;color:var(--text2);margin-top:.15rem}
+
+/* CHECKLIST */
+.checklist-item{display:flex;align-items:flex-start;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--border);cursor:pointer}
+.checklist-item:last-child{border-bottom:none}
+.chk-box{width:18px;height:18px;border:1.5px solid var(--border2);border-radius:4px;flex-shrink:0;margin-top:.15rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.checklist-item.done .chk-box{background:var(--green);border-color:var(--green);color:#fff}
+.chk-label{font-size:.85rem;color:var(--text);line-height:1.55}
+.checklist-item.done .chk-label{color:var(--text3);text-decoration:line-through}
+
+/* MOBILE NAV */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg2);border-top:1px solid var(--border);padding:.5rem .75rem;justify-content:space-around}
+@media(max-width:900px){.mobile-nav{display:flex}}
+.mob-link{font-size:.72rem;color:var(--text2);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.3rem .5rem;border-radius:7px}
+.mob-link:hover,.mob-link.active{color:var(--teal)}
+
+/* COMPARATIVO */
+.comp-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.75rem 0}
+.comp-card{border-radius:10px;padding:.85rem 1rem;border:1px solid}
+.comp-card h4{font-size:.82rem;font-weight:600;margin-bottom:.5rem}
+.comp-card ul{padding-left:1rem;font-size:.8rem;line-height:1.7}
+.comp-card.left{background:var(--blue-bg);border-color:var(--blue-border);color:var(--text)}
+.comp-card.left h4{color:var(--accent2)}
+.comp-card.right{background:var(--green-bg);border-color:var(--green-border);color:var(--text)}
+.comp-card.right h4{color:var(--green)}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">CFC <span>Suficiência</span></a>
+  <div class="header-sep"></div>
+  <span class="day-label">// DIA 02</span>
+  <nav class="header-nav">
+    <a href="index.html">Início</a>
+    <a href="dia1.html">Dia 1</a>
+    <a href="dia2.html" class="active">Dia 2</a>
+    <a href="dia3.html">Dia 3</a>
+    <a href="dia4.html">Dia 4</a>
+  </nav>
+  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">☀ Claro</button>
+</header>
+<div class="progress-wrap"><div class="progress-bar" id="scroll-bar"></div></div>
+
+<div class="layout">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Módulos do Dia 2</div>
+    <button class="sidebar-link active" onclick="scrollTo('intro')"><span class="dot"></span>Introdução</button>
+    <button class="sidebar-link" onclick="scrollTo('estoques')"><span class="dot"></span>NBC TG 16 — Estoques</button>
+    <button class="sidebar-link" onclick="scrollTo('dfc')"><span class="dot"></span>NBC TG 03 — DFC</button>
+    <button class="sidebar-link" onclick="scrollTo('dva')"><span class="dot"></span>NBC TG 09 — DVA</button>
+    <button class="sidebar-link" onclick="scrollTo('mep')"><span class="dot"></span>Equivalência Patrimonial</button>
+    <button class="sidebar-link" onclick="scrollTo('custos')"><span class="dot"></span>Custeio Variável vs Absorção</button>
+    <button class="sidebar-link" onclick="scrollTo('padrao')"><span class="dot"></span>Custo Padrão</button>
+    <button class="sidebar-link" onclick="scrollTo('abc')"><span class="dot"></span>ABC + Ponto de Equilíbrio</button>
+    <button class="sidebar-link" onclick="scrollTo('simulado')"><span class="dot"></span>Simulado — 15 Questões</button>
+    <button class="sidebar-link" onclick="scrollTo('checklist')"><span class="dot"></span>Checklist do Dia</button>
+  </div>
+  <div class="sidebar-progress">
+    <div class="sidebar-progress-label">
+      <span>Progresso simulado</span>
+      <span id="sb-pct">0%</span>
+    </div>
+    <div class="sidebar-progress-bar"><div class="sidebar-progress-fill" id="sb-bar" style="width:0%"></div></div>
+    <div class="sidebar-score" id="sb-score">— questões respondidas</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="page-hero">
+    <div class="page-badge"><span class="dot"></span>Dia 02 de 04 · Plano Intensivo CFC/FGV</div>
+    <h1 class="page-title">Contabilidade Geral II<br>+ <em>Contabilidade de Custos</em></h1>
+    <p class="page-sub">Estoques, DFC, DVA, Equivalência Patrimonial e Custos formam o segundo maior bloco da prova. Dominar esses temas junto com o Dia 1 já garante a aprovação.</p>
+    <div class="page-stats">
+      <div class="pstat"><div class="pstat-n">~13</div><div class="pstat-l">questões hoje</div></div>
+      <div class="pstat"><div class="pstat-n">5</div><div class="pstat-l">normas principais</div></div>
+      <div class="pstat"><div class="pstat-n">15</div><div class="pstat-l">questões no simulado</div></div>
+      <div class="pstat"><div class="pstat-n">6</div><div class="pstat-l">pegadinhas mapeadas</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Distribuição histórica desse bloco</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tema</th><th>Frequência</th><th>Tipo FGV</th></tr></thead>
+        <tbody>
+          <tr><td>Estoques — PEPS e CMV (NBC TG 16)</td><td><span class="badge b-red">Toda edição</span></td><td>Ficha de estoque + cálculo</td></tr>
+          <tr><td>DFC Método Direto vs Indireto (NBC TG 03)</td><td><span class="badge b-red">Toda edição</span></td><td>Cálculo fluxo operacional</td></tr>
+          <tr><td>DVA — distribuição e classificação (NBC TG 09)</td><td><span class="badge b-red">Toda edição</span></td><td>Onde lançar cada item</td></tr>
+          <tr><td>Custeio Variável vs Absorção</td><td><span class="badge b-red">Toda edição</span></td><td>Cálculo de lucro e estoque</td></tr>
+          <tr><td>Custo Padrão — variação preço/quantidade</td><td><span class="badge b-amber">Alta</span></td><td>Cálculo de variação F/D</td></tr>
+          <tr><td>Equivalência Patrimonial — MEP</td><td><span class="badge b-amber">Alta</span></td><td>Cálculo + lançamento</td></tr>
+          <tr><td>Ponto de Equilíbrio e Custeio ABC</td><td><span class="badge b-blue">Média</span></td><td>Cálculo e interpretação</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="alert alert-teal">
+    <span class="alert-title">⚡ Estratégia do Dia 2</span>
+    <p>Custos e DFC têm cálculo obrigatório — treine fazendo, não lendo. Para cada fórmula, resolva o exemplo antes de olhar o resultado.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ESTOQUES -->
+<section id="estoques">
+  <h2 class="section-title">NBC TG 16 — Estoques</h2>
+  <p class="section-sub">A FGV sempre apresenta uma movimentação de estoque e pede o CMV e/ou o saldo final. Domine a ficha PEPS — é o método mais cobrado.</p>
+
+  <div class="card">
+    <div class="card-title">Regra de mensuração — menor entre custo e VRL</div>
+    <div class="formula teal">Custo do Estoque = menor entre (Custo de Aquisição) e (VRL)</div>
+    <div class="formula">VRL = Preço de Venda estimado − Custos estimados para concluir e vender</div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha</span>
+      <p>O estoque nunca é mensurado pelo maior entre custo e VRL — sempre pelo <strong>menor</strong>. Se o VRL cair abaixo do custo, reconhece-se perda por ajuste ao valor realizável líquido.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">CMV — fórmula fundamental</div>
+    <div class="formula green">CMV = Estoque Inicial + Compras Líquidas − Estoque Final</div>
+    <div class="formula">Compras Líquidas = Compras − Devoluções − Abatimentos + Fretes pagos pelo comprador</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Método PEPS — Primeiro a Entrar, Primeiro a Sair</div>
+    <p style="font-size:.85rem;color:var(--text2);margin-bottom:.75rem">O estoque mais antigo é o primeiro a sair. O custo das saídas respeita a cronologia das entradas. Exemplo da prova 2024/2:</p>
+
+    <div class="table-wrap">
+      <table class="ficha">
+        <thead>
+          <tr>
+            <th>Data</th><th>Evento</th>
+            <th colspan="3">Entrada</th>
+            <th colspan="3">Saída</th>
+            <th colspan="3">Saldo</th>
+          </tr>
+          <tr>
+            <th></th><th></th>
+            <th>Qtd</th><th>Custo</th><th>Total</th>
+            <th>Qtd</th><th>Custo</th><th>Total</th>
+            <th>Qtd</th><th>Custo</th><th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="saldo"><td>01/04</td><td>Saldo inicial</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>200</td><td>R$10</td><td>R$2.000</td></tr>
+          <tr class="entrada"><td>08/04</td><td>Compra</td><td>210</td><td>R$12</td><td>R$2.520</td><td>—</td><td>—</td><td>—</td><td>200@10 + 210@12</td><td>—</td><td>R$4.520</td></tr>
+          <tr class="entrada"><td>10/04</td><td>Dev. compra (08/04)</td><td>—</td><td>—</td><td>—</td><td>50</td><td>R$12</td><td>−R$600</td><td>200@10 + 160@12</td><td>—</td><td>R$3.920</td></tr>
+          <tr class="saida"><td>12/04</td><td>Venda 150 un.</td><td>—</td><td>—</td><td>—</td><td>150@R$10</td><td>—</td><td>R$1.500</td><td>50@10 + 160@12</td><td>—</td><td>R$2.420</td></tr>
+          <tr class="entrada"><td>17/04</td><td>Dev. venda (12/04)</td><td>30@R$10</td><td>—</td><td>+R$300</td><td>—</td><td>—</td><td>—</td><td>80@10 + 160@12</td><td>—</td><td>R$2.720</td></tr>
+          <tr class="entrada"><td>22/04</td><td>Compra</td><td>150</td><td>R$15</td><td>R$2.250</td><td>—</td><td>—</td><td>—</td><td>80@10+160@12+150@15</td><td>—</td><td>R$4.970</td></tr>
+          <tr class="total"><td colspan="6"><strong>CMV = R$ 1.500 − R$ 300 (dev. venda) = R$ 1.200</strong></td><td colspan="5"><strong>Estoque Final = R$ 4.970</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert alert-red" style="margin-top:.75rem">
+      <span class="alert-title">⚠ Devolução de venda no PEPS</span>
+      <p>A devolução de venda RETORNA ao estoque pelo custo original da mercadoria vendida — não pelo preço de venda. No exemplo: as 30 unidades devolvidas voltam a R$10 (custo original da saída de 12/04), não a R$22 (preço de venda). Esta questão saiu na prova 2024/2 (Q.37).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Custo Médio Ponderado — como funciona</div>
+    <ul class="styled">
+      <li>Após cada entrada, recalcula-se o custo médio do estoque</li>
+      <li>Custo médio = Valor total do saldo ÷ Quantidade total em estoque</li>
+      <li>Todas as saídas saem pelo custo médio calculado após a última entrada</li>
+      <li>Devolução de compra: retira pelo custo da entrada correspondente</li>
+      <li>Devolução de venda: retorna pelo custo médio da data da venda</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DFC -->
+<section id="dfc">
+  <h2 class="section-title">NBC TG 03 — Demonstração dos Fluxos de Caixa</h2>
+  <p class="section-sub">Cai em toda edição. A FGV pede o fluxo operacional pelo método direto, ou pede para classificar operações entre operacional, investimento e financiamento.</p>
+
+  <div class="card">
+    <div class="card-title">Estrutura da DFC — os três grupos</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Atividade</th><th>O que entra</th><th>Exemplos</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-teal">Operacional</span></td><td>Fluxos das operações principais (receitas e gastos do negócio)</td><td>Recebimento de clientes, pagamento a fornecedores, salários, impostos sobre o lucro</td></tr>
+          <tr><td><span class="badge b-blue">Investimento</span></td><td>Aquisição e venda de ativos de longo prazo</td><td>Compra/venda de imobilizado, intangível, investimentos em outras empresas</td></tr>
+          <tr><td><span class="badge b-purple">Financiamento</span></td><td>Captação e devolução de recursos dos sócios e credores</td><td>Empréstimos obtidos/pagos, emissão de ações, pagamento de dividendos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinhas de classificação</span>
+      <ul>
+        <li>Juros <strong>pagos</strong>: pode ser operacional ou financiamento (empresa escolhe e divulga)</li>
+        <li>Juros <strong>recebidos</strong>: pode ser operacional ou investimento</li>
+        <li>Dividendos <strong>pagos</strong>: pode ser operacional ou financiamento</li>
+        <li>IR sobre o lucro: em geral operacional, salvo identificação específica</li>
+        <li>Compra de imobilizado à prazo: investimento (pela compra) e financiamento (pelos pagamentos futuros)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Método Direto vs Indireto — diferença fundamental</div>
+    <div class="mnemonic">
+      <div class="mnemonic-word">A diferença está SOMENTE na atividade OPERACIONAL</div>
+      <div class="mnemonic-exp">Investimento e financiamento são <strong>idênticos</strong> nos dois métodos. O resultado final de caixa também é <strong>idêntico</strong>.</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-card left">
+        <h4>Método Direto</h4>
+        <ul>
+          <li>Mostra recebimentos e pagamentos de caixa</li>
+          <li>Recebimentos de clientes</li>
+          <li>Pagamentos a fornecedores</li>
+          <li>Pagamento de salários</li>
+          <li>Impostos pagos</li>
+        </ul>
+      </div>
+      <div class="comp-card right">
+        <h4>Método Indireto</h4>
+        <ul>
+          <li>Parte do lucro líquido</li>
+          <li>(+) Depreciação e amortização</li>
+          <li>(+/−) Variação de ativos e passivos operacionais</li>
+          <li>(−) Aumento em clientes</li>
+          <li>(+) Aumento em fornecedores</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exemplo de cálculo — método direto (prova 2024/2)</div>
+    <div class="lancamento">
+      <div class="lancamento-title">BP 31/12/2023: Disponibilidades R$55.000 | Estoques R$30.000 | Clientes R$20.000 | Equip. R$45.000 | Salários a pagar R$15.000 | Empréstimos R$35.000 | Capital R$120.000 | Prej.Acum. (R$20.000)</div>
+      <div class="linha"><span style="font-weight:600;color:var(--teal)">ATIVIDADE OPERACIONAL</span><span></span></div>
+      <div class="linha"><span class="c">(+) Venda de estoque à vista</span><span>R$80.000</span></div>
+      <div class="linha"><span class="c">(+) Recebimento de clientes</span><span>R$20.000</span></div>
+      <div class="linha"><span class="d">(−) Pagamento de salários (ano anterior)</span><span>R$(15.000)</span></div>
+      <div class="linha"><span class="d">(−) Despesas gerais pagas</span><span>R$(100.000)</span></div>
+      <div class="linha"><span style="font-weight:600">= Fluxo Operacional Líquido</span><span style="color:var(--red);font-weight:600">R$(15.000) — consumiu</span></div>
+      <div class="linha"><span style="font-weight:600;color:var(--teal)">ATIVIDADE DE INVESTIMENTO</span><span></span></div>
+      <div class="linha"><span class="c">(+) Venda de equipamentos</span><span>R$60.000</span></div>
+      <div class="linha"><span style="font-weight:600;color:var(--teal)">ATIVIDADE DE FINANCIAMENTO</span><span></span></div>
+      <div class="linha"><span class="d">(−) Pagamento de empréstimo</span><span>R$(35.000)</span></div>
+    </div>
+    <div class="alert alert-amber" style="margin-top:.5rem">
+      <span class="alert-title">⚠ Ponto crítico desta questão</span>
+      <p>Venda de equipamento = <strong>investimento</strong>, não operacional. Pagamento de empréstimo = <strong>financiamento</strong>. O fluxo operacional consumiu R$15.000 (questão saiu na prova 2024/2, Q.34).</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DVA -->
+<section id="dva">
+  <h2 class="section-title">NBC TG 09 — Demonstração do Valor Adicionado</h2>
+  <p class="section-sub">A FGV cobra onde classificar receitas e gastos na DVA. Aprenda a estrutura em duas partes: geração e distribuição.</p>
+
+  <div class="card">
+    <div class="card-title">Estrutura da DVA — 2 partes</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Parte</th><th>Seção</th><th>O que inclui</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="4"><strong>1ª Parte</strong><br>Geração do Valor Adicionado</td><td>Receitas</td><td>Receita de vendas (bruta) + outras receitas operacionais + reversão de perdas</td></tr>
+          <tr><td>Insumos de terceiros</td><td>Custo dos produtos/mercadorias/serviços + materiais + energia + serviços de terceiros + <strong>aluguel pago a terceiros</strong></td></tr>
+          <tr><td>Valor adicionado bruto</td><td>Receitas − Insumos de terceiros</td></tr>
+          <tr><td>Retenções</td><td>Depreciação + amortização + exaustão</td></tr>
+          <tr><td><strong>Valor adicionado recebido em transferência</strong></td><td colspan="2"><span class="badge b-amber">Equivalência patrimonial</span> + <span class="badge b-amber">Receitas financeiras</span> + <span class="badge b-amber">Aluguéis recebidos</span></td></tr>
+          <tr><td rowspan="4"><strong>2ª Parte</strong><br>Distribuição do Valor Adicionado</td><td>Pessoal</td><td>Salários, FGTS, plano de saúde, participação nos lucros</td></tr>
+          <tr><td>Impostos, taxas e contribuições</td><td>Federais, estaduais, municipais</td></tr>
+          <tr><td>Remuneração de capitais de terceiros</td><td><strong>Aluguéis pagos</strong>, juros, variação cambial passiva</td></tr>
+          <tr><td>Remuneração de capitais próprios</td><td>Dividendos, JCP, lucros retidos (= resultado líquido do exercício)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Aluguel — pegadinha clássica</span>
+      <p><strong>Aluguel PAGO</strong> a terceiros = insumos de terceiros (1ª parte) E remuneração de capitais de terceiros (2ª parte).<br><strong>Aluguel RECEBIDO</strong> de terceiros = valor adicionado em transferência.</p>
+    </div>
+    <div class="alert alert-blue">
+      <span class="alert-title">Reversão de perdas (PECLD)</span>
+      <p>Reversão de perdas estimadas com créditos de liquidação duvidosa = <strong>riqueza criada pela própria entidade</strong> (1ª parte da DVA, na seção "Receitas").</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Valor adicionado líquido produzido — cálculo</div>
+    <div class="lancamento">
+      <div class="lancamento-title">Exemplo — prova 2025/1</div>
+      <div class="linha"><span class="c">Receita de contratos com clientes</span><span>R$200.000</span></div>
+      <div class="linha"><span class="d">(−) CMV (inclui impostos recuperáveis)</span><span>R$(80.000)</span></div>
+      <div class="linha"><span style="font-weight:600">= Valor adicionado bruto</span><span>R$120.000</span></div>
+      <div class="linha"><span class="d">(−) Depreciação</span><span>R$(15.000)</span></div>
+      <div class="linha"><span class="d">(−) Perdas por desvalorização (impairment)</span><span>R$(10.000)</span></div>
+      <div class="linha"><span class="d">(−) Perdas estimadas com créditos (PECLD)</span><span>R$(6.000)</span></div>
+      <div class="linha"><span style="font-weight:600;color:var(--green)">= Valor adicionado líquido produzido</span><span style="color:var(--green);font-weight:600">R$89.000</span></div>
+    </div>
+    <div class="alert alert-red">
+      <span class="alert-title">⚠ Dedução das retenções</span>
+      <p>Depreciação, amortização, exaustão E perdas por impairment E PECLD são todas <strong>retenções</strong> que reduzem o valor adicionado bruto para chegar ao líquido.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MEP -->
+<section id="mep">
+  <h2 class="section-title">Equivalência Patrimonial — MEP</h2>
+  <p class="section-sub">Método obrigatório para investimentos em coligadas e controladas. A FGV sempre pede o lançamento correto e o impacto no resultado.</p>
+
+  <div class="card">
+    <div class="card-title">Quando aplicar o MEP</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo de investimento</th><th>Método</th><th>Critério</th></tr></thead>
+        <tbody>
+          <tr><td>Controlada</td><td><span class="badge b-green">MEP obrigatório</span></td><td>Controle (poder + retornos variáveis)</td></tr>
+          <tr><td>Coligada</td><td><span class="badge b-green">MEP obrigatório</span></td><td>Influência significativa ≥ 20% das ações com voto</td></tr>
+          <tr><td>Sem influência significativa</td><td><span class="badge b-blue">Custo ou VJ</span></td><td>Participação &lt; 20% sem influência</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Fórmulas e lançamentos MEP</div>
+    <div class="formula-grid">
+      <div class="formula teal">Valor do Investimento = PL da investida × % de participação</div>
+      <div class="formula green">Resultado MEP = Lucro/Prejuízo da investida × % participação</div>
+    </div>
+
+    <div class="lancamento" style="margin-top:.75rem">
+      <div class="lancamento-title">Investida apresenta LUCRO de R$ 200.000 — participação: 65%</div>
+      <div class="linha"><span class="d">D — Investimentos na Sociedade B</span><span>R$130.000</span></div>
+      <div class="linha"><span class="c">C — Receita de Equivalência Patrimonial</span><span>R$130.000</span></div>
+    </div>
+    <div class="lancamento" style="margin-top:.5rem">
+      <div class="lancamento-title">Investida apresenta PREJUÍZO de R$ 100.000 — participação: 65%</div>
+      <div class="linha"><span class="d">D — Despesa de Equivalência Patrimonial</span><span>R$65.000</span></div>
+      <div class="linha"><span class="c">C — Investimentos na Sociedade B</span><span>R$65.000</span></div>
+    </div>
+
+    <div class="alert alert-amber" style="margin-top:.75rem">
+      <span class="alert-title">⚠ Pegadinha — MEP não é dividendo</span>
+      <p>O recebimento de dividendos da investida é <strong>redução do investimento</strong> (não é receita). A receita já foi reconhecida pelo MEP quando o lucro ocorreu.</p>
+    </div>
+    <div class="lancamento" style="margin-top:.5rem">
+      <div class="lancamento-title">Recebimento de dividendos da investida (após MEP reconhecido)</div>
+      <div class="linha"><span class="d">D — Caixa / Banco</span><span>R$ X</span></div>
+      <div class="linha"><span class="c">C — Investimentos na Sociedade B</span><span>R$ X</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Participação de acionistas não controladores (PNC) — consolidação</div>
+    <div class="formula">PNC = PL da controlada × % pertencente a minoritários</div>
+    <div class="lancamento" style="margin-top:.5rem">
+      <div class="lancamento-title">Exemplo — prova 2025/1: Kappa (controlada 90%, PL R$1.000.000) + Sigma (controlada 70%, PL R$700.000)</div>
+      <div class="linha"><span>PNC Kappa = 10% × R$1.000.000</span><span>R$100.000</span></div>
+      <div class="linha"><span>PNC Sigma = 30% × R$700.000</span><span>R$210.000</span></div>
+      <div class="linha"><span style="font-weight:600">PNC total no balanço consolidado</span><span style="color:var(--green);font-weight:600">R$310.000</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CUSTOS -->
+<section id="custos">
+  <h2 class="section-title">Custeio Variável vs Custeio por Absorção</h2>
+  <p class="section-sub">Aparece em toda edição. A FGV cobra o cálculo do lucro e do estoque final nos dois métodos. A diferença está no tratamento dos custos fixos.</p>
+
+  <div class="card">
+    <div class="card-title">Diferença fundamental</div>
+    <div class="comp-row">
+      <div class="comp-card left">
+        <h4>Custeio por Absorção</h4>
+        <ul>
+          <li>Todos os custos de produção vão para o estoque</li>
+          <li>CF produção = custo por unidade (CF ÷ produção)</li>
+          <li>Estoque retém parte do CF proporcional às unidades não vendidas</li>
+          <li>Aceito pela legislação fiscal (IRPJ) e societária</li>
+          <li>Lucro maior quando produção &gt; vendas</li>
+        </ul>
+      </div>
+      <div class="comp-card right">
+        <h4>Custeio Variável</h4>
+        <ul>
+          <li>Só custos variáveis vão para o estoque</li>
+          <li>CF produção vai INTEIRO para resultado (despesa)</li>
+          <li>Estoque retém apenas CV proporcional às unidades não vendidas</li>
+          <li>Não aceito para fins fiscais — uso gerencial</li>
+          <li>Lucro maior quando vendas &gt; produção</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-red">
+      <span class="alert-title">⚠ Pegadinha mais comum</span>
+      <p>No custeio variável, os custos fixos de produção vão <strong>100% para o resultado</strong>, independentemente de quantas unidades foram produzidas ou vendidas. Nunca ficam no estoque.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exemplo completo — prova 2025/1</div>
+    <div class="lancamento">
+      <div class="lancamento-title">Dados: Produção 30.000 un. | Vendas 24.000 un. | PV R$100 | CV unit R$60 | CF produção R$200.000 | Despesas fixas R$100.000</div>
+      <div class="linha"><span style="font-weight:600;color:var(--teal)">CUSTEIO VARIÁVEL</span><span></span></div>
+      <div class="linha"><span>Receita (24.000 × R$100)</span><span>R$2.400.000</span></div>
+      <div class="linha"><span>(−) CMV variável (24.000 × R$60)</span><span>R$(1.440.000)</span></div>
+      <div class="linha"><span>= Margem de Contribuição Total</span><span>R$960.000</span></div>
+      <div class="linha"><span>(−) CF produção (100%)</span><span>R$(200.000)</span></div>
+      <div class="linha"><span>(−) Despesas fixas</span><span>R$(100.000)</span></div>
+      <div class="linha"><span style="font-weight:600;color:var(--green)">= Lucro Operacional Variável</span><span style="color:var(--green);font-weight:600">R$660.000</span></div>
+      <div class="linha"><span style="font-weight:600;color:var(--teal)">CUSTEIO POR ABSORÇÃO</span><span></span></div>
+      <div class="linha"><span>CF unit = 200.000 ÷ 30.000 un.</span><span>R$6,67/un</span></div>
+      <div class="linha"><span>Custo total unit = R$60 + R$6,67</span><span>R$66,67/un</span></div>
+      <div class="linha"><span>CMV absorção (24.000 × R$66,67)</span><span>R$(1.600.000)</span></div>
+      <div class="linha"><span>Lucro bruto (2.400.000 − 1.600.000)</span><span>R$800.000</span></div>
+      <div class="linha"><span>(−) Despesas fixas</span><span>R$(100.000)</span></div>
+      <div class="linha"><span style="font-weight:600;color:var(--green)">= Lucro Operacional Absorção</span><span style="color:var(--green);font-weight:600">R$700.000</span></div>
+    </div>
+    <div class="alert alert-blue" style="margin-top:.5rem">
+      <span class="alert-title">Por que o lucro absorção é maior?</span>
+      <p>6.000 unidades ficaram no estoque. No absorção, cada uma reteve R$6,67 de CF = R$40.000 não foram para o resultado. No variável, os R$200.000 de CF foram inteiros para o resultado. Diferença: R$700.000 − R$660.000 = R$40.000 = CF retido no estoque no absorção.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CUSTO PADRÃO -->
+<section id="padrao">
+  <h2 class="section-title">Custo Padrão — Variações</h2>
+  <p class="section-sub">A FGV pede o cálculo da variação de preço ou quantidade, classificando como favorável (F) ou desfavorável (D). Memorize as duas fórmulas.</p>
+
+  <div class="card">
+    <div class="card-title">Fórmulas das variações — matéria-prima</div>
+    <div class="formula-grid">
+      <div class="formula amber">Variação de Preço = (Preço Real − Preço Padrão) × Quantidade Real</div>
+      <div class="formula amber">Variação de Quantidade = (Qtd Real − Qtd Padrão) × Preço Padrão</div>
+    </div>
+    <div class="alert alert-green">
+      <span class="alert-title">Interpretação das variações</span>
+      <ul>
+        <li>Resultado <strong>negativo</strong> = <strong>favorável</strong> (gastou menos que o padrão)</li>
+        <li>Resultado <strong>positivo</strong> = <strong>desfavorável</strong> (gastou mais que o padrão)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Exemplo — prova 2024/2 (Q.39)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Item</th><th>Padrão</th><th>Real</th></tr></thead>
+        <tbody>
+          <tr><td>Matéria-prima</td><td>20 kg a R$10,00/kg</td><td>19 kg a R$11,00/kg</td></tr>
+          <tr><td>Mão de obra direta</td><td>2 h a R$20,00/h</td><td>3 h a R$18,00/h</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="lancamento">
+      <div class="lancamento-title">Cálculos — matéria-prima</div>
+      <div class="linha"><span>Variação de Preço MP</span><span>(R$11 − R$10) × 19 kg = <strong>+R$19 Desfavorável</strong></span></div>
+      <div class="linha"><span>Variação de Quantidade MP</span><span>(19 − 20) × R$10 = <strong>−R$10 Favorável</strong></span></div>
+      <div class="linha"><span>Variação de Preço MOD</span><span>(R$18 − R$20) × 3 h = <strong>−R$6 Favorável</strong></span></div>
+      <div class="linha"><span>Variação de Quantidade MOD</span><span>(3 − 2) × R$20 = <strong>+R$20 Desfavorável</strong></span></div>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha de sinal</span>
+      <p>A variação de preço usa a <strong>quantidade real</strong> no cálculo (não a padrão). A variação de quantidade usa o <strong>preço padrão</strong> (não o real). A FGV sempre inverte esses valores nos distratores.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABC + PE -->
+<section id="abc">
+  <h2 class="section-title">Custeio ABC + Ponto de Equilíbrio</h2>
+  <p class="section-sub">O ABC aparece com tabela de direcionadores. O PE é cálculo direto — memorize as três fórmulas.</p>
+
+  <div class="card">
+    <div class="card-title">Custeio ABC — lógica de alocação</div>
+    <ul class="styled">
+      <li>Identifica as <strong>atividades</strong> que geram custos indiretos</li>
+      <li>Para cada atividade, define um <strong>direcionador de custo</strong> (base de alocação)</li>
+      <li>Aloca o custo indireto ao produto/serviço proporcionalmente ao consumo do direcionador</li>
+      <li>Custo indireto alocado = Custo da atividade × (% do direcionador do produto)</li>
+    </ul>
+
+    <div class="lancamento" style="margin-top:.75rem">
+      <div class="lancamento-title">Exemplo — prova 2024/2 (Q.40): Legalização de Empresas — 10 projetos/ano</div>
+      <div class="linha"><span>Captação de clientes (R$25.000 × 60%)</span><span>R$15.000</span></div>
+      <div class="linha"><span>Análise documental (R$50.000 × 25%)</span><span>R$12.500</span></div>
+      <div class="linha"><span>Elaboração relatórios (R$190.000 × 1%)</span><span>R$1.900</span></div>
+      <div class="linha"><span>Custos diretos (10 projetos × R$2.500)</span><span>R$25.000</span></div>
+      <div class="linha"><span style="font-weight:600;color:var(--green)">Custo total anual Legalização</span><span style="color:var(--green);font-weight:600">R$54.400</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ponto de Equilíbrio — 3 fórmulas</div>
+    <div class="formula-grid">
+      <div class="formula green">MC unitária = PV − CV unitário</div>
+      <div class="formula green">PE Contábil (un.) = CF total ÷ MC unitária</div>
+      <div class="formula">PE Econômico (un.) = (CF + Lucro desejado) ÷ MC</div>
+      <div class="formula">PE Financeiro (un.) = (CF − Depr.) ÷ MC</div>
+      <div class="formula teal">PE em $ = PE (un.) × PV unitário</div>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Erro mais comum</span>
+      <p>Usar o PV em vez da MC no denominador. A Margem de Contribuição é o PV <strong>menos o custo variável</strong>. CF ÷ PV = fórmula errada e resposta errada.</p>
+    </div>
+    <div class="lancamento" style="margin-top:.75rem">
+      <div class="lancamento-title">Exemplo: CF R$126.000 | PV R$1.000 | EI R$600 (estoque inicial 400 un. × R$600) | Aluguel R$36.000 | Depreciação R$30.000 | Salários R$60.000</div>
+      <div class="linha"><span>MC = R$1.000 − R$600</span><span>R$400/un</span></div>
+      <div class="linha"><span>CF = R$36.000 + R$30.000 + R$60.000</span><span>R$126.000</span></div>
+      <div class="linha"><span>PE Contábil = R$126.000 ÷ R$400</span><span><strong>315 unidades</strong></span></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SIMULADO -->
+<section id="simulado">
+  <h2 class="section-title">Simulado — Estilo FGV</h2>
+  <p class="section-sub">15 questões no formato exato da banca. Escolha a alternativa e clique em "Ver Resposta" para o comentário técnico.</p>
+
+  <div class="sim-header">
+    <span style="font-size:.85rem;color:var(--text2)">Questão <span id="sim-cur">1</span> de 15</span>
+    <div class="sim-score" id="sim-score-box">Acertos: 0 / 0</div>
+  </div>
+  <div class="sim-progress-wrap"><div class="sim-progress-fill" id="sim-prog" style="width:6.67%"></div></div>
+  <div id="sim-questions"></div>
+  <div class="result-panel" id="result-panel">
+    <div class="result-score" id="res-score">0</div>
+    <div class="result-label">acertos de 15 questões</div>
+    <div class="result-analysis" id="res-analysis"></div>
+    <button class="btn btn-primary" onclick="resetSim()" style="margin-top:.75rem">↺ Refazer Simulado</button>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CHECKLIST -->
+<section id="checklist">
+  <h2 class="section-title">Checklist do Dia 2</h2>
+  <p class="section-sub">Marque cada item conforme for concluindo. Progresso salvo no navegador.</p>
+  <div class="card" id="checklist-wrap"></div>
+</section>
+
+</main>
+</div>
+
+<nav class="mobile-nav">
+  <a href="index.html" class="mob-link">🏠</a>
+  <a href="dia1.html" class="mob-link">📖 D1</a>
+  <a href="dia2.html" class="mob-link active">📗 D2</a>
+  <a href="dia3.html" class="mob-link">📘 D3</a>
+  <a href="dia4.html" class="mob-link">📙 D4</a>
+</nav>
+
+<script>
+/* THEME */
+function toggleTheme(){
+  const d=document.documentElement,btn=document.getElementById('theme-btn');
+  if(d.getAttribute('data-theme')==='light'){d.removeAttribute('data-theme');btn.textContent='☀ Claro';localStorage.setItem('theme','dark');}
+  else{d.setAttribute('data-theme','light');btn.textContent='☾ Escuro';localStorage.setItem('theme','light');}
+}
+if(localStorage.getItem('theme')==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='☾ Escuro';}
+
+/* SCROLL */
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  document.getElementById('scroll-bar').style.width=(doc.scrollTop/(doc.scrollHeight-doc.clientHeight)*100)+'%';
+  updateActiveNav();
+});
+function updateActiveNav(){
+  const ids=['intro','estoques','dfc','dva','mep','custos','padrao','abc','simulado','checklist'];
+  const links=document.querySelectorAll('.sidebar-link');
+  let active=0;
+  ids.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=100)active=i;});
+  links.forEach((l,i)=>l.classList.toggle('active',i===active));
+}
+function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+
+/* SIMULADO */
+const questions=[
+  {disc:'NBC TG 16',text:'Uma empresa utiliza o método PEPS para controle de estoques. Em 01/04 tinha 200 unidades a R$10. Em 08/04 comprou 210 unidades a R$12. Em 10/04 devolveu 50 unidades da compra de 08/04. Em 12/04 vendeu 150 unidades. Em 17/04 houve devolução de venda de 30 unidades. Em 22/04 comprou 150 unidades a R$15. O CMV do período e o estoque final são, respectivamente:',opts:['R$1.500; R$3.770','R$1.200; R$4.970','R$1.500; R$4.970','R$1.200; R$3.770'],correct:1,comentario:'PEPS: saída de 150 un. em 12/04 → 150 × R$10 = R$1.500 CMV bruto. Devolução de 30 un. em 17/04 → retorna a R$10 (custo original). CMV líquido = 1.500 − 300 = R$1.200. Estoque final: 80@R$10 + 160@R$12 + 150@R$15 = 800+1.920+2.250 = R$4.970. Questão literal da prova 2024/2 (Q.37).',just:['ERRADA. CMV está correto, mas o estoque final ignora a devolução de venda.','CORRETA. CMV = R$1.200 (líquido de devoluções) e estoque final = R$4.970.','ERRADA. CMV bruto sem descontar a devolução de 30 unidades.','ERRADA. CMV correto mas estoque final errado.']},
+  {disc:'NBC TG 03',text:'De acordo com a NBC TG 03, a Demonstração dos Fluxos de Caixa elaborada pelo método direto difere do método indireto somente em relação à apresentação:',opts:['Das atividades de investimento','Das atividades de financiamento','Das atividades operacionais','Do saldo final de caixa e equivalentes'],correct:2,comentario:'Definição literal da NBC TG 03. A diferença entre os dois métodos está SOMENTE na seção operacional. Investimento, financiamento e o saldo final de caixa são idênticos nos dois métodos. Esta questão saiu literalmente na prova 2024/2 (Q.20).',just:['ERRADA. Atividades de investimento são idênticas.','ERRADA. Atividades de financiamento são idênticas.','CORRETA. Somente a atividade operacional difere.','ERRADA. O saldo de caixa ao final é idêntico.']},
+  {disc:'NBC TG 09',text:'A despesa com aluguel de imóvel de terceiros, na Demonstração do Valor Adicionado de uma loja, deve ser classificada como:',opts:['Insumos adquiridos de terceiros','Remuneração de capitais próprios','Remuneração de capitais de terceiros','Depreciação, amortização e exaustão'],correct:2,comentario:'O aluguel PAGO a terceiros aparece em DOIS lugares na DVA: (1) insumos de terceiros na parte de geração (deduz o valor adicionado bruto) e (2) remuneração de capitais de terceiros na parte de distribuição. A questão pede a classificação na distribuição → remuneração de capitais de terceiros. Questão literal da prova 2024/2 (Q.25).',just:['ERRADA. Insumos de terceiros é onde o aluguel aparece na 1ª parte (geração), não na distribuição.','ERRADA. Capitais próprios = dividendos, JCP, lucros retidos.','CORRETA. Na 2ª parte (distribuição), aluguel pago = remuneração de capitais de terceiros.','ERRADA. Depreciação é uma retenção, não aluguel.']},
+  {disc:'Custeio',text:'Uma empresa produziu 5.000 unidades e vendeu 4.000. CV unitário R$20; CF de produção R$30.000; Despesas fixas R$10.000; PV R$50. Pelo custeio variável, o lucro operacional é:',opts:['R$80.000','R$86.667','R$70.000','R$90.000'],correct:0,comentario:'Custeio variável: Receita = 4.000 × R$50 = R$200.000. CMV variável = 4.000 × R$20 = R$80.000. MC = R$120.000. (−) CF produção INTEIRO = R$30.000. (−) Despesas fixas = R$10.000. Lucro = R$80.000. No variável, TODO o CF vai ao resultado, independentemente de quantas unidades ficaram no estoque.',just:['CORRETA. MC = 120.000 − CF 30.000 − Desp.fixas 10.000 = R$80.000.','ERRADA. Valor do custeio por absorção que retém parte do CF no estoque.','ERRADA. Não computou corretamente o CF ou despesas fixas.','ERRADA. Não deduziu o CF ou as despesas fixas.']},
+  {disc:'Custo Padrão',text:'A empresa Montes Altos levantou: MP padrão 20kg a R$10/kg; MP real 19kg a R$11/kg. A variação de preço unitária da matéria-prima foi, em reais:',opts:['R$19 desfavorável','R$19 favorável','R$20 desfavorável','R$20 favorável'],correct:0,comentario:'Variação de Preço = (Preço Real − Preço Padrão) × Quantidade Real = (R$11 − R$10) × 19 kg = R$19. Como o preço real é maior que o padrão → DESFAVORÁVEL. Questão literal da prova 2024/2 (Q.39).',just:['CORRETA. (11−10) × 19 = +19 = Desfavorável (pagou mais que o padrão).','ERRADA. O sinal é desfavorável pois o preço real superou o padrão.','ERRADA. 20 seria o resultado usando a quantidade padrão (20kg), não a real (19kg).','ERRADA. 20 usando quantidade padrão e sinal incorreto.']},
+  {disc:'NBC TG 09',text:'A reversão de perdas estimadas com créditos de liquidação duvidosa (PECLD) deve ser apresentada na DVA como:',opts:['Remuneração de capitais próprios na segunda parte','Remuneração de capitais de terceiros na segunda parte','Valor adicionado recebido em transferência na primeira parte','Riqueza criada pela própria entidade na primeira parte'],correct:3,comentario:'A reversão de PECLD representa uma redução de uma estimativa de perda → é um aumento de valor que a empresa criou internamente. Portanto, aparece na 1ª parte da DVA como componente da "riqueza criada pela própria entidade" (na seção de Receitas). Questão da prova 2025/1.',just:['ERRADA. Capitais próprios é a seção de distribuição para dividendos e lucros retidos.','ERRADA. Capitais de terceiros é a seção de distribuição para aluguéis e juros pagos.','ERRADA. Valor adicionado em transferência = equivalência patrimonial + receitas financeiras.','CORRETA. Reversão de PECLD = riqueza criada pela própria entidade (1ª parte, receitas).']},
+  {disc:'MEP',text:'A companhia Alfa possui 65% de ações com voto sobre a Sociedade B (PL R$2.000.000). Em 2023, B apresentou lucro de R$200.000. O registro de Alfa em suas demonstrações individuais é:',opts:['D — Caixa / C — Investimentos em B por R$130.000','D — Investimentos em B / C — Receita MEP por R$200.000','D — Receita MEP / C — Investimentos em B por R$200.000','D — Investimentos em B / C — Receita MEP por R$130.000'],correct:3,comentario:'MEP: Alfa deve reconhecer 65% do lucro de B = 65% × R$200.000 = R$130.000. O lançamento é: D — Investimentos em B / C — Receita de Equivalência Patrimonial por R$130.000. Erros comuns: usar R$200.000 (valor total do lucro de B, sem aplicar o percentual) ou inverter débito/crédito. Questão da prova 2024/1.',just:['ERRADA. O recebimento de caixa seria devolução de dividendo, não reconhecimento de MEP.','ERRADA. Usou R$200.000 (valor total do lucro) sem aplicar os 65%.','ERRADA. Débito em receita e crédito em investimento é o tratamento para PREJUÍZO.','CORRETA. D — Investimentos / C — Receita MEP por 65% × R$200.000 = R$130.000.']},
+  {disc:'NBC TG 16',text:'De acordo com a NBC TG 16, o custo dos estoques deve incluir:',opts:['Somente o preço de compra da mercadoria','Preço de compra, tributos recuperáveis e descontos comerciais','Preço de compra, tributos não recuperáveis, frete e seguro para colocar o estoque no local de uso','Preço de compra e tributos, excluídos fretes e seguros'],correct:2,comentario:'O custo do estoque inclui: preço de compra + tributos NÃO recuperáveis + fretes + seguros. Tributos RECUPERÁVEIS (IPI, ICMS ST recuperável) são deduzidos. Descontos comerciais e abatimentos também são deduzidos do custo.',just:['ERRADA. Frete e impostos não recuperáveis também compõem o custo.','ERRADA. Tributos recuperáveis são DEDUZIDOS; descontos comerciais também são deduzidos.','CORRETA. Custo = preço + tributos não recuperáveis + frete + seguro (líquido de descontos).','ERRADA. Fretes e seguros para colocar o estoque no local de uso fazem parte do custo.']},
+  {disc:'DFC',text:'No primeiro trimestre de 2024, uma loja: (1) vendeu todo o estoque à vista por R$80.000; (2) recebeu R$20.000 de clientes; (3) vendeu equipamentos à vista por R$60.000; (4) pagou salários de 2023 de R$15.000; (5) pagou empréstimo de R$35.000; (6) pagou despesas gerais de R$100.000. A atividade operacional:',opts:['Gerou R$10.000','Gerou R$45.000','Consumiu R$15.000','Consumiu R$35.000'],correct:2,comentario:'Atividade operacional (método direto): (+) Vendas à vista R$80.000 + (+) Recebimento de clientes R$20.000 = R$100.000. (−) Salários pagos R$15.000 + (−) Despesas gerais R$100.000 = R$115.000. Fluxo operacional = 100.000 − 115.000 = −R$15.000 (consumiu). Venda de equipamentos = investimento. Pagamento de empréstimo = financiamento. Questão literal da prova 2024/2 (Q.34).',just:['ERRADA. Incluiu a venda de equipamentos (investimento) na operacional.','ERRADA. Erro no total de saídas operacionais.','CORRETA. Operacional: entradas R$100.000 − saídas R$115.000 = −R$15.000 (consumiu).','ERRADA. Incluiu o pagamento do empréstimo (financiamento) na operacional.']},
+  {disc:'Custeio',text:'Uma indústria produziu 10.000 unidades e vendeu 8.000. CV unitário R$15; CF produção R$50.000; Despesas fixas R$20.000; PV R$40. Pelo custeio por absorção, o lucro bruto é:',opts:['R$160.000','R$120.000','R$140.000','R$100.000'],correct:0,comentario:'Absorção: CF unitário = 50.000 ÷ 10.000 = R$5. Custo total unitário = R$15 + R$5 = R$20. Receita = 8.000 × R$40 = R$320.000. CPV = 8.000 × R$20 = R$160.000. Lucro bruto = R$320.000 − R$160.000 = R$160.000. Atenção: lucro bruto não deduz despesas fixas.',just:['CORRETA. Lucro bruto = Receita R$320.000 − CPV R$160.000 = R$160.000.','ERRADA. Não calculou o CF unitário corretamente ou usou custeio variável.','ERRADA. Erro no CF unitário ou no volume vendido.','ERRADA. Deduziu as despesas fixas do lucro bruto (o lucro bruto é antes das despesas).']},
+  {disc:'ABC',text:'A empresa Recife Contabilidade tem: Legalização de Empresas (10 proj./ano, custo direto R$2.500/proj.) e custos indiretos: captação clientes R$25.000 (60% para Legalização), análise documental R$50.000 (25%), relatórios R$190.000 (1%). O custo total anual do serviço Legalização é:',opts:['R$31.900','R$54.400','R$29.400','R$47.821'],correct:1,comentario:'Custos diretos: 10 × R$2.500 = R$25.000. Captação: R$25.000 × 60% = R$15.000. Análise: R$50.000 × 25% = R$12.500. Relatórios: R$190.000 × 1% = R$1.900. Total = 25.000 + 15.000 + 12.500 + 1.900 = R$54.400. Questão literal da prova 2024/2 (Q.40).',just:['ERRADA. Não incluiu os custos diretos.','CORRETA. 25.000 + 15.000 + 12.500 + 1.900 = R$54.400.','ERRADA. Erro na alocação de um dos direcionadores.','ERRADA. Usou percentuais ou valores incorretos.']},
+  {disc:'PE',text:'Uma loja de teclados tem: Aluguel R$36.000; Depreciação R$30.000; Salários R$60.000. Estoque de 400 unidades compradas a R$600 cada; PV R$1.000/unidade. O ponto de equilíbrio contábil, em unidades, no 1º semestre de 2024, foi de:',opts:['240','300','315','375'],correct:2,comentario:'MC unitária = PV − CV = R$1.000 − R$600 = R$400. CF total = R$36.000 + R$30.000 + R$60.000 = R$126.000. PE Contábil = R$126.000 ÷ R$400 = 315 unidades. Atenção: a despesa antecipada de R$4.000 do segundo semestre NÃO entra no CF do 1º semestre. Questão da prova 2025/1.',just:['ERRADA. 240 = 96.000 ÷ 400, não inclui todos os custos fixos.','ERRADA. 300 = 120.000 ÷ 400, não incluiu depreciação ou outro componente.','CORRETA. CF = 126.000; MC = 400; PE = 315 unidades.','ERRADA. 375 = 150.000 ÷ 400, incluiu custo fixo a mais (ex.: despesa do 2º semestre).']},
+  {disc:'NBC TG 16',text:'A empresa B tem 1.000 unidades de estoque com custo de aquisição de R$20 cada. O valor realizável líquido é de R$15 e o preço de venda é de R$30. O valor do estoque no Balanço Patrimonial é:',opts:['R$15','R$15.000','R$20.000','R$30.000'],correct:1,comentario:'NBC TG 16: estoques são mensurados pelo MENOR entre o custo e o VRL. Custo = R$20; VRL = R$15. Como VRL < custo, o estoque é mensurado por R$15 por unidade. Total: 1.000 × R$15 = R$15.000. Questão literal da prova 2024/1.',just:['ERRADA. R$15 é o valor unitário, não o total do estoque.','CORRETA. Menor entre custo (R$20) e VRL (R$15) = R$15 × 1.000 = R$15.000.','ERRADA. R$20.000 usa o custo histórico, ignorando o VRL menor.','ERRADA. R$30.000 usa o preço de venda — estoques nunca são mensurados pelo PV.']},
+  {disc:'MEP',text:'A Cia. Alfa (obrigada a consolidar) tem: Kappa — controlada 90%, PL R$1.000.000; Sigma — controlada 70%, PL R$700.000; Zeta — coligada 25%, PL R$600.000. A participação de acionistas não controladores no balanço consolidado é:',opts:['R$100.000','R$310.000','R$760.000','R$1.525.000'],correct:1,comentario:'PNC = participação de terceiros nas controladas (não nas coligadas — coligada vai pelo MEP, não é consolidada linha a linha). PNC Kappa = 10% × R$1.000.000 = R$100.000. PNC Sigma = 30% × R$700.000 = R$210.000. PNC total = R$310.000. Zeta (coligada) não entra no cálculo de PNC. Questão da prova 2025/1.',just:['ERRADA. R$100.000 é só o PNC da Kappa, esquecendo a Sigma.','CORRETA. PNC Kappa (100.000) + PNC Sigma (210.000) = R$310.000.','ERRADA. Incluiu a Zeta (coligada) que não é consolidada linha a linha.','ERRADA. Somou todos os PL das empresas sem aplicar o percentual de minoritários.']},
+  {disc:'Custo Padrão',text:'A indústria Euza Batista apresentou, para o insumo Tecido Jeans: padrão 1,50m a R$45/m; real 2,00m a R$55/m. A variação TOTAL do tecido jeans é:',opts:['R$42,50 desfavorável','R$67,50 favorável','R$42,50 favorável','R$67,50 desfavorável'],correct:0,comentario:'Custo padrão total = 1,50 × R$45 = R$67,50. Custo real total = 2,00 × R$55 = R$110,00. Variação total = R$110,00 − R$67,50 = R$42,50 DESFAVORÁVEL (gastou mais que o padrão). Alternativamente: Var.Preço = (55−45)×2 = R$20 desfav. + Var.Qtd = (2−1,5)×45 = R$22,50 desfav. = R$42,50 desfav. Questão da prova 2024/1.',just:['CORRETA. Custo real R$110 − Custo padrão R$67,50 = R$42,50 desfavorável.','ERRADA. O sinal está errado — o real foi maior, logo é desfavorável.','ERRADA. Tanto o valor quanto o sinal estão errados.','ERRADA. O valor é a diferença no custo total do insumo, não de apenas uma variável.']}
+];
+
+let answers=new Array(questions.length).fill(null);
+let revealed=new Array(questions.length).fill(false);
+let score=0,currentQ=0;
+
+function buildSim(){
+  const cont=document.getElementById('sim-questions');cont.innerHTML='';
+  questions.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='q-block';div.id='q-block-'+i;
+    if(i!==0)div.style.display='none';
+    const sel=answers[i],rev=revealed[i];
+    div.innerHTML=`<div class="q-meta"><span class="q-num">Q.${i+1} de ${questions.length}</span><span class="badge b-teal">${q.disc}</span></div>
+    <div class="q-text">${q.text}</div>
+    <div class="q-opts">${q.opts.map((o,j)=>{
+      let cls='q-opt';const L=['A','B','C','D'];
+      if(rev){if(j===q.correct)cls+=' correct';else if(j===sel&&sel!==q.correct)cls+=' wrong';}
+      else if(sel===j)cls+=' selected';
+      return `<button class="${cls}" ${rev?'disabled':''} onclick="selectOpt(${i},${j})"><span class="q-opt-letter">${L[j]}</span><span>${o}</span></button>`;
+    }).join('')}</div>
+    <div class="q-btn-row">
+      ${i>0?`<button class="btn" onclick="goQ(${i-1})">← Anterior</button>`:''}
+      <button class="btn btn-primary" onclick="revealQ(${i})">Ver Resposta</button>
+      ${i<questions.length-1?`<button class="btn" onclick="goQ(${i+1})">Próxima →</button>`:''}
+      ${i===questions.length-1?`<button class="btn btn-success" onclick="showResult()">Ver Resultado</button>`:''}
+    </div>
+    <div class="gabarito ${rev?'show':''}" id="gab-${i}">
+      <div class="gab-correct-tag">✓ Resposta: ${'ABCD'[q.correct]}</div>
+      <div class="gab-title">Comentário técnico</div><div class="gab-text">${q.comentario}</div>
+      <div class="gab-title" style="margin-top:.75rem">Por que cada alternativa</div>
+      <div class="gab-just">${q.just.map((j2,k)=>`<div class="gab-just-item ${k===q.correct?'ok':'ko'}"><span>${'ABCD'[k]})</span><span>${j2}</span></div>`).join('')}</div>
+    </div>`;
+    cont.appendChild(div);
+  });
+}
+
+function goQ(idx){
+  document.getElementById('q-block-'+currentQ).style.display='none';currentQ=idx;
+  document.getElementById('q-block-'+idx).style.display='block';
+  document.getElementById('sim-cur').textContent=idx+1;
+  document.getElementById('sim-prog').style.width=((idx+1)/questions.length*100).toFixed(1)+'%';
+  document.getElementById('q-block-'+idx).scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function selectOpt(qi,oi){if(revealed[qi])return;answers[qi]=oi;buildSim();goQ(qi);}
+function revealQ(qi){
+  if(!revealed[qi]){revealed[qi]=true;if(answers[qi]===questions[qi].correct)score++;
+  const ans=revealed.filter(Boolean).length;
+  document.getElementById('sim-score-box').textContent=`Acertos: ${score} / ${ans}`;
+  const p=Math.round(ans/questions.length*100);
+  document.getElementById('sb-bar').style.width=p+'%';document.getElementById('sb-pct').textContent=p+'%';
+  document.getElementById('sb-score').textContent=`${score} acertos de ${ans} respondidas`;}
+  buildSim();goQ(qi);
+}
+function showResult(){
+  const ans=revealed.filter(Boolean).length;
+  if(ans<questions.length&&!confirm('Há questões não respondidas. Ver resultado?'))return;
+  document.getElementById('result-panel').classList.add('show');
+  document.getElementById('res-score').textContent=score;
+  const pct=Math.round(score/questions.length*100);
+  document.getElementById('result-panel').querySelector('.result-score').style.color=pct>=50?'var(--green)':pct>=40?'var(--amber)':'var(--red)';
+  document.getElementById('res-analysis').innerHTML=`
+    <div class="ra-card"><div class="ra-n" style="color:var(--green)">${score}</div><div class="ra-l">Acertos</div></div>
+    <div class="ra-card"><div class="ra-n" style="color:var(--red)">${questions.length-score}</div><div class="ra-l">Erros</div></div>
+    <div class="ra-card"><div class="ra-n" style="color:var(--teal)">${pct}%</div><div class="ra-l">Aproveitamento</div></div>
+    <div class="ra-card"><div class="ra-n" style="color:${pct>=50?'var(--green)':'var(--amber)'}">${pct>=50?'✓ OK':'↑ Rever'}</div><div class="ra-l">Status</div></div>`;
+}
+function resetSim(){answers=new Array(questions.length).fill(null);revealed=new Array(questions.length).fill(false);score=0;currentQ=0;
+  document.getElementById('sim-score-box').textContent='Acertos: 0 / 0';document.getElementById('result-panel').classList.remove('show');
+  document.getElementById('sb-bar').style.width='0%';document.getElementById('sb-pct').textContent='0%';document.getElementById('sb-score').textContent='— questões respondidas';
+  buildSim();goQ(0);}
+buildSim();
+
+/* CHECKLIST */
+const checkItems=['Entendi a regra do menor entre custo e VRL para estoques','Pratiquei a ficha PEPS com devolução de venda (volta pelo custo original)','Sei calcular CMV = EI + Compras Líquidas − EF','Entendo que DFC método direto vs indireto difere SOMENTE na atividade operacional','Sei classificar vendas de imobilizado como atividade de investimento','Aprendi a estrutura da DVA: onde vai aluguel pago vs aluguel recebido','Sei que reversão de PECLD = riqueza criada pela própria entidade (1ª parte DVA)','Calculei corretamente o MEP (% × lucro/PL) e o lançamento D-Investimentos / C-Receita','Entendo que dividendo recebido reduz o investimento, não gera receita','No custeio variável o CF vai 100% ao resultado, nunca ao estoque','Calculei Var.Preço = (PR−PP) × Qtd Real e Var.Qtd = (QR−QP) × PP','Calculei ponto de equilíbrio = CF ÷ MC unitária (não CF ÷ PV)','Fiz o simulado e revisei os erros','Separei as questões que errei para revisão de véspera','Estou pronto para o Dia 3'];
+
+function buildChecklist(){
+  const wrap=document.getElementById('checklist-wrap');
+  const saved=JSON.parse(localStorage.getItem('cfc-d2-check')||'[]');
+  wrap.innerHTML='';
+  checkItems.forEach((item,i)=>{
+    const done=saved.includes(i);
+    const div=document.createElement('div');div.className='checklist-item'+(done?' done':'');div.id='ci-'+i;div.onclick=()=>toggleCheck(i);
+    div.innerHTML=`<div class="chk-box">${done?'✓':''}</div><div class="chk-label">${item}</div>`;
+    wrap.appendChild(div);
+  });
+}
+function toggleCheck(i){
+  const saved=JSON.parse(localStorage.getItem('cfc-d2-check')||'[]');
+  const idx=saved.indexOf(i);if(idx>-1)saved.splice(idx,1);else saved.push(i);
+  localStorage.setItem('cfc-d2-check',JSON.stringify(saved));buildChecklist();
+}
+buildChecklist();
+</script>
+</body>
+</html>
