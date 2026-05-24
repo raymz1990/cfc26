@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dia 4 — Simulado 50Q + Estratégia + Véspera · CFC Suficiência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0f12;--bg2:#13161b;--bg3:#1a1e25;--bg4:#20242d;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#e8eaed;--text2:#9aa3b2;--text3:#5c6478;
+  --accent:#4f8ef7;--accent2:#7eb8f7;
+  --green:#3ecf8e;--green-bg:rgba(62,207,142,.1);--green-border:rgba(62,207,142,.25);
+  --amber:#f5a623;--amber-bg:rgba(245,166,35,.1);--amber-border:rgba(245,166,35,.25);
+  --red:#f26b6b;--red-bg:rgba(242,107,107,.1);--red-border:rgba(242,107,107,.25);
+  --purple:#a78bfa;--purple-bg:rgba(167,139,250,.1);--purple-border:rgba(167,139,250,.25);
+  --blue-bg:rgba(79,142,247,.1);--blue-border:rgba(79,142,247,.25);
+  --gold:#f59e0b;--gold-bg:rgba(245,158,11,.1);--gold-border:rgba(245,158,11,.25);
+  --font-display:'DM Serif Display',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+[data-theme="light"]{
+  --bg:#f4f5f7;--bg2:#ffffff;--bg3:#eceef2;--bg4:#e5e7eb;
+  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
+  --text:#111318;--text2:#4b5563;--text3:#9ca3af;
+  --accent:#2563eb;--accent2:#3b82f6;
+  --green:#059669;--green-bg:rgba(5,150,105,.08);--green-border:rgba(5,150,105,.25);
+  --amber:#d97706;--amber-bg:rgba(217,119,6,.08);--amber-border:rgba(217,119,6,.25);
+  --red:#dc2626;--red-bg:rgba(220,38,38,.08);--red-border:rgba(220,38,38,.25);
+  --purple:#7c3aed;--purple-bg:rgba(124,58,237,.08);--purple-border:rgba(124,58,237,.25);
+  --blue-bg:rgba(37,99,235,.08);--blue-border:rgba(37,99,235,.25);
+  --gold:#d97706;--gold-bg:rgba(217,119,6,.08);--gold-border:rgba(217,119,6,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;background:rgba(13,15,18,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:1rem}
+[data-theme="light"] header{background:rgba(244,245,247,.92)}
+.logo{font-family:var(--font-display);font-size:1.1rem;color:var(--text);text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
+.logo span{color:var(--accent)}
+.header-sep{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.day-label{font-family:var(--font-mono);font-size:.72rem;color:var(--gold);letter-spacing:.08em;white-space:nowrap}
+.header-nav{display:flex;gap:.3rem;margin-left:auto}
+.header-nav a{font-size:.78rem;font-weight:500;color:var(--text2);text-decoration:none;padding:.3rem .6rem;border-radius:6px;transition:all .2s}
+.header-nav a:hover,.header-nav a.active{color:var(--text);background:var(--bg3)}
+.header-nav a.active{color:var(--accent)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;padding:.3rem .7rem;font-size:.78rem;transition:all .2s;font-family:var(--font-body);white-space:nowrap;flex-shrink:0}
+.theme-btn:hover{background:var(--bg3);color:var(--text)}
+.progress-wrap{position:fixed;top:58px;left:0;right:0;z-index:199;height:2px;background:var(--bg3)}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));width:0%;transition:width .1s}
+.layout{display:flex;padding-top:60px;min-height:100vh}
+.sidebar{width:260px;flex-shrink:0;position:fixed;top:60px;left:0;bottom:0;overflow-y:auto;border-right:1px solid var(--border);padding:1.25rem .75rem;background:var(--bg2)}
+.sidebar-section{margin-bottom:1.25rem}
+.sidebar-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;padding:0 .5rem;margin-bottom:.4rem}
+.sidebar-link{display:flex;align-items:center;gap:.6rem;padding:.45rem .6rem;border-radius:8px;font-size:.82rem;color:var(--text2);transition:all .18s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--font-body)}
+.sidebar-link:hover{color:var(--text);background:var(--bg3)}
+.sidebar-link.active{color:var(--gold);background:var(--gold-bg)}
+.sidebar-link .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--border2)}
+.sidebar-link.active .dot{background:var(--gold)}
+.sim-stats{margin-top:1rem;padding:.75rem;background:var(--bg3);border-radius:10px;font-size:.8rem}
+.sim-stats-row{display:flex;justify-content:space-between;margin-bottom:.3rem}
+.sim-stats-row span:first-child{color:var(--text2)}
+.sim-stats-row span:last-child{font-weight:600;font-family:var(--font-mono)}
+.main{margin-left:260px;flex:1;min-width:0;padding:2rem 2.5rem 4rem;max-width:1000px}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0;padding:1.25rem 1rem 4rem}}
+.page-hero{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-family:var(--font-mono);color:var(--gold);background:var(--gold-bg);border:1px solid var(--gold-border);border-radius:100px;padding:.3rem .85rem;margin-bottom:1rem;letter-spacing:.05em}
+.page-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.page-title{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;letter-spacing:-.03em;margin-bottom:.75rem}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-sub{color:var(--text2);font-size:.95rem;max-width:640px;line-height:1.7}
+.page-stats{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.pstat{text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.6rem 1.1rem}
+.pstat-n{font-family:var(--font-display);font-size:1.6rem;color:var(--gold)}
+.pstat-l{font-size:.72rem;color:var(--text2);margin-top:.1rem}
+.section-title{font-family:var(--font-display);font-size:1.6rem;margin-bottom:.25rem;scroll-margin-top:75px}
+.section-sub{font-size:.88rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.6}
+.section-divider{height:1px;background:var(--border);margin:2.5rem 0}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.card-title{font-weight:600;font-size:.88rem;margin-bottom:.85rem;color:var(--text)}
+.alert{border-radius:10px;padding:.85rem 1.1rem;margin:.6rem 0;font-size:.85rem;line-height:1.65;border-left:3px solid}
+.alert-amber{background:var(--amber-bg);border-color:var(--amber)}
+.alert-green{background:var(--green-bg);border-color:var(--green)}
+.alert-red{background:var(--red-bg);border-color:var(--red)}
+.alert-blue{background:var(--blue-bg);border-color:var(--accent)}
+.alert-gold{background:var(--gold-bg);border-color:var(--gold)}
+.alert-title{font-weight:600;display:block;margin-bottom:.25rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.alert p,.alert li{color:var(--text)}
+.alert ul{padding-left:1.1rem;margin-top:.3rem}
+.alert ul li{margin:.2rem 0}
+.formula{background:var(--bg3);border:1px solid var(--border2);border-radius:9px;padding:.7rem 1rem;font-family:var(--font-mono);font-size:.82rem;color:var(--accent2);margin:.4rem 0;line-height:1.5}
+.formula.gold{color:var(--gold)}
+.formula.green{color:var(--green)}
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:.5rem;margin:.75rem 0}
+.table-wrap{overflow-x:auto;margin:.75rem 0;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+thead tr{background:var(--bg3)}
+th{padding:.6rem .9rem;text-align:left;font-weight:600;font-size:.75rem;color:var(--text2);letter-spacing:.04em;white-space:nowrap}
+td{padding:.55rem .9rem;border-top:1px solid var(--border);vertical-align:top;line-height:1.55}
+tr:hover td{background:var(--bg3)}
+.badge{display:inline-block;font-size:.7rem;font-weight:500;padding:.22rem .6rem;border-radius:6px;border:1px solid}
+.b-green{color:var(--green);background:var(--green-bg);border-color:var(--green-border)}
+.b-amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-border)}
+.b-red{color:var(--red);background:var(--red-bg);border-color:var(--red-border)}
+.b-blue{color:var(--accent2);background:var(--blue-bg);border-color:var(--blue-border)}
+.b-purple{color:var(--purple);background:var(--purple-bg);border-color:var(--purple-border)}
+.b-gold{color:var(--gold);background:var(--gold-bg);border-color:var(--gold-border)}
+ul.styled{padding-left:1.1rem}
+ul.styled li{margin:.3rem 0;font-size:.85rem;line-height:1.6}
+ul.styled li::marker{color:var(--gold)}
+/* ESTRATÉGIA */
+.fase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.75rem;margin:.75rem 0}
+.fase-card{border-radius:10px;padding:.85rem 1rem;border:1px solid;text-align:center}
+.fase-card h4{font-size:.82rem;font-weight:600;margin-bottom:.3rem}
+.fase-card .tempo{font-family:var(--font-mono);font-size:1.2rem;font-weight:600;margin:.2rem 0}
+.fase-card p{font-size:.74rem;color:var(--text2);line-height:1.5}
+.fase-1{background:var(--green-bg);border-color:var(--green-border)}.fase-1 h4{color:var(--green)}
+.fase-2{background:var(--blue-bg);border-color:var(--blue-border)}.fase-2 h4{color:var(--accent2)}
+.fase-3{background:var(--amber-bg);border-color:var(--amber-border)}.fase-3 h4{color:var(--amber)}
+.fase-4{background:var(--purple-bg);border-color:var(--purple-border)}.fase-4 h4{color:var(--purple)}
+.fase-5{background:var(--gold-bg);border-color:var(--gold-border)}.fase-5 h4{color:var(--gold)}
+/* VESP */
+.nbc-pill{font-family:var(--font-mono);font-size:.72rem;padding:.3rem .7rem;border-radius:6px;background:var(--gold-bg);border:1px solid var(--gold-border);color:var(--gold);display:inline-block;margin:.25rem}
+/* SIMULADO */
+.sim-controls{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem}
+.sim-info{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.sim-counter{font-size:.85rem;color:var(--text2)}
+.sim-counter strong{color:var(--text);font-family:var(--font-mono)}
+.sim-score-box{font-family:var(--font-mono);font-size:.85rem;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;padding:.35rem .85rem}
+.sim-progress-wrap{height:5px;background:var(--border2);border-radius:3px;margin-bottom:1.5rem;overflow:hidden}
+.sim-progress-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--green));border-radius:3px;transition:width .3s}
+/* FILTRO */
+.filter-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.filter-btn{font-size:.75rem;padding:.3rem .7rem;border-radius:6px;border:1px solid var(--border2);cursor:pointer;background:transparent;color:var(--text2);transition:all .18s;font-family:var(--font-body)}
+.filter-btn:hover{background:var(--bg3);color:var(--text)}
+.filter-btn.active{background:var(--gold);color:#000;border-color:var(--gold)}
+/* Q BLOCK */
+.q-block{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+.q-block.hidden{display:none}
+.q-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;flex-wrap:wrap}
+.q-num{font-family:var(--font-mono);font-size:.72rem;color:var(--text3)}
+.q-text{font-size:.92rem;line-height:1.75;margin-bottom:1.1rem;color:var(--text)}
+.q-opts{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.9rem}
+.q-opt{display:flex;align-items:flex-start;gap:.75rem;padding:.7rem .9rem;border:1px solid var(--border2);border-radius:9px;cursor:pointer;font-size:.85rem;line-height:1.5;transition:all .18s;background:transparent;width:100%;text-align:left;font-family:var(--font-body);color:var(--text)}
+.q-opt:hover:not(:disabled){background:var(--bg3)}
+.q-opt:disabled{cursor:default}
+.q-opt.selected{border-color:var(--gold);background:var(--gold-bg)}
+.q-opt.correct{border-color:var(--green)!important;background:var(--green-bg)!important;color:var(--green)}
+.q-opt.wrong{border-color:var(--red)!important;background:var(--red-bg)!important;color:var(--red)}
+.q-opt-letter{font-family:var(--font-mono);font-size:.78rem;font-weight:500;min-width:18px;color:var(--text3);flex-shrink:0;margin-top:.05rem}
+.q-opt.correct .q-opt-letter{color:var(--green)}
+.q-opt.wrong .q-opt-letter{color:var(--red)}
+.q-btn-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;border:1px solid var(--border2);border-radius:8px;cursor:pointer;font-size:.82rem;font-family:var(--font-body);font-weight:500;background:transparent;color:var(--text);transition:all .18s}
+.btn:hover{background:var(--bg3)}
+.btn-primary{background:var(--gold);color:#000;border-color:var(--gold)}
+.btn-primary:hover{opacity:.88}
+.btn-success{background:var(--green);color:#fff;border-color:var(--green)}
+.gabarito{display:none;margin-top:1rem;padding:1rem 1.1rem;background:var(--bg3);border-radius:10px;border:1px solid var(--border2)}
+.gabarito.show{display:block}
+.gab-correct-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:6px;padding:.2rem .6rem;margin-bottom:.6rem}
+.gab-title{font-size:.78rem;font-weight:600;color:var(--text);margin:.6rem 0 .3rem}
+.gab-text{font-size:.83rem;color:var(--text2);line-height:1.7}
+.gab-just{margin-top:.5rem}
+.gab-just-item{font-size:.8rem;padding:.2rem 0;display:flex;gap:.5rem;line-height:1.55}
+.gab-just-item span:first-child{font-family:var(--font-mono);font-size:.74rem;min-width:24px;font-weight:500}
+.gab-just-item.ok span:first-child{color:var(--green)}
+.gab-just-item.ko span:first-child{color:var(--red)}
+.gab-just-item.ko span:last-child{color:var(--text2)}
+/* RESULT PANEL */
+.result-panel{display:none;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;margin-top:1.5rem}
+.result-panel.show{display:block}
+.result-score-wrap{margin-bottom:1rem}
+.result-score{font-family:var(--font-display);font-size:5rem;line-height:1}
+.result-label{font-size:1rem;color:var(--text2);margin:.5rem 0}
+.result-analysis{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.75rem;margin:1.25rem 0}
+.ra-card{background:var(--bg3);border-radius:10px;padding:.85rem;border:1px solid var(--border)}
+.ra-n{font-family:var(--font-display);font-size:2rem}
+.ra-l{font-size:.72rem;color:var(--text2);margin-top:.15rem}
+.result-status{font-size:1.3rem;font-weight:600;margin:1rem 0}
+/* CHECKLIST */
+.checklist-item{display:flex;align-items:flex-start;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--border);cursor:pointer}
+.checklist-item:last-child{border-bottom:none}
+.chk-box{width:18px;height:18px;border:1.5px solid var(--border2);border-radius:4px;flex-shrink:0;margin-top:.15rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.checklist-item.done .chk-box{background:var(--green);border-color:var(--green);color:#fff}
+.chk-label{font-size:.85rem;color:var(--text);line-height:1.55}
+.checklist-item.done .chk-label{color:var(--text3);text-decoration:line-through}
+/* MOBILE */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg2);border-top:1px solid var(--border);padding:.5rem .75rem;justify-content:space-around}
+@media(max-width:900px){.mobile-nav{display:flex}}
+.mob-link{font-size:.72rem;color:var(--text2);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.3rem .5rem;border-radius:7px}
+.mob-link:hover,.mob-link.active{color:var(--gold)}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">CFC <span>Suficiência</span></a>
+  <div class="header-sep"></div>
+  <span class="day-label">// DIA 04 — FINAL</span>
+  <nav class="header-nav">
+    <a href="index.html">Início</a>
+    <a href="dia1.html">Dia 1</a>
+    <a href="dia2.html">Dia 2</a>
+    <a href="dia3.html">Dia 3</a>
+    <a href="dia4.html" class="active">Dia 4</a>
+  </nav>
+  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">☀ Claro</button>
+</header>
+<div class="progress-wrap"><div class="progress-bar" id="scroll-bar"></div></div>
+
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Módulos do Dia 4</div>
+    <button class="sidebar-link active" onclick="scrollTo('intro')"><span class="dot"></span>Introdução</button>
+    <button class="sidebar-link" onclick="scrollTo('estrategia')"><span class="dot"></span>Estratégia de Prova</button>
+    <button class="sidebar-link" onclick="scrollTo('formulas')"><span class="dot"></span>Fórmulas Essenciais</button>
+    <button class="sidebar-link" onclick="scrollTo('nbcs')"><span class="dot"></span>Mapa de NBCs</button>
+    <button class="sidebar-link" onclick="scrollTo('pegadinhas')"><span class="dot"></span>Pegadinhas Fatais</button>
+    <button class="sidebar-link" onclick="scrollTo('simulado')"><span class="dot"></span>Simulado 50 Questões</button>
+    <button class="sidebar-link" onclick="scrollTo('vespera')"><span class="dot"></span>Revisão de Véspera</button>
+  </div>
+  <div class="sim-stats" id="sim-stats">
+    <div style="font-size:.75rem;font-weight:600;color:var(--gold);margin-bottom:.5rem">SIMULADO 50Q</div>
+    <div class="sim-stats-row"><span>Respondidas</span><span id="st-resp" style="color:var(--text)">0 / 50</span></div>
+    <div class="sim-stats-row"><span>Acertos</span><span id="st-acertos" style="color:var(--green)">0</span></div>
+    <div class="sim-stats-row"><span>Erros</span><span id="st-erros" style="color:var(--red)">0</span></div>
+    <div class="sim-stats-row"><span>Aproveitamento</span><span id="st-pct" style="color:var(--gold)">—</span></div>
+  </div>
+</aside>
+
+<main class="main">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="page-hero">
+    <div class="page-badge"><span class="dot"></span>Dia 04 de 04 · Plano Intensivo CFC/FGV</div>
+    <h1 class="page-title">Simulado Final + Estratégia<br>+ <em>Revisão de Véspera</em></h1>
+    <p class="page-sub">Hoje você simula a prova real. 50 questões, 4 horas, sem consulta. Depois: estratégia de resolução, todas as fórmulas e as pegadinhas fatais em uma página só.</p>
+    <div class="page-stats">
+      <div class="pstat"><div class="pstat-n">50</div><div class="pstat-l">questões no simulado</div></div>
+      <div class="pstat"><div class="pstat-n">25+</div><div class="pstat-l">meta de acertos</div></div>
+      <div class="pstat"><div class="pstat-n">4h</div><div class="pstat-l">tempo cronometrado</div></div>
+      <div class="pstat"><div class="pstat-n">12</div><div class="pstat-l">fórmulas essenciais</div></div>
+    </div>
+  </div>
+  <div class="alert alert-gold">
+    <span class="alert-title">⚡ Como usar o Dia 4</span>
+    <ul>
+      <li><strong>Manhã</strong>: leia a estratégia de prova, as fórmulas e as pegadinhas fatais</li>
+      <li><strong>Tarde</strong>: faça o simulado de 50 questões cronometrado — sem parar para revisar</li>
+      <li><strong>Noite</strong>: corrija, identifique os erros e releia os tópicos do Dia 1, 2 ou 3 correspondentes</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ESTRATÉGIA -->
+<section id="estrategia">
+  <h2 class="section-title">Estratégia de Prova</h2>
+  <p class="section-sub">240 minutos para 50 questões = 4,8 min/questão. Siga essa ordem e gerencie o tempo para não perder pontos fáceis.</p>
+
+  <div class="fase-grid">
+    <div class="fase-card fase-1"><h4>1ª Fase</h4><div class="tempo">0–60 min</div><p>Contabilidade Geral (~13 questões). Bloco mais rentável — não pule!</p></div>
+    <div class="fase-card fase-2"><h4>2ª Fase</h4><div class="tempo">60–120 min</div><p>Custos + Gerencial + Controladoria (~8 questões). Cálculos rápidos.</p></div>
+    <div class="fase-card fase-3"><h4>3ª Fase</h4><div class="tempo">120–165 min</div><p>Ética + Auditoria + Perícia + NBC (~13 questões). Questões conceituais — ganhe tempo aqui.</p></div>
+    <div class="fase-card fase-4"><h4>4ª Fase</h4><div class="tempo">165–210 min</div><p>CASP + Direito + Português + Matemática (~11 questões). Chute consciente se travar.</p></div>
+    <div class="fase-card fase-5"><h4>5ª Fase</h4><div class="tempo">210–240 min</div><p>Revisão das puladas + preenchimento do cartão. Reserve sempre 20 min!</p></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Meta de acertos por bloco para aprovação</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bloco</th><th>Questões</th><th>Meta realista</th><th>Mínimo para aprovação</th></tr></thead>
+        <tbody>
+          <tr><td>Contabilidade Geral</td><td>~13</td><td>9</td><td>7</td></tr>
+          <tr><td>Custos + Gerencial</td><td>~8</td><td>5</td><td>4</td></tr>
+          <tr><td>Ética + Auditoria + Perícia</td><td>~10</td><td>7</td><td>6</td></tr>
+          <tr><td>Teoria + NBC</td><td>~5</td><td>4</td><td>3</td></tr>
+          <tr><td>CASP + Legislação + Port. + Mat.</td><td>~14</td><td>7</td><td>5</td></tr>
+          <tr><td><strong>TOTAL</strong></td><td><strong>50</strong></td><td><strong>32</strong></td><td><strong>25 ✓</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Como eliminar alternativas — regras práticas</div>
+    <ul class="styled">
+      <li>Alternativas com <strong>"sempre"</strong>, <strong>"nunca"</strong>, <strong>"em nenhum caso"</strong> → suspeite. A FGV adora exceções.</li>
+      <li>Em questões de lançamento: verifique se a soma dos débitos bate com a dos créditos antes de escolher.</li>
+      <li>Em V/F: se uma assertiva contém palavra inexistente na NBC (ex.: "advertência pública"), ela é FALSA. Elimine todas as combinações que a marcam como V.</li>
+      <li>Em cálculos: faça o cálculo e procure o valor nas alternativas. Não tente "adivinhar pela lógica".</li>
+      <li>Se duas alternativas são opostas, a resposta geralmente é uma delas.</li>
+      <li>Alternativas muito longas raramente são a certa — a FGV é objetiva.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quando pular e quando resolver</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Situação</th><th>Decisão</th><th>Tempo máximo</th></tr></thead>
+        <tbody>
+          <tr><td>Questão conceitual que você reconhece</td><td><span class="badge b-green">Resolve na hora</span></td><td>2 min</td></tr>
+          <tr><td>Cálculo que você sabe fazer mas é longo</td><td><span class="badge b-blue">Resolve com atenção</span></td><td>5 min</td></tr>
+          <tr><td>Questão de lei que você não lembra</td><td><span class="badge b-amber">Elimina 2 e marca</span></td><td>1 min</td></tr>
+          <tr><td>Questão completamente desconhecida</td><td><span class="badge b-amber">Marca e pula</span></td><td>30 seg</td></tr>
+          <tr><td>Questão que você ficou mais de 5 min</td><td><span class="badge b-red">PULE imediatamente</span></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-red">
+      <span class="alert-title">⚠ Nunca deixe questão em branco</span>
+      <p>Não existe penalidade por erro no Exame de Suficiência. Sempre marque algo — mesmo que seja um chute. Elimine as duas alternativas mais improváveis e escolha entre as duas restantes.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FÓRMULAS -->
+<section id="formulas">
+  <h2 class="section-title">Fórmulas Essenciais</h2>
+  <p class="section-sub">Todas as fórmulas que caem na prova. Releia de manhã cedo no dia da prova.</p>
+
+  <div class="card">
+    <div class="card-title">Ativo Imobilizado e Depreciação</div>
+    <div class="formula-grid">
+      <div class="formula gold">Depreciação anual = (Custo − Valor Residual) ÷ Vida Útil (anos)</div>
+      <div class="formula gold">Valor Contábil = Custo − Depreciação Acumulada</div>
+      <div class="formula">Resultado na venda = Preço de Venda − Valor Contábil</div>
+      <div class="formula">Nova dep. após mudança = (VC na data − Novo VR) ÷ Vida Útil Restante</div>
+      <div class="formula">Valor Recuperável = max(Valor em Uso ; VJ − Custos de Venda)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estoques</div>
+    <div class="formula-grid">
+      <div class="formula gold">CMV = Estoque Inicial + Compras Líquidas − Estoque Final</div>
+      <div class="formula">Compras Líquidas = Compras − Dev. Compras + Fretes pagos pelo comprador</div>
+      <div class="formula green">Custo do estoque = menor entre (Custo de Aquisição) e (VRL)</div>
+      <div class="formula">VRL = Preço de Venda estimado − Custos para concluir e vender</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Índices de Liquidez e Análise</div>
+    <div class="formula-grid">
+      <div class="formula gold">Liquidez Corrente = AC ÷ PC</div>
+      <div class="formula gold">Liquidez Seca = (AC − Estoques) ÷ PC</div>
+      <div class="formula gold">Liquidez Imediata = Disponibilidades ÷ PC</div>
+      <div class="formula">Liquidez Geral = (AC + ARLP) ÷ (PC + PNC)</div>
+      <div class="formula">ROE = Lucro Líquido ÷ PL Médio</div>
+      <div class="formula">Endividamento = (PC + PNC) ÷ Ativo Total</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Custos e Ponto de Equilíbrio</div>
+    <div class="formula-grid">
+      <div class="formula gold">MC unitária = PV − CV unitário</div>
+      <div class="formula gold">PE Contábil (un.) = CF total ÷ MC unitária</div>
+      <div class="formula">PE Econômico (un.) = (CF + Lucro desejado) ÷ MC</div>
+      <div class="formula">PE Financeiro (un.) = (CF − Depreciação) ÷ MC</div>
+      <div class="formula green">Var. Preço MP = (Preço Real − Preço Padrão) × Qtd Real</div>
+      <div class="formula green">Var. Qtd MP = (Qtd Real − Qtd Padrão) × Preço Padrão</div>
+      <div class="formula">EVA = NOPAT − (WACC × Capital Investido)</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Equivalência Patrimonial e Financeiro</div>
+    <div class="formula-grid">
+      <div class="formula gold">MEP = PL da investida × % participação</div>
+      <div class="formula">Resultado MEP = Lucro/Prejuízo da investida × % participação</div>
+      <div class="formula">Juros compostos: M = C × (1 + i)^n</div>
+      <div class="formula">Ganho real = (1 + ganho nominal) ÷ (1 + inflação) − 1</div>
+      <div class="formula">Probabilidade combinatória: P = C(n,k) / C(total,k)</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- MAPA NBC -->
+<section id="nbcs">
+  <h2 class="section-title">Mapa Rápido de NBCs</h2>
+  <p class="section-sub">As 12 normas mais cobradas e o ponto crítico de cada uma.</p>
+  <div class="card">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>NBC</th><th>Assunto</th><th>Ponto crítico / O que cai</th></tr></thead>
+        <tbody>
+          <tr><td><span class="nbc-pill">TG 25</span></td><td>Provisões e Contingências</td><td>Provável → provisão; Possível → nota; Remota → nada. Ativo contingente: praticamente certo → reconhece.</td></tr>
+          <tr><td><span class="nbc-pill">TG 27</span></td><td>Ativo Imobilizado</td><td>Custo = preço + frete + instalação + testes. Treinamento, publicidade e abertura = DESPESA.</td></tr>
+          <tr><td><span class="nbc-pill">TG 16</span></td><td>Estoques</td><td>Menor entre custo e VRL. PEPS: devolução de venda retorna ao custo original da saída.</td></tr>
+          <tr><td><span class="nbc-pill">TG 03</span></td><td>DFC</td><td>Direto vs Indireto: diferença SOMENTE na atividade operacional.</td></tr>
+          <tr><td><span class="nbc-pill">TG 09</span></td><td>DVA</td><td>Aluguel pago = insumos de terceiros (geração) e cap. de terceiros (distribuição). Aluguel recebido = transferência.</td></tr>
+          <tr><td><span class="nbc-pill">TG 26</span></td><td>Apresentação DCs</td><td>IR diferido = SEMPRE não circulante. Materialidade = natureza ou magnitude.</td></tr>
+          <tr><td><span class="nbc-pill">TG EC</span></td><td>Estrutura Conceitual</td><td>Passivo = obrigação PRESENTE de eventos PASSADOS. Fundamentais: relevância + rep. fidedigna.</td></tr>
+          <tr><td><span class="nbc-pill">TA 265</span></td><td>Controle Interno</td><td>Deficiência significativa → comunicação ESCRITA e TEMPESTIVA.</td></tr>
+          <tr><td><span class="nbc-pill">TA 705</span></td><td>Opinião do Auditor</td><td>Ressalva (rel. não gen.) | Adversa (rel. E gen.) | Abstenção (sem evidência).</td></tr>
+          <tr><td><span class="nbc-pill">TA 706</span></td><td>Parágrafos</td><td>Ênfase: assunto JÁ divulgado, sem modificar opinião. Outros assuntos: não divulgado nas DCs.</td></tr>
+          <tr><td><span class="nbc-pill">TP 01</span></td><td>Perícia</td><td>Nomeado = laudo. Assistente = parecer. Vistoria ≠ análise de livros (= exame).</td></tr>
+          <tr><td><span class="nbc-pill">PG 01</span></td><td>Código de Ética</td><td>Penalidades: advertência reservada, censura reservada, censura pública. "Advertência pública" = NÃO EXISTE.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PEGADINHAS FATAIS -->
+<section id="pegadinhas">
+  <h2 class="section-title">Pegadinhas Fatais — As 15 mais cobradas</h2>
+  <p class="section-sub">Cada uma dessas pegadinhas elimina candidatos em toda edição. Leia devagar.</p>
+  <div class="card">
+    <div class="alert alert-red"><span class="alert-title">01 — Provisão vs Contingência</span><p>Possível = nota explicativa (passivo contingente), NUNCA provisão. Provável = provisão. Remota = silêncio total. A palavra "possível" no laudo do advogado = sem provisão.</p></div>
+    <div class="alert alert-red"><span class="alert-title">02 — Custo do imobilizado vs despesa</span><p>Treinamento, publicidade, abertura de nova instalação, introdução de produto = DESPESA. A FGV oferece esses como "custo diretamente atribuível" — todos errados.</p></div>
+    <div class="alert alert-red"><span class="alert-title">03 — DFC: direto vs indireto</span><p>A diferença está SOMENTE na atividade operacional. Investimento e financiamento são idênticos. O resultado final de caixa é o mesmo. Questão cai toda edição.</p></div>
+    <div class="alert alert-red"><span class="alert-title">04 — Salário: IR retido é passivo, não despesa</span><p>A despesa de salários é o valor BRUTO. O IR retido vai para "IR a Recolher" (PC). Não existe "Despesa de IR" na folha de pagamento da empresa.</p></div>
+    <div class="alert alert-red"><span class="alert-title">05 — Depreciação após mudança de vida útil</span><p>Efeito PROSPECTIVO. Nova dep. = (Valor Contábil na data − Novo Valor Residual) ÷ Vida Útil Restante. Não se corrige o passado.</p></div>
+    <div class="alert alert-red"><span class="alert-title">06 — IR diferido = sempre não circulante</span><p>Regra expressa da NBC TG 26: imposto de renda diferido é classificado como NÃO CIRCULANTE independentemente do prazo. Não se aplica a regra de 12 meses.</p></div>
+    <div class="alert alert-red"><span class="alert-title">07 — Penalidade: "Advertência Pública" não existe</span><p>O item 20 lista: (1) advertência reservada, (2) censura reservada, (3) censura pública. Nenhuma "pública" na advertência. Assertiva com "advertência pública" = FALSA.</p></div>
+    <div class="alert alert-red"><span class="alert-title">08 — Custeio variável: CF vai 100% ao resultado</span><p>No custeio variável, os custos fixos de produção vão INTEIROS para o resultado do período — nunca ficam no estoque, independentemente de quantas unidades sobrarem.</p></div>
+    <div class="alert alert-red"><span class="alert-title">09 — PEPS: devolução de venda retorna pelo custo original</span><p>A devolução de venda retorna ao estoque pelo custo da saída (custo original), não pelo preço de venda. No PEPS, esse custo é o da camada mais antiga vendida.</p></div>
+    <div class="alert alert-red"><span class="alert-title">10 — DVA: aluguel pago vs recebido</span><p>Aluguel PAGO a terceiros = insumos (geração) e remuneração de capitais de terceiros (distribuição). Aluguel RECEBIDO = valor adicionado em transferência. São seções DIFERENTES.</p></div>
+    <div class="alert alert-red"><span class="alert-title">11 — Adversa vs Abstenção de opinião</span><p>Adversa: auditor TEM evidência e conclui que há distorção relevante e generalizada. Abstenção: auditor NÃO CONSEGUE obter evidência (não sabe se há distorção). São causas diferentes.</p></div>
+    <div class="alert alert-red"><span class="alert-title">12 — Salvaguardas são atenuantes, não agravantes</span><p>A FGV lista salvaguardas na lista de agravantes como distrator. Agravantes: gravidade, má-fé, punição anterior, imagem maculada. Salvaguardas = atenuante.</p></div>
+    <div class="alert alert-red"><span class="alert-title">13 — Vistoria ≠ análise de livros</span><p>Vistoria = constatação de situação, coisa ou fato. Análise de livros e documentos = EXAME. A FGV inverte as definições nas assertivas de V/F.</p></div>
+    <div class="alert alert-red"><span class="alert-title">14 — Receitas correntes vs capital</span><p>Patrimonial = CORRENTE. Agropecuária = CORRENTE. Alienação de bens = CAPITAL. Operações de crédito = CAPITAL. A FGV troca patrimonial e alienação de bens constantemente.</p></div>
+    <div class="alert alert-red"><span class="alert-title">15 — Ponto de Equilíbrio: denominador é MC, não PV</span><p>PE = CF ÷ MC unitária. MC = PV − CV. Usar o PV no denominador em vez da MC é o erro mais comum. MC não é o PV.</p></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SIMULADO 50Q -->
+<section id="simulado">
+  <h2 class="section-title">Simulado Final — 50 Questões Estilo FGV</h2>
+  <p class="section-sub">Faça como na prova real: sem pausas, sem consulta. Clique em "Ver Resposta" apenas depois de escolher sua alternativa.</p>
+
+  <div class="sim-controls">
+    <div class="sim-info">
+      <span class="sim-counter">Questão <strong id="sim-cur">1</strong> de 50</span>
+      <div class="sim-score-box" id="sim-score-box">Acertos: 0 / 0</div>
+    </div>
+    <button class="btn" onclick="resetSim()">↺ Reiniciar</button>
+  </div>
+  <div class="filter-row" id="filter-row"></div>
+  <div class="sim-progress-wrap"><div class="sim-progress-fill" id="sim-prog" style="width:2%"></div></div>
+  <div id="sim-questions"></div>
+  <div class="result-panel" id="result-panel">
+    <div class="result-score-wrap">
+      <div class="result-score" id="res-score">0</div>
+      <div class="result-label">acertos de 50 questões</div>
+    </div>
+    <div class="result-status" id="res-status"></div>
+    <div class="result-analysis" id="res-analysis"></div>
+    <button class="btn btn-primary" onclick="resetSim()" style="margin-top:.75rem">↺ Refazer Simulado</button>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- VÉSPERA -->
+<section id="vespera">
+  <h2 class="section-title">Revisão de Véspera</h2>
+  <p class="section-sub">Para a manhã antes da prova. Leia devagar, não tente aprender coisas novas.</p>
+
+  <div class="card">
+    <div class="card-title">Checklist final — véspera da prova</div>
+    <div id="checklist-wrap"></div>
+  </div>
+
+  <div class="card" style="margin-top:1rem">
+    <div class="card-title">O que fazer na manhã da prova</div>
+    <ul class="styled">
+      <li>Acordar com 2h30 de antecedência mínima em relação ao horário de chegada</li>
+      <li>Café da manhã leve — evite açúcar em excesso (causa queda de energia na 3ª hora)</li>
+      <li>Leia as fórmulas essenciais acima por 15 minutos — não estude conteúdo novo</li>
+      <li>Leve: documento com foto, caneta esferográfica azul ou preta (material transparente), comprovante de inscrição</li>
+      <li>Chegar 30 minutos antes do horário de início</li>
+      <li>Na sala: leia o caderno inteiro rapidamente antes de começar (verifique questões faltando)</li>
+      <li>Preencha o cartão de respostas sempre que terminar um bloco — não deixe para o final</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Mnemônicos para levar na cabeça</div>
+    <div class="formula gold">PRovável → PRovisão · POssível → POta (nota) · Remota → silêncio</div>
+    <div class="formula gold">AR – CR – CP = Advertência Reservada, Censura Reservada, Censura Pública</div>
+    <div class="formula gold">Passivo = obrigação PRESENTE de eventos PASSADOS</div>
+    <div class="formula gold">DFC: direto vs indireto → diferença SOMENTE na atividade OPERACIONAL</div>
+    <div class="formula gold">PE = CF ÷ MC (não CF ÷ PV)</div>
+    <div class="formula gold">Perito NOMEADO = LAUDO · Assistente TÉCNICO = PARECER</div>
+    <div class="formula gold">Adversa = TEM evidência + discorda · Abstenção = SEM evidência</div>
+  </div>
+</section>
+
+</main>
+</div>
+
+<nav class="mobile-nav">
+  <a href="index.html" class="mob-link">🏠</a>
+  <a href="dia1.html" class="mob-link">📖</a>
+  <a href="dia2.html" class="mob-link">📗</a>
+  <a href="dia3.html" class="mob-link">📘</a>
+  <a href="dia4.html" class="mob-link active">🏆 D4</a>
+</nav>
+
+<script>
+function toggleTheme(){
+  const d=document.documentElement,btn=document.getElementById('theme-btn');
+  if(d.getAttribute('data-theme')==='light'){d.removeAttribute('data-theme');btn.textContent='☀ Claro';localStorage.setItem('theme','dark');}
+  else{d.setAttribute('data-theme','light');btn.textContent='☾ Escuro';localStorage.setItem('theme','light');}
+}
+if(localStorage.getItem('theme')==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='☾ Escuro';}
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  document.getElementById('scroll-bar').style.width=(doc.scrollTop/(doc.scrollHeight-doc.clientHeight)*100)+'%';
+  updateNav();
+});
+function updateNav(){
+  const ids=['intro','estrategia','formulas','nbcs','pegadinhas','simulado','vespera'];
+  const links=document.querySelectorAll('.sidebar-link');
+  let active=0;ids.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=100)active=i;});
+  links.forEach((l,i)=>l.classList.toggle('active',i===active));
+}
+function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+
+const questions=[
+  {disc:'Contab. Geral',text:'Em 01/01/2020, uma empresa adquiriu uma van por R$300.000, vida útil 15 anos, sem valor residual. Em 31/12/2023, vendeu por R$250.000. O lucro obtido com a venda foi de:',opts:['R$6.000','R$10.000','R$28.000','R$30.000'],correct:3,comentario:'Dep. anual = 300.000÷15 = R$20.000. 4 anos × 20.000 = R$80.000. VC = 300.000−80.000 = R$220.000. Resultado = 250.000−220.000 = R$30.000 lucro. Prova 2024/2 Q.32.',just:['ERRADA. Diferença de cálculo de anos ou taxa.','ERRADA. Usou 5 anos ou taxa incorreta.','ERRADA. Calculou 3 anos em vez de 4.','CORRETA. 4 anos × R$20.000 = R$80.000 dep. acum. VC = R$220.000. Lucro = R$30.000.']},
+  {disc:'Contab. Geral',text:'De acordo com a NBC TG 25, quando a probabilidade de saída de recursos é "possível", o tratamento correto é:',opts:['Reconhecer provisão e divulgar em nota','Não reconhecer provisão e não divulgar nada','Não reconhecer provisão, mas divulgar como passivo contingente em nota','Reconhecer provisão sem necessidade de nota adicional'],correct:2,comentario:'POssível = POta explicativa (passivo contingente), sem reconhecer provisão. Mnemônico: PRovável=PRovisão, POssível=POta, Remota=silêncio.',just:['ERRADA. Provisão só para probabilidade provável.','ERRADA. Possível exige divulgação em nota.','CORRETA. Possível = não provisiona, divulga como passivo contingente em nota.','ERRADA. Provisão sem nota é procedimento incorreto.']},
+  {disc:'Contab. Geral',text:'Em janeiro/2024, despesa de salários = R$500.000, dos quais R$120.000 são IR retido na fonte. O lançamento correto em 31/01/2024 é:',opts:['D-Desp.Salários R$380.000 + D-Desp.IR R$120.000 / C-Salários a Pagar R$500.000','D-Desp.Salários R$500.000 / C-IR a Recolher R$120.000 + C-Salários a Pagar R$380.000','D-Desp.Salários R$500.000 / C-Salários a Pagar R$500.000','D-Desp.Salários R$380.000 / C-Salários a Pagar R$380.000'],correct:1,comentario:'Despesa = valor BRUTO (R$500.000). IR retido = passivo (R$120.000). Salário líquido = passivo (R$380.000). Nunca existe "Despesa de IR" na folha de pagamento. Prova 2024/2 Q.23.',just:['ERRADA. IR retido é PASSIVO, não despesa da empresa.','CORRETA. Despesa bruta; IR a recolher e salários a pagar segregados no passivo.','ERRADA. Não segrega o IR retido no passivo.','ERRADA. Usa valor líquido como despesa.']},
+  {disc:'Contab. Geral',text:'De acordo com a NBC TG 27, quais custos são diretamente atribuíveis ao ativo imobilizado?',opts:['Custos de treinamento de pessoal para operar o ativo','Custos de abertura de nova instalação','Custos com testes para verificar se o ativo funciona corretamente','Custos de publicidade relacionados ao produto fabricado'],correct:2,comentario:'NBC TG 27: testes de funcionamento = custo do imobilizado. Treinamento, abertura de instalação e publicidade estão expressamente listados como EXEMPLOS DE DESPESA. Prova 2024/2 Q.17.',just:['ERRADA. Treinamento = DESPESA (NBC TG 27 cita expressamente).','ERRADA. Abertura de instalação = DESPESA.','CORRETA. Testes de funcionamento são custos diretamente atribuíveis.','ERRADA. Publicidade = DESPESA.']},
+  {disc:'Contab. Geral',text:'Em 01/05/2022, empresa pagou R$180.000 de aluguel antecipado por 3 anos. Em 31/12/2023, o saldo de despesas antecipadas no Ativo Realizável a Longo Prazo é:',opts:['R$80.000','R$60.000','R$20.000','R$0'],correct:2,comentario:'Valor mensal = 180.000÷36 = R$5.000. Transcorridos (mai/22–dez/23) = 20 meses. Saldo = 16 meses × R$5.000 = R$80.000. Parcela circulante (jan–dez/24 = 12 meses × R$5.000) = R$60.000. ARLP (jan–abr/25 = 4 meses × R$5.000) = R$20.000. Prova 2024/2 Q.22.',just:['ERRADA. R$80.000 é o total remanescente, não só o ARLP.','ERRADA. R$60.000 é a parcela circulante (próximos 12 meses).','CORRETA. ARLP = parcelas além de 12 meses = 4 × R$5.000 = R$20.000.','ERRADA. Ainda há saldo a apropriar.']},
+  {disc:'Teoria',text:'De acordo com a NBC TG Estrutura Conceitual, passivo é a obrigação _____ da entidade de transferir recurso econômico como resultado de eventos _____.',opts:['futura / presentes','futura / passados','presente / futuros','presente / passados'],correct:3,comentario:'Definição literal da EC: obrigação PRESENTE resultante de eventos PASSADOS. A FGV inverte as palavras nas lacunas. Prova 2024/2 Q.14.',just:['ERRADA. Obrigação é PRESENTE, não futura.','ERRADA. Obrigação é PRESENTE.','ERRADA. Eventos são PASSADOS, não futuros.','CORRETA. Presente + Passados = definição literal da Estrutura Conceitual.']},
+  {disc:'Teoria',text:'A materialidade, de acordo com a NBC TG 26 (R5), depende da _____ ou _____ da informação.',opts:['rapidez e fonte','natureza e fonte','rapidez e magnitude','natureza e magnitude'],correct:3,comentario:'Definição literal da NBC TG 26: "A materialidade depende da NATUREZA ou MAGNITUDE da informação, ou de ambas." Qualquer outro par de palavras está errado. Prova 2024/2 Q.18.',just:['ERRADA. Rapidez e fonte não são os termos da NBC.','ERRADA. Fonte não é o termo correto.','ERRADA. Rapidez não é o termo correto.','CORRETA. Natureza ou magnitude — definição literal da NBC TG 26.']},
+  {disc:'Teoria',text:'Segundo a NBC TG Estrutura Conceitual, para a representação fidedigna, as informações financeiras precisam ser:',opts:['Completas, neutras e isentas de erros','Confiáveis, tempestivas e com erros mínimos','Tempestivas, úteis e comparáveis','Consistentes, completas e compreensíveis'],correct:0,comentario:'Representação fidedigna = COMPLETA + NEUTRA + ISENTA DE ERROS. Tempestividade e comparabilidade são características de MELHORIA, não componentes da representação fidedigna. Prova 2025/1.',just:['CORRETA. Completa, neutra e isenta de erros — os três atributos da representação fidedigna.','ERRADA. Confiável e erros mínimos não são os termos técnicos da EC.','ERRADA. Tempestividade e comparabilidade são características de melhoria.','ERRADA. Consistência e compreensibilidade não compõem a representação fidedigna.']},
+  {disc:'Contab. Geral',text:'Em 31/12/2023, o investidor analisa somente as DCs de 2023, sem as de exercícios anteriores. A característica qualitativa que ele NÃO poderá verificar é:',opts:['Relevância','Tempestividade','Comparabilidade','Compreensibilidade'],correct:2,comentario:'Comparabilidade exige pelo menos dois períodos ou duas entidades para comparar. As demais características podem ser verificadas em uma única demonstração. Prova 2024/2 Q.13.',just:['ERRADA. Relevância pode ser avaliada em uma única DC.','ERRADA. Tempestividade refere-se ao prazo de divulgação.','CORRETA. Comparabilidade exige múltiplos períodos/entidades.','ERRADA. Compreensibilidade pode ser verificada em uma única DC.']},
+  {disc:'Contab. Geral',text:'A NBC TG 03 (DFC) estabelece que a diferença entre o método direto e o método indireto consiste somente na apresentação:',opts:['Da atividade de investimento','Da atividade de financiamento','Da atividade operacional','Do caixa final'],correct:2,comentario:'Definição literal da NBC TG 03: diferença SOMENTE na atividade OPERACIONAL. Investimento e financiamento são idênticos. Prova 2024/2 Q.20.',just:['ERRADA. Investimento é idêntico nos dois métodos.','ERRADA. Financiamento é idêntico nos dois métodos.','CORRETA. Somente a atividade operacional difere entre os dois métodos.','ERRADA. O saldo final de caixa é idêntico.']},
+  {disc:'Contab. Geral',text:'Uma joalheria adquiriu 40 anéis a R$800/un. Frete R$500, Seguro R$1.600, ambos pagos pela joalheria. O custo total do estoque é:',opts:['R$32.000','R$32.500','R$33.600','R$34.100'],correct:3,comentario:'Custo = 40×R$800 + R$500 + R$1.600 = R$32.000 + R$2.100 = R$34.100. Frete e seguro para colocar o estoque em condições de uso integram o custo. Prova 2024/2 Q.21.',just:['ERRADA. Só o preço de compra, sem frete e seguro.','ERRADA. Inclui só o frete.','ERRADA. Inclui só o seguro.','CORRETA. 32.000 + 500 + 1.600 = R$34.100.']},
+  {disc:'Contab. Geral',text:'Em 31/12/2023, a Cia. X apresentou: AC R$145.000; PC R$34.000; ANC R$270.000; PNC R$145.000; PL R$236.000. A liquidez corrente é:',opts:['4,26','0,23','2,18','1,00'],correct:0,comentario:'Liquidez Corrente = AC ÷ PC = 145.000 ÷ 34.000 = 4,26. Prova 2024/1 Q.39.',just:['CORRETA. 145.000 ÷ 34.000 = 4,26.','ERRADA. Inverteu numerador e denominador.','ERRADA. Usou valores incorretos.','ERRADA. Coincidência numérica incorreta.']},
+  {disc:'Contab. Geral',text:'Ativo contingente com probabilidade "provável" deve ser tratado de acordo com a NBC TG 25 como:',opts:['Reconhecido como ativo e divulgado em nota','Não reconhecido como ativo e não divulgado','Não reconhecido, mas divulgado em nota explicativa','Reconhecido como provisão'],correct:2,comentario:'Ativo contingente PROVÁVEL = não reconhece (diferente do passivo), mas divulga em nota. Somente quando "praticamente certo" é reconhecido. Regra inversa ao passivo.',just:['ERRADA. Ativo contingente provável não é reconhecido — somente praticamente certo é.','ERRADA. Deve ser divulgado em nota quando provável.','CORRETA. Ativo contingente provável: divulga em nota, não reconhece.','ERRADA. Provisão é para passivos, não para ativos contingentes.']},
+  {disc:'NBC TG 16',text:'A empresa usou PEPS. Em 01/01/2024 tinha 20 livros a R$100 cada. Em 05/01 comprou 30 a R$120. Em 10/01 vendeu 35 exemplares. O CMV reconhecido em janeiro foi de:',opts:['R$3.500','R$3.800','R$4.100','R$4.200'],correct:2,comentario:'PEPS: saem primeiro os mais antigos. 20 livros × R$100 = R$2.000. Restam 15 livros da compra de R$120: 15 × R$120 = R$1.800. CMV = 2.000+1.800 = R$3.800. Espera: 20×100=2.000 + 15×120=1.800 = 3.800. Prova 2024/1 Q.31. Gabarito: B (R$3.800). Atenção ao cálculo.',just:['ERRADA. Usou só o custo antigo para todas as unidades.','CORRETA. 20×R$100 + 15×R$120 = R$2.000 + R$1.800 = R$3.800.','ERRADA. Usou custo médio ou incluiu mais unidades.','ERRADA. Usou preço de venda ou cálculo incorreto.']},
+  {disc:'Custos',text:'Produção 30.000 un., vendas 24.000 un., CV unit R$60, CF produção R$200.000, Despesas fixas R$100.000, PV R$100. Pelo custeio VARIÁVEL, o lucro operacional é:',opts:['R$660.000','R$700.000','R$760.000','R$560.000'],correct:0,comentario:'Receita = 24.000×100 = R$2.400.000. CMV variável = 24.000×60 = R$1.440.000. MC = R$960.000. CF produção INTEIRO = R$200.000. Desp.fixas = R$100.000. Lucro = 960.000−200.000−100.000 = R$660.000. Prova 2025/1.',just:['CORRETA. MC R$960.000 − CF total R$300.000 = R$660.000.','ERRADA. É o resultado pelo custeio por absorção (CF proporcional no estoque).','ERRADA. Não deduziu as despesas fixas.','ERRADA. Deduziu incorretamente os custos.']},
+  {disc:'Custos',text:'No custo padrão: MP padrão 20kg a R$10/kg, real 19kg a R$11/kg. A variação de PREÇO da MP é:',opts:['R$19 desfavorável','R$19 favorável','R$20 desfavorável','R$20 favorável'],correct:0,comentario:'Var. Preço = (PR − PP) × Qtd Real = (11−10) × 19 = R$19 desfavorável (pagou mais que o padrão). Prova 2024/2 Q.39.',just:['CORRETA. (11−10) × 19 = +R$19 = desfavorável.','ERRADA. Sinal errado: desfavorável pois preço real > padrão.','ERRADA. Usou qtd padrão (20) no cálculo — errado.','ERRADA. Valor e sinal errados.']},
+  {disc:'Custos',text:'CF R$126.000, PV R$1.000, CV unitário R$600. O ponto de equilíbrio contábil em unidades é:',opts:['126','210','315','420'],correct:2,comentario:'MC = PV−CV = 1.000−600 = R$400. PE = CF÷MC = 126.000÷400 = 315 unidades. Prova 2025/1.',just:['ERRADA. Dividiu CF pelo PV (errado).','ERRADA. Usou valor de CF ou MC incorretos.','CORRETA. MC = R$400; PE = 126.000 ÷ 400 = 315 unidades.','ERRADA. Usou MC incorreta.']},
+  {disc:'Custos',text:'A empresa Recife Contabilidade — Legalização de Empresas (10 proj./ano, direto R$2.500/proj.). Custos indiretos: captação R$25.000 (60%), análise R$50.000 (25%), relatórios R$190.000 (1%). Custo total anual da Legalização é:',opts:['R$31.900','R$54.400','R$29.400','R$47.821'],correct:1,comentario:'Diretos: 10×2.500=25.000. Captação: 25.000×60%=15.000. Análise: 50.000×25%=12.500. Relatórios: 190.000×1%=1.900. Total: 25.000+15.000+12.500+1.900 = R$54.400. Prova 2024/2 Q.40.',just:['ERRADA. Não inclui os custos diretos.','CORRETA. R$25.000+R$15.000+R$12.500+R$1.900 = R$54.400.','ERRADA. Erro em algum direcionador.','ERRADA. Percentuais ou valores incorretos.']},
+  {disc:'Contab. Geral',text:'Pelo método MEP, a Cia. Alfa possui 65% de ações da Cia. B (PL R$2.000.000). B lucrou R$200.000. O registro de Alfa em suas DCs individuais é:',opts:['D-Caixa/C-Investimentos R$130.000','D-Investimentos/C-Receita MEP R$200.000','D-Receita MEP/C-Investimentos R$200.000','D-Investimentos/C-Receita MEP R$130.000'],correct:3,comentario:'MEP: 65%×R$200.000 = R$130.000. Lançamento: D-Investimentos / C-Receita MEP por R$130.000. Erros: usar R$200.000 (total sem % participação) ou inverter D/C. Prova 2024/1.',just:['ERRADA. Caixa só entra no recebimento de dividendos (redução do investimento).','ERRADA. Usou R$200.000 sem aplicar os 65%.','ERRADA. Inverteu D/C (seria tratamento para prejuízo).','CORRETA. D-Investimentos / C-Receita MEP por 65%×200.000 = R$130.000.']},
+  {disc:'Contab. Geral',text:'DVA — despesa com aluguel de imóvel de terceiros, na parte de DISTRIBUIÇÃO do valor adicionado, é classificada como:',opts:['Insumos adquiridos de terceiros','Remuneração de capitais próprios','Remuneração de capitais de terceiros','Depreciação, amortização e exaustão'],correct:2,comentario:'Na distribuição, aluguel pago a terceiros = remuneração de capitais de terceiros. Na geração (1ª parte), o aluguel pago aparece como insumos de terceiros. Prova 2024/2 Q.25.',just:['ERRADA. Insumos de terceiros é na 1ª parte (geração), não na distribuição.','ERRADA. Capitais próprios = dividendos, JCP, lucros retidos.','CORRETA. Aluguel pago = remuneração de capitais de terceiros na distribuição.','ERRADA. Depreciação é uma retenção na 1ª parte.']},
+  {disc:'Ética',text:'Segundo o item 20 do Código de Ética Profissional do Contador (NBC PG 01), as penalidades são:',opts:['Advertência reservada, Advertência pública e Censura pública','Advertência reservada, Censura reservada e Censura pública','Censura reservada, Censura pública e Suspensão','Advertência pública, Censura reservada e Censura pública'],correct:1,comentario:'3 penalidades: (1) Advertência reservada, (2) Censura reservada, (3) Censura pública. "Advertência pública" e "Suspensão" NÃO existem no item 20.',just:['ERRADA. "Advertência pública" não existe.','CORRETA. As 3 penalidades exatas do item 20.','ERRADA. "Suspensão" não é penalidade do código.','ERRADA. "Advertência pública" não existe.']},
+  {disc:'Ética',text:'O Código de Ética Profissional do Contador (NBC PG 01) aplica-se também ao exercício das prerrogativas de:',opts:['Empresário contábil','Técnico em Contabilidade','Administrador de Empresas','Gestor Financeiro'],correct:1,comentario:'Item 3 literal: aplica-se ao TÉCNICO EM CONTABILIDADE. Prova 2025/1 Q.8.',just:['ERRADA. Não mencionado no item 3.','CORRETA. Técnico em Contabilidade — único mencionado no item 3.','ERRADA. Não sujeito à NBC PG 01.','ERRADA. Não sujeito à NBC PG 01.']},
+  {disc:'Ética',text:'Na aplicação das sanções éticas, são considerados AGRAVANTES:',opts:['A gravidade da infração e a aplicação de salvaguardas','A gravidade da infração e a punição ética anterior transitada em julgado','A boa-fé do infrator e a reparação do dano','A aplicação de salvaguardas e a ausência de punição anterior'],correct:1,comentario:'Agravantes: gravidade, má-fé, punição anterior, imagem maculada. Salvaguardas = ATENUANTE (não agravante). Boa-fé e reparação = atenuantes. Prova 2024/1 Q.8.',just:['ERRADA. Salvaguardas são atenuantes.','CORRETA. Gravidade e punição anterior são agravantes.','ERRADA. Boa-fé e reparação são atenuantes.','ERRADA. Ambos são atenuantes.']},
+  {disc:'Auditoria',text:'Auditor constatou deficiências significativas no CI. De acordo com a NBC TA 265, deve:',opts:['Declarar isenção por assuntos internos','Modificar automaticamente a opinião para adversa','Reportar por escrito e tempestivamente à administração e à governança','Registrar em ata e divulgar ao término'],correct:2,comentario:'NBC TA 265: comunicação ESCRITA e TEMPESTIVA à administração e responsáveis pela governança. Não gera modificação automática de opinião. Prova 2024/2 Q.48.',just:['ERRADA. Não pode eximir-se de comunicar.','ERRADA. Não gera modificação automática de opinião.','CORRETA. Escrita e tempestiva — regra literal da NBC TA 265.','ERRADA. Deve ser tempestiva, não só ao término.']},
+  {disc:'Auditoria',text:'O auditor incluiu parágrafo sobre Plano de Refinanciamento já divulgado nas DCs, de importância fundamental para os usuários. Esse parágrafo é:',opts:['Ressalva','Parágrafo de ênfase','Outros assuntos','Adverso'],correct:1,comentario:'Ênfase (NBC TA 706): assunto JÁ divulgado nas DCs, destacado pelo auditor. NÃO modifica a opinião. Prova 2024/2 Q.48.',just:['ERRADA. Ressalva = distorção relevante, não é o caso.','CORRETA. Parágrafo de ênfase: assunto já nas DCs, sem modificar opinião.','ERRADA. Outros assuntos = matéria NÃO nas DCs.','ERRADA. Adverso = distorção relevante e generalizada.']},
+  {disc:'Auditoria',text:'Auditor obtém evidência suficiente e conclui que as distorções são relevantes e GENERALIZADAS. Deve emitir:',opts:['Opinião com ressalva','Opinião adversa','Abstenção de opinião','Parágrafo de ênfase'],correct:1,comentario:'Adversa = distorção RELEVANTE + GENERALIZADA. Auditor TEM evidência. Diferente de abstenção (sem evidência). NBC TA 705.',just:['ERRADA. Ressalva = relevante mas NÃO generalizada.','CORRETA. Adversa = relevante E generalizada.','ERRADA. Abstenção = não consegue obter evidência.','ERRADA. Ênfase não modifica a opinião.']},
+  {disc:'Auditoria',text:'De acordo com a NBC TA 620, ao usar especialista em TI, a responsabilidade pela opinião de auditoria é:',opts:['Dividida com o especialista','Integral do auditor — não reduzida pelo trabalho do especialista','Somente pela parte contábil','Transferida ao especialista quando a opinião é modificada por seu trabalho'],correct:1,comentario:'NBC TA 620: responsabilidade 100% do auditor — não é reduzida nem transferida. Prova 2025/1 Q.47.',just:['ERRADA. Não é dividida.','CORRETA. Responsabilidade integral do auditor.','ERRADA. O auditor responde pela opinião completa.','ERRADA. Responsabilidade não é transferida em nenhuma circunstância.']},
+  {disc:'Perícia',text:'Ao concluir os trabalhos periciais, o perito NOMEADO apresenta _____ e o assistente técnico oferece _____.',opts:['Parecer pericial / Laudo pericial','Laudo pericial / Parecer pericial contábil','Laudo / Laudo complementar','Parecer técnico / Nota pericial'],correct:1,comentario:'Perito nomeado = LAUDO. Assistente técnico = PARECER. Regra fundamental da NBC TP 01.',just:['ERRADA. Papéis invertidos.','CORRETA. Nomeado = laudo; assistente = parecer.','ERRADA. Não existe "laudo complementar" como denominação técnica.','ERRADA. As denominações corretas são laudo e parecer.']},
+  {disc:'Perícia',text:'Sobre os procedimentos periciais da NBC TP 01, a definição correta de VISTORIA é:',opts:['Busca de informações mediante entrevista com conhecedores do objeto','Diligência que objetiva a constatação de situação, coisa ou fato','Determinação de valores por critério técnico-científico','Análise de livros, registros e documentos'],correct:1,comentario:'Vistoria = constatação de situação, coisa ou fato. Indagação = entrevista. Arbitramento = determinação de valores. Exame = análise de livros. Prova 2024/1 Q.49.',just:['ERRADA. Essa é a definição de INDAGAÇÃO.','CORRETA. Vistoria = constatação de situação, coisa ou fato.','ERRADA. Essa é a definição de ARBITRAMENTO.','ERRADA. Essa é a definição de EXAME.']},
+  {disc:'CASP',text:'Assinale a opção com APENAS receitas correntes do setor público:',opts:['Patrimonial e alienação de bens','Patrimonial e agropecuária','Operações de crédito e agropecuária','Alienação de bens e operações de crédito'],correct:1,comentario:'Correntes: tributária, contrib., patrimonial, agropecuária, industrial, serviços, transferências correntes. Capital: operações de crédito, alienação de bens. Prova 2024/2 Q.45.',just:['ERRADA. Alienação de bens é CAPITAL.','CORRETA. Patrimonial e agropecuária são ambas CORRENTES.','ERRADA. Operações de crédito é CAPITAL.','ERRADA. Ambas são CAPITAL.']},
+  {disc:'CASP',text:'O princípio orçamentário que determina que a LOA deve conter TODAS as receitas e despesas de todos os Poderes e órgãos é:',opts:['Unidade','Universalidade','Exclusividade','Orçamento Bruto'],correct:1,comentario:'Universalidade = abrangência total. Unidade = apenas UM orçamento. Prova 2024/1 Q.43 e 2025/1 Q.42.',just:['ERRADA. Unidade = apenas um orçamento.','CORRETA. Universalidade = todas as receitas e despesas de todos os poderes.','ERRADA. Exclusividade = vedada matéria estranha.','ERRADA. Orçamento Bruto = vedada compensação.']},
+  {disc:'CASP',text:'São classificadas como despesas CORRENTES: I.Despesas de custeio; II.Investimentos; III.Inversões Financeiras.',opts:['I, apenas','I e II, apenas','I e III, apenas','II e III, apenas'],correct:0,comentario:'Correntes: pessoal, custeio, transferências correntes, juros, desp. exercícios anteriores. Investimentos e Inversões Financeiras = CAPITAL. Prova 2024/1 Q.45.',just:['CORRETA. Somente custeio é despesa corrente.','ERRADA. Investimentos são de CAPITAL.','ERRADA. Inversões Financeiras são de CAPITAL.','ERRADA. Ambas são de CAPITAL.']},
+  {disc:'Controladoria',text:'A principal vantagem de substituir o ROI pelo EVA na avaliação de desempenho é:',opts:['Incorporação do custo de oportunidade do capital próprio','Inclusão das receitas operacionais','Dedução das despesas operacionais','Consideração das receitas financeiras'],correct:0,comentario:'EVA incorpora o WACC (custo do capital próprio e de terceiros), que o ROI ignora. Uma empresa pode ter lucro positivo mas EVA negativo. Prova 2025/1 Q.45.',just:['CORRETA. EVA incorpora o custo de oportunidade — principal vantagem sobre o ROI.','ERRADA. Receitas operacionais já estão no ROI.','ERRADA. Despesas operacionais já estão no ROI.','ERRADA. Receitas financeiras já constam no ROI.']},
+  {disc:'Gerencial',text:'O índice de Liquidez Seca de uma empresa com AC R$60.000, Estoques R$30.000, PC R$30.000 e PNC R$20.000 é:',opts:['2,00','1,00','0,67','1,50'],correct:1,comentario:'Liquidez Seca = (AC − Estoques) ÷ PC = (60.000 − 30.000) ÷ 30.000 = 30.000 ÷ 30.000 = 1,00. O PNC não entra no denominador.',just:['ERRADA. Usou AC sem deduzir estoques.','CORRETA. (60.000−30.000) ÷ 30.000 = 1,00.','ERRADA. Incluiu o PNC no denominador.','ERRADA. Usou valores incorretos.']},
+  {disc:'Contab. Geral',text:'Em 01/09/2024, empresa adquiriu aparelhos de informática por R$40.000. Frete aéreo pago: R$5.500. Instalação: R$1.000. Testes: R$2.000. O valor do imobilizado é:',opts:['R$43.000','R$45.000','R$46.500','R$48.500'],correct:3,comentario:'Custo = preço + frete + instalação + testes = 40.000+5.500+1.000+2.000 = R$48.500. O frete mais caro (aéreo) ainda é custo diretamente atribuível. Prova 2025/1.',just:['ERRADA. Usou frete normal (R$2.000) em vez do pago (R$5.500).','ERRADA. Não incluiu instalação e testes.','ERRADA. Não incluiu um dos componentes.','CORRETA. 40.000+5.500+1.000+2.000 = R$48.500.']},
+  {disc:'Contab. Geral',text:'Em 01/01/2020, máquina R$240.000, VU 8 anos, VR zero. Em 31/12/2024 muda: VU total 10 anos, novo VR R$40.000. Depreciação anual a partir de 2025:',opts:['R$40.000','R$30.000','R$18.000','R$10.000'],correct:3,comentario:'Dep. original = 240.000÷8 = R$30.000/ano. Dep.acum. 5 anos = R$150.000. VC em 31/12/2024 = R$90.000. Vida restante = 10−5 = 5 anos. Nova dep. = (90.000−40.000)÷5 = R$10.000. Prova 2025/1.',just:['ERRADA. Não deduziu o novo valor residual.','ERRADA. É a depreciação original antes da mudança.','ERRADA. Erro no VC ou vida restante.','CORRETA. (VC R$90.000 − VR R$40.000) ÷ 5 anos = R$10.000.']},
+  {disc:'NBC TG 16',text:'Empresa B tem 1.000 unidades com custo R$20 e VRL R$15. O valor do estoque no BP é:',opts:['R$20.000','R$15.000','R$30.000','R$17.500'],correct:1,comentario:'NBC TG 16: menor entre custo (R$20) e VRL (R$15) = R$15. Total: 1.000 × R$15 = R$15.000. Prova 2024/1.',just:['ERRADA. Usa o custo histórico, ignorando VRL menor.','CORRETA. Menor entre custo e VRL: R$15 × 1.000 = R$15.000.','ERRADA. Usa o preço de venda.','ERRADA. Usa média entre custo e VRL.']},
+  {disc:'Contab. Geral',text:'No primeiro trimestre de 2024: vendas à vista R$80.000, recebimento de clientes R$20.000, venda de equipamentos R$60.000, pagamento de salários do ano anterior R$15.000, pagamento de empréstimo R$35.000, despesas gerais R$100.000. A atividade OPERACIONAL:',opts:['Gerou R$10.000','Gerou R$45.000','Consumiu R$15.000','Consumiu R$35.000'],correct:2,comentario:'Operacional: (+)80.000 (+)20.000 = R$100.000. (−)15.000 (−)100.000 = R$115.000. Fluxo = −R$15.000 (consumiu). Venda de equipamento = investimento. Pagamento de empréstimo = financiamento. Prova 2024/2 Q.34.',just:['ERRADA. Incluiu a venda de equipamentos na operacional.','ERRADA. Erro nas saídas.','CORRETA. Entradas R$100.000 − Saídas R$115.000 = −R$15.000.','ERRADA. Incluiu o pagamento do empréstimo na operacional.']},
+  {disc:'Contab. Geral',text:'O ativo fiscal diferido, de acordo com a NBC TG 26 (R5), é classificado como:',opts:['Ativo circulante quando realizável em 12 meses','Sempre não circulante','Ativo circulante ou não circulante conforme o prazo','Passivo circulante'],correct:1,comentario:'NBC TG 26 determina expressamente: IR diferido = SEMPRE não circulante, independentemente do prazo de realização. Exceção à regra geral de classificação por prazo. Prova 2024/2 Q.24.',just:['ERRADA. Não segue a regra de 12 meses para IR diferido.','CORRETA. NBC TG 26: IR diferido é sempre classificado como não circulante.','ERRADA. A regra de prazo NÃO se aplica ao IR diferido.','ERRADA. É ativo, não passivo.']},
+  {disc:'NBC TG 25',text:'Uma empresa recebeu laudo indicando probabilidade REMOTA de perda em ação de R$200.000. O tratamento correto é:',opts:['Reconhecer provisão de R$200.000','Divulgar em nota como passivo contingente','Não reconhecer provisão e não divulgar','Reconhecer R$100.000 de provisão'],correct:2,comentario:'Remota = nada. Nem provisão, nem nota. Mnemônico: Remota = silêncio total.',just:['ERRADA. Provisão só para probabilidade provável.','ERRADA. Nota explicativa é para probabilidade possível.','CORRETA. Probabilidade remota = nenhum reconhecimento e nenhuma divulgação.','ERRADA. Não há provisionamento parcial por incerteza.']},
+  {disc:'Custos',text:'Empresa Alfa — custeio por absorção: produção 10.000 un., vendas 8.000 un., CV unit R$15, CF R$50.000, despesas fixas R$20.000, PV R$40. Lucro BRUTO (absorção):',opts:['R$160.000','R$120.000','R$140.000','R$100.000'],correct:0,comentario:'CF unit = 50.000÷10.000 = R$5. Custo total unit = R$20. CPV = 8.000×R$20 = R$160.000. Receita = 8.000×R$40 = R$320.000. Lucro bruto = R$160.000. (Lucro bruto = antes das despesas fixas.)',just:['CORRETA. Receita R$320.000 − CPV R$160.000 = R$160.000.','ERRADA. Usou custeio variável ou rate de CF incorreto.','ERRADA. Erro no CPV.','ERRADA. Deduziu as despesas fixas do lucro bruto (incorreto).']},
+  {disc:'Gerencial',text:'A Cia. Alfa possui: Kappa (controlada 90%, PL R$1.000.000) e Sigma (controlada 70%, PL R$700.000). PNC no balanço consolidado:',opts:['R$100.000','R$310.000','R$760.000','R$1.525.000'],correct:1,comentario:'PNC Kappa = 10% × 1.000.000 = R$100.000. PNC Sigma = 30% × 700.000 = R$210.000. Total = R$310.000. Coligadas não entram no cálculo de PNC. Prova 2025/1.',just:['ERRADA. Só o PNC de Kappa, esquece Sigma.','CORRETA. PNC total = R$100.000 + R$210.000 = R$310.000.','ERRADA. Incluiu a coligada.','ERRADA. Somou PL completo sem aplicar percentual de minoritários.']},
+  {disc:'Língua Portuguesa',text:'Um cartaz numa loja dizia: "Compre hoje! Amanhã pode estar mais caro!" Esse cartaz:',opts:['Aconselha o cliente a economizar','Dá ordem ao cliente para ganhar tempo','Chama atenção para a possível falta de produtos','Pretende incentivar a compra imediata pelo risco de aumento de preço'],correct:3,comentario:'O cartaz explora o medo de o produto ficar mais caro para incentivar a compra imediata — estratégia de urgência comercial. Questão de interpretação.',just:['ERRADA. Economizar seria não comprar.','ERRADA. Não é uma ordem, é um apelo.','ERRADA. Não menciona falta de produtos.','CORRETA. A mensagem cria urgência: compre antes que o preço suba.']},
+  {disc:'Língua Portuguesa',text:'"A leitura é para a mente o que a ginástica é para o corpo." Com essa frase o autor quer dizer que:',opts:['Exercícios físicos devem ser feitos todos os dias','A leitura, como a ginástica, deve ser feita diariamente','A leitura enriquece o nosso conhecimento','Exercícios físicos e leitura fortalecem o corpo'],correct:2,comentario:'A analogia compara leitura à ginástica: assim como a ginástica exercita o corpo, a leitura exercita a mente — enriquecendo o conhecimento. Prova 2024/2 Q.1.',just:['ERRADA. A frase não fala de frequência de exercícios.','ERRADA. A frase não menciona frequência diária.','CORRETA. A leitura fortalece a mente, enriquecendo o conhecimento.','ERRADA. A frase não diz que exercícios fortalecem o corpo.']},
+  {disc:'Matemática',text:'Um capital inicial foi investido. O rendimento nominal foi de 80%, imposto sobre ganho de capital foi deduzido, inflação acumulada foi de 5%. O ganho real foi de 60%. A alíquota do imposto foi de:',opts:['15%','17,5%','20%','22,5%'],correct:0,comentario:'Ganho real = (1+ganho nominal líq.)/(1+inflação)−1 = 60%. Então ganho nominal líq. = (1,60 × 1,05)−1 = 68%. Ganho bruto = 80%. Imposto sobre ganho = (80%−68%)/80% = 12%/80% = 15%. Prova 2024/2.',just:['CORRETA. Alíquota = (80%−68%) ÷ 80% = 15%.','ERRADA. 17,5% seria alíquota diferente.','ERRADA. 20% não resulta em ganho real de 60%.','ERRADA. 22,5% não resulta em ganho real de 60%.']},
+  {disc:'Matemática',text:'Um capital inicial foi investido por 1 ano a juros compostos de 2% ao mês. O aporte foi de R$12.000. O TOTAL de juros obtidos é:',opts:['R$15.218,90','R$14.880,00','R$3.218,90','R$2.880,00'],correct:2,comentario:'M = 12.000 × (1,02)^12 = 12.000 × 1,26824 = R$15.218,90. Juros = 15.218,90 − 12.000 = R$3.218,90. Prova 2024/1.',just:['ERRADA. É o montante final, não os juros.','ERRADA. Seria juros simples (12.000 × 2% × 12).','CORRETA. Juros compostos: M = 12.000×(1,02)^12 − 12.000 = R$3.218,90.','ERRADA. Juros simples mensais para 1 ano.']},
+  {disc:'Direito',text:'Em relação à renúncia à prescrição no Código Civil brasileiro, é correto afirmar que:',opts:['Não é admitida pela sistemática legal','Deve ser expressa, sendo vedada a renúncia tácita','Só pode ser realizada depois que a prescrição se consumar','Pode ser realizada antes ou após a consumação, sendo expressa ou tácita'],correct:2,comentario:'O CC admite a renúncia à prescrição SOMENTE APÓS sua consumação (art. 191 do CC). A renúncia pode ser expressa ou tácita. Prova 2024/2 Q.5.',just:['ERRADA. A renúncia é admitida — só não pode ser antecipada.','ERRADA. A renúncia pode ser expressa ou tácita.','CORRETA. CC art. 191: renúncia só após a consumação da prescrição.','ERRADA. Não pode ser antes da consumação.']},
+  {disc:'Direito',text:'João e Maria (únicos sócios da Alfa) faleceram em acidente simultaneamente, sem que se pudesse averiguar quem faleceu primeiro. O Código Civil determina que se presumam:',opts:['O mais velho faleceu primeiro','O mais jovem faleceu primeiro','Faleceram ao mesmo tempo (comoriência)','Quem teve inventário aberto primeiro faleceu primeiro'],correct:2,comentario:'Comoriência (CC art. 8): quando não se pode averiguar qual premorreu, presume-se que morreram simultaneamente. Prova 2024/2 Q.6.',just:['ERRADA. O CC não presume ordem por idade.','ERRADA. O CC não presume ordem por idade.','CORRETA. Comoriência: presunção de morte simultânea.','ERRADA. O CC não usa critério de abertura de inventário.']},
+  {disc:'Direito',text:'O princípio da anterioridade nonagesimal (noventena) no Direito Tributário estabelece que:',opts:['Nenhum tributo pode ser cobrado antes de 90 dias da publicação, exceto as contribuições sociais','Nenhum tributo pode ser cobrado antes de 90 dias da publicação, exceto as contribuições para seguridade social (estas exigidas em 90 dias de regra própria)','Nenhum tributo pode ser instituído sem lei complementar','Nenhum tributo pode ser cobrado antes de 90 dias da publicação — sem exceções'],correct:3,comentario:'A noventena veda a cobrança antes de 90 dias da publicação da lei. Contribuições da seguridade social também seguem a noventena (não a anualidade) — são exceção à anterioridade anual, mas não à noventena. A noventena vale para todos.',just:['ERRADA. As contribuições sociais TAMBÉM seguem a noventena.','ERRADA. Confunde anterioridade anual com noventena.','ERRADA. Essa é a descrição do princípio da legalidade.','CORRETA. A noventena vale para todos os tributos — contribuições sociais só têm exceção à anterioridade anual, não à noventena.']},
+  {disc:'NBC TG 09',text:'A reversão de perdas estimadas com crédito de liquidação duvidosa (PECLD) deve ser apresentada na DVA como:',opts:['Remuneração de capitais próprios (2ª parte)','Remuneração de capitais de terceiros (2ª parte)','Valor adicionado recebido em transferência (1ª parte)','Riqueza criada pela própria entidade (1ª parte)'],correct:3,comentario:'Reversão de PECLD = redução de estimativa de perda = riqueza criada pela entidade internamente. Aparece na 1ª parte, seção de receitas. Prova 2025/1.',just:['ERRADA. Capitais próprios é a distribuição para dividendos e lucros retidos.','ERRADA. Capitais de terceiros é para aluguéis e juros pagos.','ERRADA. Transferência = equivalência patrimonial + receitas financeiras + aluguéis recebidos.','CORRETA. Reversão de PECLD = riqueza criada pela própria entidade (1ª parte).']},
+  {disc:'NBC PG 01',text:'De acordo com a NBC PG 01, o contador pode indicar em qualquer veículo de comunicação seus títulos, especializações e relação de clientes quando:',opts:['Quiser, desde que as informações sejam verdadeiras','Os clientes autorizarem expressamente','Estiver prospectando novos clientes','Utilizar apenas meios digitais'],correct:1,comentario:'O contador pode divulgar relação de clientes QUANDO AUTORIZADO POR ELES. Não pode divulgar sem autorização mesmo que as informações sejam verdadeiras. Prova 2025/1.',just:['ERRADA. Veracidade não é suficiente — precisa de autorização dos clientes.','CORRETA. Divulgação de relação de clientes exige autorização deles.','ERRADA. A finalidade não desobriga a autorização.','ERRADA. O meio não é a questão — a autorização é obrigatória.']},
+  {disc:'Setor Público',text:'Em outubro/2022, uma escola pública cedeu espaço para eleições. Normalmente cobra R$5.000, mas cobrou R$4.500. A escola reconheceu:',opts:['Receita com contraprestação de R$4.500','Receita com contraprestação de R$5.000','Receita sem contraprestação de R$4.500','Receita sem contraprestação de R$5.000'],correct:0,comentario:'Como houve cobrança (R$4.500), há contraprestação. O valor reconhecido é o efetivamente cobrado (R$4.500). A diferença para R$5.000 poderia ser reconhecida separadamente se aplicável, mas a receita cobrada é com contraprestação. Prova 2024/1 Q.44.',just:['CORRETA. Houve cobrança (R$4.500) = receita COM contraprestação pelo valor cobrado.','ERRADA. O valor cobrado foi R$4.500, não R$5.000.','ERRADA. Houve cobrança, logo há contraprestação.','ERRADA. Valor e classificação incorretos.']},
+  {disc:'NBC TG 26',text:'As Notas Explicativas, de acordo com a Lei nº 6.404/76, devem apresentar: I. informações sobre a base de preparação e práticas contábeis adotadas; II. eventos subsequentes mesmo sem efeito relevante; III. políticas contábeis inadequadas podem ser retificadas por meio de notas. Está correto:',opts:['I, II e III','I e II, apenas','II e III, apenas','I, apenas'],correct:3,comentario:'I = VERDADEIRO. II = FALSO: apenas eventos RELEVANTES são de divulgação obrigatória. III = FALSO: notas explicativas não retificam políticas inadequadas — isso exige mudança contábil formal. Prova 2024/2 Q.36.',just:['ERRADA. II e III são falsos.','ERRADA. II é falso (só eventos relevantes são obrigatórios).','ERRADA. II e III são falsos.','CORRETA. Apenas I é correto.']},
+  {disc:'Contab. Geral',text:'De acordo com a NBC TG 36 (demonstrações consolidadas), o investidor controla a investida se possuir:',opts:['I. Poder; II. Exposição a retornos variáveis; IV. Mais de 50% das ações com voto','I. Poder; III. Capacidade de usar o poder para afetar retornos; IV. Mais de 50%','II. Retornos variáveis; III. Capacidade de uso do poder; IV. Mais de 50%','I. Poder; II. Exposição a retornos variáveis; III. Capacidade de usar o poder para afetar os retornos'],correct:3,comentario:'Controle = os 3 elementos: (I) Poder, (II) Exposição a retornos variáveis, (III) Capacidade de usar o poder para afetar retornos. Ter mais de 50% das ações é apenas um indicador — não é requisito isolado. Prova 2024/2 Q.26.',just:['ERRADA. Mais de 50% não é requisito do controle (é indicador).','ERRADA. Mais de 50% não é requisito do controle.','ERRADA. Poder (I) é necessário; mais de 50% não é requisito.','CORRETA. Controle = Poder + Retornos variáveis + Capacidade de usar o poder.']},
+  {disc:'NBC TG 27',text:'Empresa adquiriu máquina: preço R$500.000, imposto de importação NÃO recuperável R$50.000, preparação do local R$100.000, materiais nos testes R$50.000, honorários dos técnicos dos testes R$60.000. O custo do imobilizado é:',opts:['R$500.000','R$550.000','R$650.000','R$760.000'],correct:3,comentario:'Custo = preço + impostos não recuperáveis + preparação do local + materiais de teste + honorários de técnicos de teste = 500.000+50.000+100.000+50.000+60.000 = R$760.000. Prova 2025/1.',just:['ERRADA. Somente o preço — não inclui os custos atribuíveis.','ERRADA. Só preço + imposto.','ERRADA. Inclui até preparação mas não os testes.','CORRETA. Todos os custos diretamente atribuíveis somam R$760.000.']},
+];
+
+let answers=new Array(questions.length).fill(null),revealed=new Array(questions.length).fill(false),score=0,currentQ=0;
+let filterDisc='Todos';
+
+function getDiscs(){return['Todos',...new Set(questions.map(q=>q.disc))];}
+function buildFilterRow(){
+  const fr=document.getElementById('filter-row');fr.innerHTML='';
+  getDiscs().forEach(d=>{
+    const btn=document.createElement('button');btn.className='filter-btn'+(d===filterDisc?' active':'');
+    btn.textContent=d;btn.onclick=()=>{filterDisc=d;buildFilterRow();renderAllQ();};
+    fr.appendChild(btn);
+  });
+}
+function renderAllQ(){
+  document.querySelectorAll('.q-block').forEach(b=>{
+    const qi=parseInt(b.id.replace('q-block-',''));
+    const matchDisc=filterDisc==='Todos'||questions[qi].disc===filterDisc;
+    b.classList.toggle('hidden',!matchDisc);
+  });
+}
+function updateStats(){
+  const ans=revealed.filter(Boolean).length;
+  const erros=ans-score;
+  document.getElementById('st-resp').textContent=`${ans} / ${questions.length}`;
+  document.getElementById('st-acertos').textContent=score;
+  document.getElementById('st-erros').textContent=erros;
+  document.getElementById('st-pct').textContent=ans>0?Math.round(score/ans*100)+'%':'—';
+  document.getElementById('sim-score-box').textContent=`Acertos: ${score} / ${ans}`;
+  document.getElementById('sim-prog').style.width=((ans/questions.length)*100).toFixed(1)+'%';
+}
+function buildSim(){
+  const cont=document.getElementById('sim-questions');cont.innerHTML='';
+  questions.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='q-block';div.id='q-block-'+i;
+    if(i!==0)div.style.display='none';
+    const sel=answers[i],rev=revealed[i];
+    div.innerHTML=`<div class="q-meta"><span class="q-num">Q.${i+1} / 50</span><span class="badge b-gold">${q.disc}</span>${rev&&answers[i]===q.correct?'<span class="badge b-green">✓ Acertou</span>':rev?'<span class="badge b-red">✗ Errou</span>':''}</div>
+    <div class="q-text">${q.text}</div>
+    <div class="q-opts">${q.opts.map((o,j)=>{let cls='q-opt';const L='ABCD';if(rev){if(j===q.correct)cls+=' correct';else if(j===sel&&sel!==q.correct)cls+=' wrong';}else if(sel===j)cls+=' selected';return`<button class="${cls}"${rev?' disabled':''} onclick="selectOpt(${i},${j})"><span class="q-opt-letter">${L[j]}</span><span>${o}</span></button>`;}).join('')}</div>
+    <div class="q-btn-row">
+      ${i>0?`<button class="btn" onclick="goQ(${i-1})">← Q.${i}</button>`:''}
+      <button class="btn btn-primary" onclick="revealQ(${i})">Ver Resposta</button>
+      ${i<questions.length-1?`<button class="btn" onclick="goQ(${i+1})">Q.${i+2} →</button>`:''}
+      ${i===questions.length-1?`<button class="btn btn-success" onclick="showResult()">Ver Resultado Final</button>`:''}
+    </div>
+    <div class="gabarito${rev?' show':''}" id="gab-${i}"><div class="gab-correct-tag">✓ Resposta: ${'ABCD'[q.correct]}</div><div class="gab-title">Comentário técnico</div><div class="gab-text">${q.comentario}</div><div class="gab-title" style="margin-top:.75rem">Por que cada alternativa</div><div class="gab-just">${q.just.map((j2,k)=>`<div class="gab-just-item ${k===q.correct?'ok':'ko'}"><span>${'ABCD'[k]})</span><span>${j2}</span></div>`).join('')}</div></div>`;
+    cont.appendChild(div);
+  });
+  buildFilterRow();renderAllQ();
+}
+function goQ(idx){
+  document.getElementById('q-block-'+currentQ).style.display='none';currentQ=idx;
+  document.getElementById('q-block-'+idx).style.display='block';
+  document.getElementById('sim-cur').textContent=idx+1;
+  document.getElementById('q-block-'+idx).scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function selectOpt(qi,oi){if(revealed[qi])return;answers[qi]=oi;buildSim();goQ(qi);}
+function revealQ(qi){
+  if(!revealed[qi]){revealed[qi]=true;if(answers[qi]===questions[qi].correct)score++;updateStats();}
+  buildSim();goQ(qi);
+}
+function showResult(){
+  const ans=revealed.filter(Boolean).length;if(ans<questions.length&&!confirm(`Há ${questions.length-ans} questões não respondidas. Ver resultado?`))return;
+  document.getElementById('result-panel').classList.add('show');
+  document.getElementById('res-score').textContent=score;
+  const pct=Math.round(score/questions.length*100);
+  const color=pct>=50?'var(--green)':pct>=40?'var(--amber)':'var(--red)';
+  document.getElementById('result-panel').querySelector('.result-score').style.color=color;
+  const status=pct>=50?'✓ APROVADO! Parabéns!':pct>=44?'⚡ Muito próximo! Mais um esforço.':'📚 Continue estudando — você chega lá!';
+  document.getElementById('res-status').textContent=status;
+  document.getElementById('res-status').style.color=color;
+  const byDisc={};questions.forEach((q,i)=>{if(!byDisc[q.disc])byDisc[q.disc]={t:0,c:0};byDisc[q.disc].t++;if(revealed[i]&&answers[i]===q.correct)byDisc[q.disc].c++;});
+  document.getElementById('res-analysis').innerHTML=`<div class="ra-card"><div class="ra-n" style="color:var(--green)">${score}</div><div class="ra-l">Acertos</div></div><div class="ra-card"><div class="ra-n" style="color:var(--red)">${questions.length-score}</div><div class="ra-l">Erros</div></div><div class="ra-card"><div class="ra-n" style="color:var(--gold)">${pct}%</div><div class="ra-l">Aproveitamento</div></div><div class="ra-card"><div class="ra-n" style="color:var(--accent2)">${questions.length-ans}</div><div class="ra-l">Não respondidas</div></div>`+Object.entries(byDisc).map(([d,v])=>`<div class="ra-card"><div class="ra-n" style="color:${v.t>0&&v.c/v.t>=0.5?'var(--green)':'var(--amber)';}">${v.c}/${v.t}</div><div class="ra-l">${d}</div></div>`).join('');
+}
+function resetSim(){answers=new Array(questions.length).fill(null);revealed=new Array(questions.length).fill(false);score=0;currentQ=0;filterDisc='Todos';document.getElementById('result-panel').classList.remove('show');updateStats();buildSim();goQ(0);}
+buildSim();updateStats();
+
+/* CHECKLIST VÉSPERA */
+const checkItems=['Documentos separados: RG/CPF + comprovante de inscrição','Caneta esferográfica azul ou preta com material transparente','Confirmei o local da prova e o horário de início','Calculei o tempo de deslocamento + 30 min de margem','Li as fórmulas essenciais (só revisão, não estudo novo)','Memorizei os mnemônicos: PR/PO/Remota · AR-CR-CP · PE=CF÷MC','Sei que "advertência pública" não existe no Código de Ética','Revisei as pegadinhas fatais (15 itens)','Dormi pelo menos 7 horas','Café da manhã leve no dia da prova','Estou confiante e preparado para a prova'];
+function buildChecklist(){
+  const wrap=document.getElementById('checklist-wrap'),saved=JSON.parse(localStorage.getItem('cfc-d4-check')||'[]');wrap.innerHTML='';
+  checkItems.forEach((item,i)=>{const done=saved.includes(i);const div=document.createElement('div');div.className='checklist-item'+(done?' done':'');div.onclick=()=>toggleCheck(i);div.innerHTML=`<div class="chk-box">${done?'✓':''}</div><div class="chk-label">${item}</div>`;wrap.appendChild(div);});
+}
+function toggleCheck(i){const saved=JSON.parse(localStorage.getItem('cfc-d4-check')||'[]');const idx=saved.indexOf(i);if(idx>-1)saved.splice(idx,1);else saved.push(i);localStorage.setItem('cfc-d4-check',JSON.stringify(saved));buildChecklist();}
+buildChecklist();
+</script>
+</body>
+</html>

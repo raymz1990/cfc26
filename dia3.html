@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dia 3 — Ética + Auditoria + Perícia + CASP · CFC Suficiência</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0f12;--bg2:#13161b;--bg3:#1a1e25;--bg4:#20242d;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#e8eaed;--text2:#9aa3b2;--text3:#5c6478;
+  --accent:#4f8ef7;--accent2:#7eb8f7;
+  --green:#3ecf8e;--green-bg:rgba(62,207,142,.1);--green-border:rgba(62,207,142,.25);
+  --amber:#f5a623;--amber-bg:rgba(245,166,35,.1);--amber-border:rgba(245,166,35,.25);
+  --red:#f26b6b;--red-bg:rgba(242,107,107,.1);--red-border:rgba(242,107,107,.25);
+  --purple:#a78bfa;--purple-bg:rgba(167,139,250,.1);--purple-border:rgba(167,139,250,.25);
+  --blue-bg:rgba(79,142,247,.1);--blue-border:rgba(79,142,247,.25);
+  --rose:#fb7185;--rose-bg:rgba(251,113,133,.1);--rose-border:rgba(251,113,133,.25);
+  --font-display:'DM Serif Display',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --font-mono:'JetBrains Mono',monospace;
+}
+[data-theme="light"]{
+  --bg:#f4f5f7;--bg2:#ffffff;--bg3:#eceef2;--bg4:#e5e7eb;
+  --border:rgba(0,0,0,0.07);--border2:rgba(0,0,0,0.13);
+  --text:#111318;--text2:#4b5563;--text3:#9ca3af;
+  --accent:#2563eb;--accent2:#3b82f6;
+  --green:#059669;--green-bg:rgba(5,150,105,.08);--green-border:rgba(5,150,105,.25);
+  --amber:#d97706;--amber-bg:rgba(217,119,6,.08);--amber-border:rgba(217,119,6,.25);
+  --red:#dc2626;--red-bg:rgba(220,38,38,.08);--red-border:rgba(220,38,38,.25);
+  --purple:#7c3aed;--purple-bg:rgba(124,58,237,.08);--purple-border:rgba(124,58,237,.25);
+  --blue-bg:rgba(37,99,235,.08);--blue-border:rgba(37,99,235,.25);
+  --rose:#e11d48;--rose-bg:rgba(225,29,72,.08);--rose-border:rgba(225,29,72,.25);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+header{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;background:rgba(13,15,18,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 1.5rem;gap:1rem}
+[data-theme="light"] header{background:rgba(244,245,247,.92)}
+.logo{font-family:var(--font-display);font-size:1.1rem;color:var(--text);text-decoration:none;letter-spacing:-.02em;white-space:nowrap}
+.logo span{color:var(--accent)}
+.header-sep{width:1px;height:20px;background:var(--border);flex-shrink:0}
+.day-label{font-family:var(--font-mono);font-size:.72rem;color:var(--rose);letter-spacing:.08em;white-space:nowrap}
+.header-nav{display:flex;gap:.3rem;margin-left:auto}
+.header-nav a{font-size:.78rem;font-weight:500;color:var(--text2);text-decoration:none;padding:.3rem .6rem;border-radius:6px;transition:all .2s}
+.header-nav a:hover,.header-nav a.active{color:var(--text);background:var(--bg3)}
+.header-nav a.active{color:var(--accent)}
+.theme-btn{background:none;border:1px solid var(--border);border-radius:7px;color:var(--text2);cursor:pointer;padding:.3rem .7rem;font-size:.78rem;transition:all .2s;font-family:var(--font-body);white-space:nowrap;flex-shrink:0}
+.theme-btn:hover{background:var(--bg3);color:var(--text)}
+.progress-wrap{position:fixed;top:58px;left:0;right:0;z-index:199;height:2px;background:var(--bg3)}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--rose),var(--purple));width:0%;transition:width .1s}
+.layout{display:flex;padding-top:60px;min-height:100vh}
+.sidebar{width:260px;flex-shrink:0;position:fixed;top:60px;left:0;bottom:0;overflow-y:auto;border-right:1px solid var(--border);padding:1.25rem .75rem;background:var(--bg2)}
+.sidebar-section{margin-bottom:1.25rem}
+.sidebar-label{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.12em;color:var(--text3);text-transform:uppercase;padding:0 .5rem;margin-bottom:.4rem}
+.sidebar-link{display:flex;align-items:center;gap:.6rem;padding:.45rem .6rem;border-radius:8px;text-decoration:none;font-size:.82rem;color:var(--text2);transition:all .18s;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:var(--font-body)}
+.sidebar-link:hover{color:var(--text);background:var(--bg3)}
+.sidebar-link.active{color:var(--rose);background:var(--rose-bg)}
+.sidebar-link .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--border2)}
+.sidebar-link.active .dot{background:var(--rose)}
+.sidebar-progress{margin-top:1.5rem;padding:.75rem;background:var(--bg3);border-radius:10px}
+.sidebar-progress-label{font-size:.72rem;color:var(--text2);margin-bottom:.5rem;display:flex;justify-content:space-between}
+.sidebar-progress-bar{height:5px;background:var(--border2);border-radius:3px;overflow:hidden}
+.sidebar-progress-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--purple));border-radius:3px;transition:width .4s}
+.sidebar-score{font-size:.78rem;color:var(--green);margin-top:.4rem;font-weight:500}
+.main{margin-left:260px;flex:1;min-width:0;padding:2rem 2.5rem 4rem;max-width:900px}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0;padding:1.25rem 1rem 4rem}}
+.page-hero{margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+.page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;font-family:var(--font-mono);color:var(--rose);background:var(--rose-bg);border:1px solid var(--rose-border);border-radius:100px;padding:.3rem .85rem;margin-bottom:1rem;letter-spacing:.05em}
+.page-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 7px var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.page-title{font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);line-height:1.15;letter-spacing:-.03em;margin-bottom:.75rem}
+.page-title em{font-style:italic;color:var(--rose)}
+.page-sub{color:var(--text2);font-size:.95rem;max-width:640px;line-height:1.7}
+.page-stats{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+.pstat{text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.6rem 1.1rem}
+.pstat-n{font-family:var(--font-display);font-size:1.6rem;color:var(--rose)}
+.pstat-l{font-size:.72rem;color:var(--text2);margin-top:.1rem}
+.section-title{font-family:var(--font-display);font-size:1.6rem;margin-bottom:.25rem;scroll-margin-top:75px}
+.section-sub{font-size:.88rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.6}
+.section-divider{height:1px;background:var(--border);margin:2.5rem 0}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+.card-title{font-weight:600;font-size:.88rem;margin-bottom:.85rem;color:var(--text)}
+.alert{border-radius:10px;padding:.85rem 1.1rem;margin:.6rem 0;font-size:.85rem;line-height:1.65;border-left:3px solid}
+.alert-amber{background:var(--amber-bg);border-color:var(--amber)}
+.alert-green{background:var(--green-bg);border-color:var(--green)}
+.alert-red{background:var(--red-bg);border-color:var(--red)}
+.alert-blue{background:var(--blue-bg);border-color:var(--accent)}
+.alert-rose{background:var(--rose-bg);border-color:var(--rose)}
+.alert-purple{background:var(--purple-bg);border-color:var(--purple)}
+.alert-title{font-weight:600;display:block;margin-bottom:.25rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em}
+.alert p,.alert li{color:var(--text)}
+.alert ul{padding-left:1.1rem;margin-top:.3rem}
+.alert ul li{margin:.15rem 0}
+.formula{background:var(--bg3);border:1px solid var(--border2);border-radius:9px;padding:.7rem 1rem;font-family:var(--font-mono);font-size:.82rem;color:var(--accent2);margin:.4rem 0;line-height:1.5}
+.formula.rose{color:var(--rose)}
+.formula.purple{color:var(--purple)}
+.table-wrap{overflow-x:auto;margin:.75rem 0;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83rem}
+thead tr{background:var(--bg3)}
+th{padding:.6rem .9rem;text-align:left;font-weight:600;font-size:.75rem;color:var(--text2);letter-spacing:.04em;white-space:nowrap}
+td{padding:.55rem .9rem;border-top:1px solid var(--border);vertical-align:top;line-height:1.55}
+tr:hover td{background:var(--bg3)}
+.badge{display:inline-block;font-size:.7rem;font-weight:500;padding:.22rem .6rem;border-radius:6px;border:1px solid}
+.b-green{color:var(--green);background:var(--green-bg);border-color:var(--green-border)}
+.b-amber{color:var(--amber);background:var(--amber-bg);border-color:var(--amber-border)}
+.b-red{color:var(--red);background:var(--red-bg);border-color:var(--red-border)}
+.b-blue{color:var(--accent2);background:var(--blue-bg);border-color:var(--blue-border)}
+.b-purple{color:var(--purple);background:var(--purple-bg);border-color:var(--purple-border)}
+.b-rose{color:var(--rose);background:var(--rose-bg);border-color:var(--rose-border)}
+.lancamento{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:1rem 1.25rem;margin:.6rem 0;font-family:var(--font-mono);font-size:.82rem}
+.lancamento-title{font-family:var(--font-body);font-size:.78rem;font-weight:600;color:var(--text2);margin-bottom:.6rem;letter-spacing:.03em;text-transform:uppercase}
+.lancamento .d{color:var(--red)}
+.lancamento .c{color:var(--green)}
+.lancamento .linha{display:flex;justify-content:space-between;padding:.15rem 0;border-bottom:1px solid var(--border);gap:1rem}
+.lancamento .linha:last-child{border-bottom:none}
+.lancamento .linha span:first-child{flex:1}
+.lancamento .linha span:last-child{white-space:nowrap;color:var(--accent2)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.two-col{grid-template-columns:1fr}}
+.mnemonic{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:1rem 1.25rem;margin:.75rem 0;text-align:center}
+.mnemonic-word{font-family:var(--font-display);font-size:1.4rem;color:var(--rose);letter-spacing:.02em;margin-bottom:.4rem}
+.mnemonic-exp{font-size:.82rem;color:var(--text2);line-height:1.7}
+.mnemonic-exp strong{color:var(--text)}
+ul.styled{padding-left:1.1rem}
+ul.styled li{margin:.3rem 0;font-size:.85rem;line-height:1.6}
+ul.styled li::marker{color:var(--rose)}
+/* PENALIDADES VISUAL */
+.pen-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:.75rem 0}
+.pen-card{border-radius:10px;padding:.85rem 1rem;border:1px solid;text-align:center}
+.pen-card h4{font-size:.82rem;font-weight:600;margin-bottom:.4rem}
+.pen-card p{font-size:.75rem;line-height:1.5}
+.pen-1{background:var(--blue-bg);border-color:var(--blue-border);color:var(--text)}
+.pen-1 h4{color:var(--accent2)}
+.pen-2{background:var(--amber-bg);border-color:var(--amber-border);color:var(--text)}
+.pen-2 h4{color:var(--amber)}
+.pen-3{background:var(--red-bg);border-color:var(--red-border);color:var(--text)}
+.pen-3 h4{color:var(--red)}
+/* AUDITORIA OPINIÃO */
+.opinion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.75rem;margin:.75rem 0}
+.op-card{border-radius:10px;padding:.85rem 1rem;border:1px solid}
+.op-card h4{font-size:.82rem;font-weight:600;margin-bottom:.4rem}
+.op-card p{font-size:.78rem;line-height:1.6;color:var(--text2)}
+.op-sem-mod{background:var(--green-bg);border-color:var(--green-border)}
+.op-sem-mod h4{color:var(--green)}
+.op-ressalva{background:var(--amber-bg);border-color:var(--amber-border)}
+.op-ressalva h4{color:var(--amber)}
+.op-adversa{background:var(--red-bg);border-color:var(--red-border)}
+.op-adversa h4{color:var(--red)}
+.op-abstencao{background:var(--purple-bg);border-color:var(--purple-border)}
+.op-abstencao h4{color:var(--purple)}
+/* CASP */
+.receita-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.75rem 0}
+.rec-card{border-radius:10px;padding:.85rem 1rem;border:1px solid}
+.rec-card h4{font-size:.82rem;font-weight:600;margin-bottom:.5rem}
+.rec-card ul{padding-left:1rem;font-size:.8rem;line-height:1.8}
+.rec-corrente{background:var(--green-bg);border-color:var(--green-border)}
+.rec-corrente h4{color:var(--green)}
+.rec-capital{background:var(--blue-bg);border-color:var(--blue-border)}
+.rec-capital h4{color:var(--accent2)}
+/* SIMULADO */
+.sim-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
+.sim-score{font-family:var(--font-mono);font-size:.85rem;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px;padding:.35rem .85rem}
+.sim-progress-wrap{height:5px;background:var(--border2);border-radius:3px;margin-bottom:1.5rem;overflow:hidden}
+.sim-progress-fill{height:100%;background:linear-gradient(90deg,var(--rose),var(--purple));border-radius:3px;transition:width .3s}
+.q-block{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+.q-meta{display:flex;align-items:center;gap:.5rem;margin-bottom:.85rem;flex-wrap:wrap}
+.q-num{font-family:var(--font-mono);font-size:.72rem;color:var(--text3)}
+.q-text{font-size:.92rem;line-height:1.75;margin-bottom:1.1rem;color:var(--text)}
+.q-opts{display:flex;flex-direction:column;gap:.45rem;margin-bottom:.9rem}
+.q-opt{display:flex;align-items:flex-start;gap:.75rem;padding:.7rem .9rem;border:1px solid var(--border2);border-radius:9px;cursor:pointer;font-size:.85rem;line-height:1.5;transition:all .18s;background:transparent;width:100%;text-align:left;font-family:var(--font-body);color:var(--text)}
+.q-opt:hover:not(:disabled){background:var(--bg3)}
+.q-opt:disabled{cursor:default}
+.q-opt.selected{border-color:var(--rose);background:var(--rose-bg)}
+.q-opt.correct{border-color:var(--green)!important;background:var(--green-bg)!important;color:var(--green)}
+.q-opt.wrong{border-color:var(--red)!important;background:var(--red-bg)!important;color:var(--red)}
+.q-opt-letter{font-family:var(--font-mono);font-size:.78rem;font-weight:500;min-width:18px;color:var(--text3);flex-shrink:0;margin-top:.05rem}
+.q-opt.correct .q-opt-letter{color:var(--green)}
+.q-opt.wrong .q-opt-letter{color:var(--red)}
+.q-btn-row{display:flex;gap:.5rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem 1rem;border:1px solid var(--border2);border-radius:8px;cursor:pointer;font-size:.82rem;font-family:var(--font-body);font-weight:500;background:transparent;color:var(--text);transition:all .18s}
+.btn:hover{background:var(--bg3)}
+.btn-primary{background:var(--rose);color:#fff;border-color:var(--rose)}
+.btn-primary:hover{opacity:.88}
+.btn-success{background:var(--green);color:#fff;border-color:var(--green)}
+.gabarito{display:none;margin-top:1rem;padding:1rem 1.1rem;background:var(--bg3);border-radius:10px;border:1px solid var(--border2)}
+.gabarito.show{display:block}
+.gab-correct-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:600;color:var(--green);background:var(--green-bg);border:1px solid var(--green-border);border-radius:6px;padding:.2rem .6rem;margin-bottom:.6rem}
+.gab-title{font-size:.78rem;font-weight:600;color:var(--text);margin:.6rem 0 .3rem}
+.gab-text{font-size:.83rem;color:var(--text2);line-height:1.7}
+.gab-just{margin-top:.5rem}
+.gab-just-item{font-size:.8rem;padding:.2rem 0;display:flex;gap:.5rem;line-height:1.55}
+.gab-just-item span:first-child{font-family:var(--font-mono);font-size:.74rem;min-width:24px;font-weight:500}
+.gab-just-item.ok span:first-child{color:var(--green)}
+.gab-just-item.ko span:first-child{color:var(--red)}
+.gab-just-item.ko span:last-child{color:var(--text2)}
+.result-panel{display:none;background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;margin-top:1.5rem}
+.result-panel.show{display:block}
+.result-score{font-family:var(--font-display);font-size:3.5rem;color:var(--rose);line-height:1}
+.result-label{font-size:1rem;color:var(--text2);margin:.5rem 0 1.5rem}
+.result-analysis{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.75rem;margin:1.25rem 0}
+.ra-card{background:var(--bg3);border-radius:10px;padding:.75rem;border:1px solid var(--border)}
+.ra-n{font-family:var(--font-display);font-size:1.8rem}
+.ra-l{font-size:.72rem;color:var(--text2);margin-top:.15rem}
+.checklist-item{display:flex;align-items:flex-start;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--border);cursor:pointer}
+.checklist-item:last-child{border-bottom:none}
+.chk-box{width:18px;height:18px;border:1.5px solid var(--border2);border-radius:4px;flex-shrink:0;margin-top:.15rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.checklist-item.done .chk-box{background:var(--green);border-color:var(--green);color:#fff}
+.chk-label{font-size:.85rem;color:var(--text);line-height:1.55}
+.checklist-item.done .chk-label{color:var(--text3);text-decoration:line-through}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--bg2);border-top:1px solid var(--border);padding:.5rem .75rem;justify-content:space-around}
+@media(max-width:900px){.mobile-nav{display:flex}}
+.mob-link{font-size:.72rem;color:var(--text2);text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:.2rem;padding:.3rem .5rem;border-radius:7px}
+.mob-link:hover,.mob-link.active{color:var(--rose)}
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">CFC <span>Suficiência</span></a>
+  <div class="header-sep"></div>
+  <span class="day-label">// DIA 03</span>
+  <nav class="header-nav">
+    <a href="index.html">Início</a>
+    <a href="dia1.html">Dia 1</a>
+    <a href="dia2.html">Dia 2</a>
+    <a href="dia3.html" class="active">Dia 3</a>
+    <a href="dia4.html">Dia 4</a>
+  </nav>
+  <button class="theme-btn" onclick="toggleTheme()" id="theme-btn">☀ Claro</button>
+</header>
+<div class="progress-wrap"><div class="progress-bar" id="scroll-bar"></div></div>
+
+<div class="layout">
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Módulos do Dia 3</div>
+    <button class="sidebar-link active" onclick="scrollTo('intro')"><span class="dot"></span>Introdução</button>
+    <button class="sidebar-link" onclick="scrollTo('etica')"><span class="dot"></span>Ética — NBC PG 01</button>
+    <button class="sidebar-link" onclick="scrollTo('penalidades')"><span class="dot"></span>Penalidades e Honorários</button>
+    <button class="sidebar-link" onclick="scrollTo('auditoria')"><span class="dot"></span>Auditoria — Tipos de Opinião</button>
+    <button class="sidebar-link" onclick="scrollTo('nbc-ta')"><span class="dot"></span>NBC TAs Essenciais</button>
+    <button class="sidebar-link" onclick="scrollTo('pericia')"><span class="dot"></span>Perícia Contábil</button>
+    <button class="sidebar-link" onclick="scrollTo('casp')"><span class="dot"></span>Setor Público — CASP</button>
+    <button class="sidebar-link" onclick="scrollTo('controladoria')"><span class="dot"></span>Controladoria</button>
+    <button class="sidebar-link" onclick="scrollTo('simulado')"><span class="dot"></span>Simulado — 15 Questões</button>
+    <button class="sidebar-link" onclick="scrollTo('checklist')"><span class="dot"></span>Checklist do Dia</button>
+  </div>
+  <div class="sidebar-progress">
+    <div class="sidebar-progress-label"><span>Progresso simulado</span><span id="sb-pct">0%</span></div>
+    <div class="sidebar-progress-bar"><div class="sidebar-progress-fill" id="sb-bar" style="width:0%"></div></div>
+    <div class="sidebar-score" id="sb-score">— questões respondidas</div>
+  </div>
+</aside>
+
+<main class="main">
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="page-hero">
+    <div class="page-badge"><span class="dot"></span>Dia 03 de 04 · Plano Intensivo CFC/FGV</div>
+    <h1 class="page-title">Ética + Auditoria<br>+ Perícia + <em>Setor Público</em></h1>
+    <p class="page-sub">Bloco conceitual — cai ~14 questões. São questões mais rápidas que as de cálculo. Quem domina esse bloco ganha tempo para as questões difíceis de Contabilidade.</p>
+    <div class="page-stats">
+      <div class="pstat"><div class="pstat-n">~14</div><div class="pstat-l">questões hoje</div></div>
+      <div class="pstat"><div class="pstat-n">8</div><div class="pstat-l">normas principais</div></div>
+      <div class="pstat"><div class="pstat-n">15</div><div class="pstat-l">questões no simulado</div></div>
+      <div class="pstat"><div class="pstat-n">7</div><div class="pstat-l">pegadinhas mapeadas</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Distribuição histórica — bloco conceitual</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tema</th><th>Freq.</th><th>Tipo de questão FGV</th></tr></thead>
+        <tbody>
+          <tr><td>Ética — Código NBC PG 01 (itens 3, 7, 8, 20)</td><td><span class="badge b-red">Toda edição</span></td><td>Literal do artigo ou V/F</td></tr>
+          <tr><td>Auditoria — Tipos de opinião (NBC TA 705/706)</td><td><span class="badge b-red">Toda edição</span></td><td>Situação → tipo correto</td></tr>
+          <tr><td>Controle Interno (NBC TA 265)</td><td><span class="badge b-red">Toda edição</span></td><td>Procedimento correto</td></tr>
+          <tr><td>Perícia — Laudo vs Parecer (NBC TP 01)</td><td><span class="badge b-red">Toda edição</span></td><td>Atribuição do perito</td></tr>
+          <tr><td>CASP — Receitas/Despesas orçamentárias</td><td><span class="badge b-amber">Alta</span></td><td>Classificação corrente/capital</td></tr>
+          <tr><td>Princípios orçamentários</td><td><span class="badge b-amber">Alta</span></td><td>Nome do princípio</td></tr>
+          <tr><td>Controladoria — EVA, Planejamento Estratégico</td><td><span class="badge b-blue">Média</span></td><td>Conceitual/V/F</td></tr>
+          <tr><td>Evidências de auditoria (NBC TA 500)</td><td><span class="badge b-blue">Média</span></td><td>Procedimento adequado</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="alert alert-rose">
+    <span class="alert-title">⚡ Estratégia do Dia 3</span>
+    <p>Questões conceituais: leia o enunciado identificando a norma citada. A FGV cobra literalidade — a resposta correta é quase sempre a que usa os termos exatos da NBC. Elimine as alternativas com palavras que não existem na norma.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ETICA -->
+<section id="etica">
+  <h2 class="section-title">Ética Profissional — NBC PG 01</h2>
+  <p class="section-sub">A FGV cobra literalmente os itens do Código de Ética. Os itens 3, 7, 8 e 20 aparecem em toda edição. Leia cada um como se fosse lei.</p>
+
+  <div class="card">
+    <div class="card-title">Item 3 — Campo de aplicação</div>
+    <div class="formula rose">O Código aplica-se também ao TÉCNICO EM CONTABILIDADE no exercício de suas prerrogativas profissionais.</div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha</span>
+      <p>A FGV oferece alternativas como "administrador de empresas", "gestor financeiro" ou "empresário contábil". A única resposta correta é <strong>técnico em contabilidade</strong>. Questão literal da prova 2025/1 (Q.8).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Deveres e vedações do contador — itens principais</div>
+    <div class="two-col">
+      <div>
+        <div class="alert alert-green">
+          <span class="alert-title">✓ O contador PODE</span>
+          <ul>
+            <li>Indicar títulos, especializações e relação de clientes (quando autorizado por eles)</li>
+            <li>Recusar trabalho quando não se achar capacitado para a especialização</li>
+            <li>Guardar sigilo sobre o que souber, exceto quando solicitado por autoridades competentes (incluindo CFC/CRCs)</li>
+            <li>Cobrar honorários de acordo com os critérios do item 7</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="alert alert-red">
+          <span class="alert-title">✗ O contador NÃO PODE</span>
+          <ul>
+            <li>Fazer afirmações desproporcionais sobre sua capacitação</li>
+            <li>Apropriar-se de trabalhos de colegas sem participação</li>
+            <li>Usar posição em entidade de classe para benefício próprio</li>
+            <li>Cobrar honorários em percentual sobre o resultado do cliente</li>
+            <li>Exercer atividade que interfira na independência profissional</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Item 7 — Critérios para fixação de honorários</div>
+    <div class="alert alert-blue">
+      <span class="alert-title">Fatores que o contador DEVE considerar</span>
+      <ul>
+        <li>O <strong>tempo</strong> que será consumido para a realização do trabalho</li>
+        <li>A <strong>complexidade</strong> dos serviços prestados</li>
+        <li>A <strong>possibilidade de ficar impedido</strong> da realização de outros serviços</li>
+        <li>O <strong>resultado lícito favorável</strong> que, para o contratante, advirá com o serviço prestado</li>
+        <li>A <strong>peculiaridade</strong> de tratar-se de cliente eventual</li>
+        <li>O <strong>lugar</strong> em que o serviço será prestado</li>
+      </ul>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha — item 7</span>
+      <p>A FGV pergunta qual fator NÃO é critério do item 7. Resposta típica de distrator: "peculiaridade de tratar-se de cliente <strong>imprevisto</strong>" (o texto correto é "cliente <strong>eventual</strong>"). Questão literal da prova 2024/2 (Q.8).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Item 8 — Proposta de prestação de serviços</div>
+    <div class="formula rose">A proposta deve conter EXPLICITAMENTE: serviços individualmente + valor de cada + periodicidade + forma de reajuste</div>
+    <ul class="styled" style="margin-top:.5rem">
+      <li>Todos os quatro elementos são obrigatórios na proposta</li>
+      <li>A FGV apresenta assertivas com 3 dos 4 elementos perguntando quais estão corretos — resposta: todos (I, II, III e IV)</li>
+      <li>Questão literal da prova 2024/2 (Q.9)</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PENALIDADES -->
+<section id="penalidades">
+  <h2 class="section-title">Penalidades — Item 20</h2>
+  <p class="section-sub">A pergunta mais recorrente da prova de ética. Cai em toda edição. Memorize as três penalidades na ordem correta.</p>
+
+  <div class="mnemonic">
+    <div class="mnemonic-word">Advertência Reservada · Censura Reservada · Censura Pública</div>
+    <div class="mnemonic-exp">Mnemônico: <strong>"AR — CR — CP"</strong> · Ordem crescente de gravidade · Não existe "Advertência Pública" nem "Suspensão"</div>
+  </div>
+
+  <div class="pen-grid">
+    <div class="pen-card pen-1">
+      <h4>1ª — Advertência Reservada</h4>
+      <p>Comunicação privada ao infrator. Penalidade mais leve. Não é pública.</p>
+    </div>
+    <div class="pen-card pen-2">
+      <h4>2ª — Censura Reservada</h4>
+      <p>Comunicação privada com registro no prontuário. Mais grave que advertência.</p>
+    </div>
+    <div class="pen-card pen-3">
+      <h4>3ª — Censura Pública</h4>
+      <p>Publicada no Diário Oficial e divulgada pelo CFC/CRC. Penalidade mais grave prevista no código.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-red">
+    <span class="alert-title">⚠ Erros fatais sobre penalidades</span>
+    <ul>
+      <li><strong>"Advertência Pública"</strong> NÃO EXISTE no item 20 — é a pegadinha mais usada pela FGV</li>
+      <li><strong>"Suspensão do registro"</strong> não é penalidade do Código de Ética (item 20)</li>
+      <li>São exatamente 3 penalidades — não 2, não 4</li>
+      <li>A FGV oferece combinações V/F com "advertência pública" como verdadeira — sempre falsa</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Agravantes e atenuantes — NBC PG 01</div>
+    <div class="two-col">
+      <div class="alert alert-red">
+        <span class="alert-title">Agravantes</span>
+        <ul>
+          <li>Gravidade do dano causado</li>
+          <li>Má-fé do infrator</li>
+          <li>Punição anterior já transitada em julgado</li>
+          <li>Ação que macule publicamente a imagem do contador</li>
+        </ul>
+      </div>
+      <div class="alert alert-green">
+        <span class="alert-title">Atenuantes</span>
+        <ul>
+          <li>Ausência de punição ética anterior</li>
+          <li>Boa-fé do infrator</li>
+          <li>Reparação do dano causado</li>
+          <li>Aplicação de salvaguardas (atenuante — não agravante!)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-amber" style="margin-top:.5rem">
+      <span class="alert-title">⚠ Pegadinha — agravantes</span>
+      <p>"Aplicação de salvaguardas" é <strong>atenuante</strong>, não agravante. A FGV coloca salvaguardas na lista de agravantes para testar. Questão da prova 2024/1 (Q.8).</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- AUDITORIA -->
+<section id="auditoria">
+  <h2 class="section-title">Auditoria — Tipos de Opinião (NBC TA 705/706)</h2>
+  <p class="section-sub">A FGV descreve uma situação e pede qual tipo de opinião o auditor deve emitir. Aprenda a lógica e o raciocínio de seleção.</p>
+
+  <div class="opinion-grid">
+    <div class="op-card op-sem-mod">
+      <h4>Opinião Não Modificada</h4>
+      <p>Demonstrações apresentadas adequadamente em todos os aspectos relevantes. Não há distorções relevantes.</p>
+    </div>
+    <div class="op-card op-ressalva">
+      <h4>Opinião com Ressalva</h4>
+      <p>Distorção relevante mas <strong>NÃO generalizada</strong>. Ou limitação de escopo relevante mas não generalizada. "Exceto pelo efeito de..."</p>
+    </div>
+    <div class="op-card op-adversa">
+      <h4>Opinião Adversa</h4>
+      <p>Distorção <strong>relevante E generalizada</strong>. As DCs não apresentam adequadamente a posição financeira.</p>
+    </div>
+    <div class="op-card op-abstencao">
+      <h4>Abstenção de Opinião</h4>
+      <p>Impossível obter evidência suficiente e apropriada (limitação de escopo <strong>generalizada</strong>). Auditor não sabe se há distorção.</p>
+    </div>
+  </div>
+
+  <div class="alert alert-amber">
+    <span class="alert-title">⚠ Pegadinha fundamental — Adversa vs Abstenção</span>
+    <p><strong>Adversa</strong>: auditor TEM evidência suficiente e conclui que há distorção relevante e generalizada.<br>
+    <strong>Abstenção</strong>: auditor NÃO CONSEGUE obter evidência suficiente (não é que discorda — é que não sabe).<br>
+    A FGV troca as duas constantemente nos distratores.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Parágrafo de Ênfase vs Outros Assuntos (NBC TA 706)</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tipo</th><th>Quando usar</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-amber">Parágrafo de Ênfase</span></td><td>Assunto JÁ divulgado nas DCs que o auditor considera fundamental para o entendimento dos usuários. <strong>NÃO modifica a opinião.</strong></td><td>Plano de refinanciamento de impostos já divulgado nas notas</td></tr>
+          <tr><td><span class="badge b-blue">Outros Assuntos</span></td><td>Assunto relevante <strong>NÃO apresentado nas DCs</strong> e que o auditor considera necessário comunicar aos usuários.</td><td>Auditoria do exercício anterior realizada por outro auditor</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-red">
+      <span class="alert-title">⚠ Pegadinha — ênfase não é ressalva</span>
+      <p>Parágrafo de ênfase: o assunto JÁ está nas DCs e está correto — o auditor apenas destaca. Não há distorção. A opinião permanece não modificada. Questão literal da prova 2024/2 (Q.48) e 2025/1 (Q.48).</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- NBC TAs -->
+<section id="nbc-ta">
+  <h2 class="section-title">NBC TAs Essenciais</h2>
+  <p class="section-sub">As normas de auditoria mais cobradas pela FGV, além da TA 705/706.</p>
+
+  <div class="card">
+    <div class="card-title">NBC TA 265 — Deficiências de Controle Interno</div>
+    <div class="formula rose">Deficiência SIGNIFICATIVA → comunicação escrita e TEMPESTIVA à administração e aos responsáveis pela governança</div>
+    <ul class="styled" style="margin-top:.5rem">
+      <li>Deficiência significativa = individualmente ou em conjunto, merece atenção da governança</li>
+      <li>A comunicação deve ser <strong>por escrito</strong> — não verbal, não em ata apenas</li>
+      <li>Deve ser <strong>tempestiva</strong> — não só ao término da auditoria</li>
+      <li>Deficiência de CI não gera automaticamente modificação de opinião</li>
+    </ul>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha</span>
+      <p>A FGV pergunta o que João Batista (auditor) deve fazer ao encontrar deficiências significativas. A alternativa errada mais comum é "registrar em ata e divulgar ao término da auditoria". A correta é <strong>reportar por escrito e tempestivamente</strong>. Questão literal da prova 2024/2 (Q.48).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">NBC TA 500 — Evidências de Auditoria</div>
+    <ul class="styled">
+      <li>Evidências devem ser <strong>suficientes</strong> (quantidade) e <strong>apropriadas</strong> (qualidade/relevância)</li>
+      <li>Procedimentos: inspeção, observação, confirmação externa, recálculo, reexecução, procedimentos analíticos, indagação</li>
+      <li><strong>Confirmação externa</strong>: procedimento adequado para confirmar relações contratuais não documentadas</li>
+      <li><strong>Observação</strong>: acompanhar um processo ou procedimento da entidade</li>
+      <li><strong>Recálculo</strong>: verificar exatidão matemática de documentos</li>
+    </ul>
+    <div class="alert alert-blue">
+      <span class="alert-title">Caso da prova 2024/1 — confirmação externa</span>
+      <p>Fornecedor recorrente sem contrato formal documentado → procedimento adequado: <strong>Confirmação Externa</strong> (não observação, não recálculo). A FGV cobra qual procedimento para confirmar relação contratual não documentada.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">NBC TA 620 — Utilização do Trabalho de Especialistas</div>
+    <div class="formula rose">O auditor é o ÚNICO responsável pela opinião de auditoria — a responsabilidade NÃO é reduzida pelo trabalho do especialista</div>
+    <ul class="styled" style="margin-top:.5rem">
+      <li>O especialista pode ser contratado pelo auditor ou pela própria entidade</li>
+      <li>O auditor avalia se o trabalho do especialista é adequado para os fins da auditoria</li>
+      <li>Mesmo usando especialista, a responsabilidade pela opinião é integralmente do auditor</li>
+    </ul>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha</span>
+      <p>A FGV oferece alternativas como "responsabilidade dividida com o especialista" ou "responsabilidade transferida ao especialista". Ambas são erradas. A responsabilidade é <strong>100% do auditor</strong>. Questão da prova 2025/1 (Q.47).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">NBC TA 530 — Amostragem em Auditoria</div>
+    <ul class="styled">
+      <li>Métodos de seleção: <strong>aleatório</strong>, <strong>sistemático</strong> e <strong>por unidade monetária</strong></li>
+      <li>Amostragem probabilística: todos os itens têm chance de seleção</li>
+      <li>A FGV descreve uma situação de seleção e pede o método usado</li>
+      <li>Seleção de 1 nota por mês = método <strong>aleatório</strong> (simples)</li>
+    </ul>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PERICIA -->
+<section id="pericia">
+  <h2 class="section-title">Perícia Contábil — NBC TP 01 e NBC PP 01</h2>
+  <p class="section-sub">Cai com 2 questões em toda edição. As perguntas são sempre sobre: quem elabora o laudo vs parecer, objetivo da perícia, e honorários do perito.</p>
+
+  <div class="card">
+    <div class="card-title">Distinção fundamental — Perito Nomeado vs Assistente Técnico</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Característica</th><th>Perito Nomeado (pelo juiz)</th><th>Assistente Técnico (das partes)</th></tr></thead>
+        <tbody>
+          <tr><td>Quem nomeia</td><td>Juiz ou autoridade competente</td><td>As partes do processo</td></tr>
+          <tr><td>Documento produzido</td><td><span class="badge b-rose">LAUDO pericial contábil</span></td><td><span class="badge b-blue">PARECER pericial contábil</span></td></tr>
+          <tr><td>Prazo</td><td>Definido pelo juiz</td><td>Definido pelas partes/lei</td></tr>
+          <tr><td>Responsabilidade</td><td>Exclusiva do perito sobre o laudo</td><td>Sobre seu parecer</td></tr>
+          <tr><td>Múltiplos profissionais</td><td>Pode ser assinado por mais de um perito — responsabilidade é solidária</td><td>Idem</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-red">
+      <span class="alert-title">⚠ Pegadinha — laudo assinado em conjunto</span>
+      <p>Quando o laudo é assinado em conjunto por peritos, a responsabilidade é <strong>solidária</strong> — não exclusiva do perito nomeado. A FGV cobra a alternativa "responsabilidade exclusiva do perito nomeado" como incorreta. Questão da prova 2025/1 (Q.49).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Objetivo da perícia contábil</div>
+    <div class="formula rose">Fornecer elementos de prova necessários para subsidiar a JUSTA SOLUÇÃO DO LITÍGIO</div>
+    <ul class="styled" style="margin-top:.5rem">
+      <li>O perito não estabelece culpa — isso é função do juiz</li>
+      <li>O perito não avalia desempenho financeiro — isso é análise de balanços</li>
+      <li>O perito não emite parecer para auditoria interna — isso é trabalho de auditor</li>
+      <li>O objeto da perícia é a <strong>matéria periciada</strong> — fatos contábeis específicos em litígio</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Procedimentos periciais — NBC TP 01</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Procedimento</th><th>Definição correta</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-rose">Indagação</span></td><td>Busca de informações mediante <strong>entrevista</strong> com conhecedores do objeto da perícia</td></tr>
+          <tr><td><span class="badge b-blue">Vistoria</span></td><td>Diligência que objetiva a <strong>constatação de situação, coisa ou fato</strong></td></tr>
+          <tr><td><span class="badge b-amber">Arbitramento</span></td><td>Determinação de valores e quantidades por <strong>critério técnico-científico</strong></td></tr>
+          <tr><td><span class="badge b-green">Exame</span></td><td>Análise de livros, registros, documentos e outros papéis</td></tr>
+          <tr><td><span class="badge b-purple">Investigação</span></td><td>Pesquisa que busca trazer ao laudo elementos não disponíveis explicitamente</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha — Vistoria vs Exame</span>
+      <p>A FGV define <strong>vistoria</strong> como "análise de livros e documentos" — isso é ERRADO (é definição de exame). Vistoria é a constatação visual de situação, coisa ou fato. Questão da prova 2024/1 (Q.49): alternativa III dizia que "Vistoria é a análise de livros..." — era falsa.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">NBC PP 01 — Honorários do Perito</div>
+    <ul class="styled">
+      <li>Perito pode requerer liberação de até <strong>50%</strong> dos honorários depositados antes do início dos trabalhos (não 30%)</li>
+      <li>Honorários fixados ou arbitrados e não pagos podem ser <strong>executados judicialmente</strong></li>
+      <li>Em caso de impedimento ou suspeição, o perito deve <strong>recusar</strong> o trabalho — não pode continuar mesmo com consentimento das partes</li>
+      <li>Fatores para proposta de honorários: complexidade, prazo, riscos, responsabilidade, volume de trabalho</li>
+    </ul>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha — 50% não 30%</span>
+      <p>A FGV oferece "30% dos honorários" como opção de adiantamento. O correto é <strong>50%</strong> (NBC PP 01). Questão da prova 2024/1 (Q.50).</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CASP -->
+<section id="casp">
+  <h2 class="section-title">Contabilidade Aplicada ao Setor Público — CASP</h2>
+  <p class="section-sub">Cai com ~4 questões. A FGV foca em classificação de receitas e despesas orçamentárias e nos princípios orçamentários. Memorize as listas.</p>
+
+  <div class="card">
+    <div class="card-title">Receitas orçamentárias — Correntes vs Capital</div>
+    <div class="receita-grid">
+      <div class="rec-card rec-corrente">
+        <h4>Receitas CORRENTES</h4>
+        <ul>
+          <li>Tributária</li>
+          <li>Contribuições</li>
+          <li><strong>Patrimonial</strong> (aluguéis, dividendos)</li>
+          <li><strong>Agropecuária</strong></li>
+          <li>Industrial</li>
+          <li>Serviços</li>
+          <li>Transferências correntes</li>
+          <li>Outras receitas correntes</li>
+        </ul>
+      </div>
+      <div class="rec-card rec-capital">
+        <h4>Receitas DE CAPITAL</h4>
+        <ul>
+          <li><strong>Operações de crédito</strong> (empréstimos)</li>
+          <li><strong>Alienação de bens</strong></li>
+          <li>Amortização de empréstimos concedidos</li>
+          <li>Transferências de capital</li>
+          <li>Outras receitas de capital</li>
+        </ul>
+      </div>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinhas de classificação</span>
+      <ul>
+        <li><strong>Patrimonial</strong> = CORRENTE (não é de capital mesmo sendo "patrimônio")</li>
+        <li><strong>Alienação de bens</strong> = CAPITAL (não é corrente mesmo sendo venda)</li>
+        <li><strong>Operações de crédito</strong> = CAPITAL (empréstimos tomados geram receita de capital)</li>
+        <li><strong>Agropecuária</strong> = CORRENTE (sempre)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Despesas orçamentárias — Correntes vs Capital</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Despesas CORRENTES</th><th>Despesas DE CAPITAL</th></tr></thead>
+        <tbody>
+          <tr><td>Pessoal e encargos sociais</td><td><strong>Investimentos</strong> (obras, equipamentos)</td></tr>
+          <tr><td><strong>Despesas de custeio</strong> (material, serviços)</td><td><strong>Inversões Financeiras</strong> (aquisição de bens em uso)</td></tr>
+          <tr><td>Transferências correntes</td><td>Transferências de capital</td></tr>
+          <tr><td><strong>Despesas de exercícios anteriores</strong></td><td>Amortização da dívida</td></tr>
+          <tr><td>Juros e encargos da dívida</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-red">
+      <span class="alert-title">⚠ Erros mais comuns</span>
+      <ul>
+        <li><strong>Investimentos</strong> = despesa de CAPITAL (não corrente — o nome confunde)</li>
+        <li><strong>Despesas de exercícios anteriores</strong> = despesa CORRENTE</li>
+        <li><strong>Inversões financeiras</strong> = despesa de CAPITAL</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Princípios orçamentários — os 5 mais cobrados</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Princípio</th><th>Definição (literal)</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge b-rose">Universalidade</span></td><td>A LOA deve conter <strong>todas</strong> as receitas e despesas de todos os Poderes, órgãos, entidades, fundos e fundações</td></tr>
+          <tr><td><span class="badge b-blue">Unidade</span></td><td>Deve existir apenas <strong>um único</strong> orçamento para cada ente federativo</td></tr>
+          <tr><td><span class="badge b-amber">Exclusividade</span></td><td>A LOA não pode conter <strong>matéria estranha</strong> à previsão de receitas e fixação de despesas</td></tr>
+          <tr><td><span class="badge b-green">Orçamento Bruto</span></td><td>Receitas e despesas devem aparecer pelos valores <strong>brutos</strong> — vedada qualquer compensação</td></tr>
+          <tr><td><span class="badge b-purple">Anualidade</span></td><td>O orçamento deve ser elaborado e autorizado para um <strong>período de um ano</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha — Universalidade vs Unidade</span>
+      <p><strong>Universalidade</strong>: TODAS as receitas e despesas (abrangência). <strong>Unidade</strong>: apenas UM orçamento (forma). A FGV troca os dois nas assertivas. Questões das provas 2024/1 (Q.43) e 2025/1 (Q.42).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Usuários primários dos RCPGs — NBC TSP EC</div>
+    <ul class="styled">
+      <li>Usuários primários = <strong>usuários dos serviços</strong> (cidadãos) + <strong>provedores de recursos</strong> (contribuintes, financiadores)</li>
+      <li>Membros do Legislativo = usuários primários também</li>
+      <li>Agências bilaterais ou multilaterais podem ser usuários primários mesmo não sendo cidadãos</li>
+      <li>Os usuários primários <strong>não têm prerrogativa</strong> de exigir que o ente divulgue informações específicas para atender suas necessidades individuais</li>
+    </ul>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Pegadinha</span>
+      <p>A assertiva "os usuários primários detêm a prerrogativa de exigir que o ente divulgue informações que atendam às suas necessidades específicas" é <strong>FALSA</strong>. Questão da prova 2025/1 (Q.44).</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTROLADORIA -->
+<section id="controladoria">
+  <h2 class="section-title">Controladoria + Compliance</h2>
+  <p class="section-sub">~3 questões. A FGV cobra EVA, planejamento estratégico e conceitos de compliance. São questões conceituais — leia as definições com atenção.</p>
+
+  <div class="card">
+    <div class="card-title">EVA — Economic Value Added (Valor Econômico Agregado)</div>
+    <div class="formula purple">EVA = NOPAT − (WACC × Capital Investido)</div>
+    <div class="formula">NOPAT = Lucro Operacional Líquido após impostos</div>
+    <div class="formula">WACC = Custo Médio Ponderado de Capital</div>
+    <ul class="styled" style="margin-top:.5rem">
+      <li>Vantagem do EVA sobre ROI: incorpora o <strong>custo de oportunidade do capital próprio</strong></li>
+      <li>Uma empresa pode ter lucro contábil positivo e EVA negativo (se o retorno não superar o custo do capital)</li>
+      <li>Questão típica: "vantagem de substituir ROI pelo EVA" → incorporação do custo de oportunidade</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Planejamento Estratégico — verdadeiro e falso</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Assertiva FGV</th><th>V/F</th><th>Por quê</th></tr></thead>
+        <tbody>
+          <tr><td>O Plano Estratégico deve ser executado pela Controladoria</td><td><span class="badge b-red">FALSO</span></td><td>É executado pela administração como um todo, não só pela Controladoria</td></tr>
+          <tr><td>Uma vez aprovado, o Plano Estratégico não deve ser alterado</td><td><span class="badge b-red">FALSO</span></td><td>Pode e deve ser ajustado quando o ambiente mudar</td></tr>
+          <tr><td>O Planejamento Estratégico visa implementar o Plano e assegurar que recursos sejam usados eficientemente</td><td><span class="badge b-red">FALSO</span></td><td>Essa é a definição de <em>controle estratégico</em>, não de planejamento</td></tr>
+          <tr><td>A elaboração deve considerar que todas as decisões são interdependentes</td><td><span class="badge b-green">VERDADEIRO</span></td><td>Ajustamento da cadeia sistêmica de decisões é objetivo central</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Questão da prova 2025/1 (Q.46)</span>
+      <p>As afirmativas são, respectivamente: F – F – F – V. A FGV combina 4 assertivas — 3 falsas e 1 verdadeira. Resultado: alternativa C (F-F-F-V).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Compliance — conceitos essenciais</div>
+    <ul class="styled">
+      <li><strong>Compliance</strong>: busca permanente de coerência entre o que se espera e o que a organização pratica</li>
+      <li>O programa deve abranger: políticas, código de conduta, canal de denúncias, mecanismos de prevenção e detecção</li>
+      <li><strong>Risco de compliance</strong>: risco de sanções legais, perdas financeiras ou danos reputacionais por descumprimento de normas</li>
+      <li>Assédio, bullying e comportamentos abusivos <strong>causam danos</strong> à reputação e ao clima — assertiva "não causam danos" é FALSA</li>
+      <li>Governança corporativa ≠ apenas mitigar conflitos sócios-gestores — é mais ampla</li>
+    </ul>
+    <div class="alert alert-amber">
+      <span class="alert-title">⚠ Questão da prova 2024/1 (Q.46)</span>
+      <p>Assertivas: (1) Governança só mitiga conflitos → FALSO. (2) Compliance = aderência a normas → VERDADEIRO. (3) Risco de compliance = sanções → VERDADEIRO. (4) Assédios não causam danos → FALSO. Resultado: F-V-V-F.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SIMULADO -->
+<section id="simulado">
+  <h2 class="section-title">Simulado — Estilo FGV</h2>
+  <p class="section-sub">15 questões baseadas nas provas 2024.1, 2024.2 e 2025.1. Escolha a alternativa e clique em "Ver Resposta".</p>
+  <div class="sim-header">
+    <span style="font-size:.85rem;color:var(--text2)">Questão <span id="sim-cur">1</span> de 15</span>
+    <div class="sim-score" id="sim-score-box">Acertos: 0 / 0</div>
+  </div>
+  <div class="sim-progress-wrap"><div class="sim-progress-fill" id="sim-prog" style="width:6.67%"></div></div>
+  <div id="sim-questions"></div>
+  <div class="result-panel" id="result-panel">
+    <div class="result-score" id="res-score">0</div>
+    <div class="result-label">acertos de 15 questões</div>
+    <div class="result-analysis" id="res-analysis"></div>
+    <button class="btn btn-primary" onclick="resetSim()" style="margin-top:.75rem">↺ Refazer Simulado</button>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CHECKLIST -->
+<section id="checklist">
+  <h2 class="section-title">Checklist do Dia 3</h2>
+  <p class="section-sub">Marque cada item conforme for concluindo.</p>
+  <div class="card" id="checklist-wrap"></div>
+</section>
+
+</main>
+</div>
+
+<nav class="mobile-nav">
+  <a href="index.html" class="mob-link">🏠</a>
+  <a href="dia1.html" class="mob-link">📖</a>
+  <a href="dia2.html" class="mob-link">📗</a>
+  <a href="dia3.html" class="mob-link active">📘 D3</a>
+  <a href="dia4.html" class="mob-link">📙</a>
+</nav>
+
+<script>
+function toggleTheme(){
+  const d=document.documentElement,btn=document.getElementById('theme-btn');
+  if(d.getAttribute('data-theme')==='light'){d.removeAttribute('data-theme');btn.textContent='☀ Claro';localStorage.setItem('theme','dark');}
+  else{d.setAttribute('data-theme','light');btn.textContent='☾ Escuro';localStorage.setItem('theme','light');}
+}
+if(localStorage.getItem('theme')==='light'){document.documentElement.setAttribute('data-theme','light');document.getElementById('theme-btn').textContent='☾ Escuro';}
+window.addEventListener('scroll',()=>{
+  const doc=document.documentElement;
+  document.getElementById('scroll-bar').style.width=(doc.scrollTop/(doc.scrollHeight-doc.clientHeight)*100)+'%';
+  updateNav();
+});
+function updateNav(){
+  const ids=['intro','etica','penalidades','auditoria','nbc-ta','pericia','casp','controladoria','simulado','checklist'];
+  const links=document.querySelectorAll('.sidebar-link');
+  let active=0;
+  ids.forEach((id,i)=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<=100)active=i;});
+  links.forEach((l,i)=>l.classList.toggle('active',i===active));
+}
+function scrollTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+
+const questions=[
+  {disc:'Ética',text:'De acordo com o Código de Ética Profissional do Contador (NBC PG 01), o código aplica-se também ao exercício das prerrogativas profissionais de:',opts:['Empresário contábil','Técnico em Contabilidade','Administrador de Empresas','Gestor Financeiro'],correct:1,comentario:'Item 3 literal da NBC PG 01: o código aplica-se também ao TÉCNICO EM CONTABILIDADE no exercício de suas prerrogativas profissionais. Questão idêntica à prova 2025/1 (Q.8).',just:['ERRADA. Empresário contábil não é mencionado no item 3.','CORRETA. Técnico em Contabilidade — único mencionado no item 3 da NBC PG 01.','ERRADA. Administrador de Empresas não está sujeito à NBC PG 01.','ERRADA. Gestor Financeiro não está sujeito à NBC PG 01.']},
+  {disc:'Ética',text:'Segundo o item 20 do Código de Ética Profissional do Contador, as penalidades aplicáveis são:',opts:['Advertência reservada, Advertência pública e Censura pública','Advertência reservada, Censura reservada e Censura pública','Censura reservada, Censura pública e Suspensão do registro','Advertência pública, Censura reservada e Censura pública'],correct:1,comentario:'As três penalidades do item 20 são: (1) Advertência reservada, (2) Censura reservada, (3) Censura pública. "Advertência pública" e "Suspensão do registro" NÃO existem nesse rol. Questão recorrente em toda edição.',just:['ERRADA. "Advertência pública" NÃO existe no item 20 do Código de Ética.','CORRETA. Advertência reservada, Censura reservada e Censura pública são as 3 penalidades exatas.','ERRADA. "Suspensão do registro" não é penalidade prevista no item 20.','ERRADA. "Advertência pública" não existe. A primeira penalidade é "advertência reservada".']},
+  {disc:'Ética',text:'De acordo com o item 8 do Código de Ética Profissional do Contador, nas propostas para prestação de serviços profissionais devem constar explicitamente: I. todos os serviços cobrados individualmente; II. o valor de cada serviço; III. a periodicidade; IV. a forma de reajuste. Estão corretos os itens:',opts:['I e II, apenas','III e IV, apenas','I, II e III, apenas','I, II, III e IV'],correct:3,comentario:'O item 8 da NBC PG 01 exige que a proposta contenha EXPLICITAMENTE todos os quatro elementos: serviços individuais, valor de cada, periodicidade e forma de reajuste. Questão literal da prova 2024/2 (Q.9).',just:['ERRADA. Todos os 4 elementos são exigidos, não só I e II.','ERRADA. Todos os 4 elementos são exigidos, não só III e IV.','ERRADA. Todos os 4 elementos são exigidos, incluindo a forma de reajuste.','CORRETA. O item 8 exige todos os quatro elementos na proposta.']},
+  {disc:'Auditoria',text:'O auditor João Batista, ao realizar auditoria na AXT Ltda., constatou deficiências no controle interno que eram significativas, individualmente ou em conjunto. De acordo com a NBC TA 265, o procedimento adequado é:',opts:['Declarar isenção por tratar-se de assuntos internos da entidade','Modificar automaticamente sua opinião para adversa','Reportar por escrito as deficiências tempestivamente à administração e aos responsáveis pela governança','Registrar em ata e divulgar somente ao término da auditoria'],correct:2,comentario:'NBC TA 265: deficiências significativas de CI devem ser comunicadas POR ESCRITO e TEMPESTIVAMENTE à administração e aos responsáveis pela governança. Não modifica automaticamente a opinião. Questão literal da prova 2024/2 (Q.48).',just:['ERRADA. O auditor não pode isentar-se de comunicar deficiências significativas.','ERRADA. Deficiências de CI não levam automaticamente à opinião adversa.','CORRETA. Comunicação escrita e tempestiva — exigência literal da NBC TA 265.','ERRADA. A comunicação deve ser tempestiva, não somente ao término da auditoria.']},
+  {disc:'Auditoria',text:'O auditor incluiu em seu relatório um parágrafo sobre um Plano de Refinanciamento de Impostos que já estava adequadamente divulgado nas demonstrações contábeis, mas era de importância fundamental para os usuários. Esse parágrafo é denominado:',opts:['Ressalva','Parágrafo de ênfase','Outros assuntos','Abstenção de opinião'],correct:1,comentario:'Parágrafo de ÊNFASE (NBC TA 706): usado quando o assunto JÁ está adequadamente divulgado nas DCs e o auditor considera importante destacar para os usuários. Não modifica a opinião. Questão literal da prova 2024/2 (Q.48) e 2025/1 (Q.48).',just:['ERRADA. Ressalva é para distorção relevante mas não generalizada — aqui não há distorção.','CORRETA. Parágrafo de ênfase: assunto já divulgado nas DCs, destacado para os usuários.','ERRADA. Outros assuntos: matéria NÃO apresentada nas DCs.','ERRADA. Abstenção: quando o auditor não consegue obter evidência suficiente.']},
+  {disc:'Auditoria',text:'De acordo com a NBC TA 705, quando o auditor obtém evidência suficiente e conclui que as distorções são relevantes e GENERALIZADAS para as demonstrações contábeis, ele deve emitir:',opts:['Opinião com ressalva','Opinião adversa','Abstenção de opinião','Parágrafo de ênfase'],correct:1,comentario:'Opinião adversa = distorção RELEVANTE e GENERALIZADA. O auditor TEM evidência e conclui que as DCs não apresentam adequadamente a posição financeira. Diferente da abstenção (não tem evidência).',just:['ERRADA. Ressalva = distorção relevante mas NÃO generalizada.','CORRETA. Adversa = distorção relevante E generalizada.','ERRADA. Abstenção = auditor não consegue obter evidência, não é que discorda.','ERRADA. Parágrafo de ênfase não modifica a opinião e não é usado quando há distorção.']},
+  {disc:'Auditoria',text:'Uma empresa de auditoria contratou um especialista em TI. Após receber as conclusões do especialista, constatou que o trabalho era adequado. De acordo com a NBC TA 620, ao emitir sua opinião, a responsabilidade do auditor é:',opts:['Dividida com o especialista em todo o trabalho','Total — não é reduzida pelo trabalho do especialista','Somente pela parte contábil; o especialista responde pelo seu trabalho','Transferida ao especialista quando a opinião é modificada em virtude de seu trabalho'],correct:1,comentario:'NBC TA 620: o auditor é o ÚNICO responsável pela opinião de auditoria — a responsabilidade não é reduzida pelo trabalho do especialista. Questão literal da prova 2025/1 (Q.47).',just:['ERRADA. A responsabilidade não é dividida — é integral do auditor.','CORRETA. O auditor é o único responsável; a responsabilidade não é reduzida.','ERRADA. O auditor responde por toda a opinião, incluindo as partes cobertas pelo especialista.','ERRADA. A responsabilidade não pode ser transferida ao especialista em nenhuma circunstância.']},
+  {disc:'Perícia',text:'De acordo com a NBC TP 01, ao concluir os trabalhos periciais, quem elabora o laudo pericial contábil e quem oferece o parecer pericial contábil são, respectivamente:',opts:['Assistente técnico / Perito nomeado','Perito nomeado / Assistente técnico','Ambos elaboram o laudo','Ambos oferecem o parecer'],correct:1,comentario:'Distinção fundamental: Perito NOMEADO (pelo juiz) → LAUDO pericial contábil. Assistente TÉCNICO (das partes) → PARECER pericial contábil. Questão recorrente em toda edição da prova CFC.',just:['ERRADA. Os papéis estão invertidos.','CORRETA. Nomeado = laudo; assistente = parecer. Regra literal da NBC TP 01.','ERRADA. Somente o perito nomeado elabora o laudo.','ERRADA. Somente o assistente técnico oferece o parecer.']},
+  {disc:'Perícia',text:'De acordo com a NBC TP 01, indagação, vistoria e arbitramento são procedimentos periciais. A definição CORRETA de vistoria é:',opts:['Busca de informações mediante entrevista com conhecedores do objeto da perícia','Diligência que objetiva a constatação de situação, coisa ou fato, com ou sem a realização de avaliação','Determinação de valores e quantidades por critério técnico-científico','Análise de livros, registros de transações e documentos'],correct:1,comentario:'Vistoria = constatação de situação, coisa ou fato. Indagação = entrevista (alternativa A). Arbitramento = determinação de valores (alternativa C). Exame = análise de livros e documentos (alternativa D). A FGV inverte as definições de vistoria e exame. Questão da prova 2024/1 (Q.49).',just:['ERRADA. Essa é a definição de INDAGAÇÃO (entrevista).','CORRETA. Vistoria = constatação de situação, coisa ou fato.','ERRADA. Essa é a definição de ARBITRAMENTO.','ERRADA. Essa é a definição de EXAME (análise de livros e documentos).']},
+  {disc:'CASP',text:'Assinale a opção que indica APENAS receitas correntes do setor público:',opts:['Patrimonial e alienação de bens','Patrimonial e agropecuária','Operações de crédito e agropecuária','Alienação de bens e operações de crédito'],correct:1,comentario:'Receitas CORRENTES: tributária, contribuições, patrimonial, agropecuária, industrial, serviços, transferências correntes. Patrimonial e Agropecuária são ambas correntes. Alienação de bens e operações de crédito são receitas de CAPITAL. Questão literal da prova 2024/2 (Q.45).',just:['ERRADA. Alienação de bens é receita de CAPITAL.','CORRETA. Patrimonial e agropecuária são ambas receitas CORRENTES.','ERRADA. Operações de crédito são receita de CAPITAL.','ERRADA. Ambas são receitas de CAPITAL.']},
+  {disc:'CASP',text:'A Lei Orçamentária Anual de cada ente federado deve conter TODAS as receitas e despesas de todos os Poderes, órgãos, entidades, fundos e fundações instituídas pelo Poder Público. Esse princípio orçamentário é denominado:',opts:['Unidade','Universalidade','Exclusividade','Orçamento Bruto'],correct:1,comentario:'Universalidade: o orçamento deve conter TODAS as receitas e despesas (abrangência total). Unidade: deve existir apenas UM orçamento. Exclusividade: vedada matéria estranha. Orçamento Bruto: vedada compensação. Questão literal das provas 2024/1 (Q.43) e 2025/1 (Q.42).',just:['ERRADA. Unidade = apenas UM orçamento para cada ente (não a abrangência).','CORRETA. Universalidade = TODAS as receitas e despesas de todos os poderes/órgãos.','ERRADA. Exclusividade = LOA não pode conter matéria estranha ao orçamento.','ERRADA. Orçamento Bruto = vedada a compensação entre receitas e despesas.']},
+  {disc:'CASP',text:'Em relação às despesas orçamentárias, avalie: I. Despesas de custeio; II. Investimentos; III. Inversões Financeiras. São classificadas como despesas CORRENTES:',opts:['I, apenas','I e II, apenas','I e III, apenas','II e III, apenas'],correct:0,comentario:'Despesas correntes: pessoal, custeio, transferências correntes, juros da dívida, desp. de exercícios anteriores. INVESTIMENTOS e INVERSÕES FINANCEIRAS são despesas de CAPITAL. Somente Despesas de Custeio (I) é corrente. Questão literal da prova 2024/1 (Q.45).',just:['CORRETA. Somente despesas de custeio são correntes. Investimentos e inversões são de capital.','ERRADA. Investimentos são despesas de CAPITAL.','ERRADA. Inversões financeiras são despesas de CAPITAL.','ERRADA. Ambas (investimentos e inversões) são de CAPITAL.']},
+  {disc:'Ética',text:'Na aplicação das sanções éticas do contador, podem ser considerados AGRAVANTES:',opts:['A gravidade da infração e a aplicação de salvaguardas','A gravidade da infração e a punição ética anterior transitada em julgado','A aplicação de salvaguardas e a ação que macule a imagem do contador','A boa-fé e a reparação do dano causado'],correct:1,comentario:'Agravantes: gravidade da infração, má-fé, punição ética anterior transitada em julgado, ação que macule publicamente a imagem. Salvaguardas são ATENUANTES (não agravantes). Boa-fé e reparação do dano são ATENUANTES. Questão da prova 2024/1 (Q.8).',just:['ERRADA. Salvaguardas são ATENUANTES, não agravantes.','CORRETA. Gravidade da infração e punição anterior são agravantes.','ERRADA. Salvaguardas são atenuantes.','ERRADA. Boa-fé e reparação são ATENUANTES.']},
+  {disc:'Controladoria',text:'Em 2022, uma entidade avaliava seu desempenho com base no Retorno sobre o Investimento (ROI). Em 2023, passou a usar o EVA (Valor Econômico Agregado). Uma vantagem dessa substituição é a incorporação, na avaliação, do:',opts:['Custo de oportunidade','Receitas operacionais','Despesas operacionais','Receitas financeiras'],correct:0,comentario:'A principal vantagem do EVA sobre o ROI é a incorporação do CUSTO DE OPORTUNIDADE do capital próprio. Uma empresa pode ter lucro contábil positivo e EVA negativo se o retorno não superar o custo total do capital. Questão literal da prova 2025/1 (Q.45).',just:['CORRETA. EVA incorpora o custo de oportunidade do capital próprio (WACC × Capital).','ERRADA. Receitas operacionais já estão no ROI.','ERRADA. Despesas operacionais já estão no ROI.','ERRADA. Receitas financeiras já são consideradas no ROI.']},
+  {disc:'Perícia',text:'Com base na NBC PP 01 (R1), sobre honorários periciais, é correto afirmar que:',opts:['O perito pode requerer liberação de até 30% dos honorários antes do início dos trabalhos','Os honorários não pagos não podem ser executados judicialmente','O perito pode requerer liberação de até 50% dos honorários antes do início dos trabalhos','O perito deve considerar, entre outros fatores, quem será o magistrado da causa'],correct:2,comentario:'NBC PP 01: o perito pode requerer liberação de até 50% dos honorários (não 30%). Os honorários não pagos podem ser executados judicialmente. O magistrado da causa NÃO é fator para a proposta de honorários. Questão da prova 2024/1 (Q.50).',just:['ERRADA. O limite é 50%, não 30%.','ERRADA. Honorários fixados e não pagos podem ser executados judicialmente.','CORRETA. NBC PP 01: até 50% dos honorários pode ser requerido antes do início.','ERRADA. Quem será o magistrado não é fator para a proposta de honorários.']}
+];
+
+let answers=new Array(questions.length).fill(null),revealed=new Array(questions.length).fill(false),score=0,currentQ=0;
+function buildSim(){
+  const cont=document.getElementById('sim-questions');cont.innerHTML='';
+  questions.forEach((q,i)=>{
+    const div=document.createElement('div');div.className='q-block';div.id='q-block-'+i;
+    if(i!==0)div.style.display='none';
+    const sel=answers[i],rev=revealed[i];
+    div.innerHTML=`<div class="q-meta"><span class="q-num">Q.${i+1} de ${questions.length}</span><span class="badge b-rose">${q.disc}</span></div>
+    <div class="q-text">${q.text}</div>
+    <div class="q-opts">${q.opts.map((o,j)=>{let cls='q-opt';const L='ABCD';if(rev){if(j===q.correct)cls+=' correct';else if(j===sel&&sel!==q.correct)cls+=' wrong';}else if(sel===j)cls+=' selected';return`<button class="${cls}"${rev?' disabled':''} onclick="selectOpt(${i},${j})"><span class="q-opt-letter">${L[j]}</span><span>${o}</span></button>`;}).join('')}</div>
+    <div class="q-btn-row">${i>0?`<button class="btn" onclick="goQ(${i-1})">← Anterior</button>`:''}<button class="btn btn-primary" onclick="revealQ(${i})">Ver Resposta</button>${i<questions.length-1?`<button class="btn" onclick="goQ(${i+1})">Próxima →</button>`:''} ${i===questions.length-1?`<button class="btn btn-success" onclick="showResult()">Ver Resultado</button>`:''}</div>
+    <div class="gabarito${rev?' show':''}" id="gab-${i}"><div class="gab-correct-tag">✓ Resposta: ${'ABCD'[q.correct]}</div><div class="gab-title">Comentário técnico</div><div class="gab-text">${q.comentario}</div><div class="gab-title" style="margin-top:.75rem">Por que cada alternativa</div><div class="gab-just">${q.just.map((j2,k)=>`<div class="gab-just-item ${k===q.correct?'ok':'ko'}"><span>${'ABCD'[k]})</span><span>${j2}</span></div>`).join('')}</div></div>`;
+    cont.appendChild(div);
+  });
+}
+function goQ(idx){document.getElementById('q-block-'+currentQ).style.display='none';currentQ=idx;document.getElementById('q-block-'+idx).style.display='block';document.getElementById('sim-cur').textContent=idx+1;document.getElementById('sim-prog').style.width=((idx+1)/questions.length*100).toFixed(1)+'%';document.getElementById('q-block-'+idx).scrollIntoView({behavior:'smooth',block:'nearest'});}
+function selectOpt(qi,oi){if(revealed[qi])return;answers[qi]=oi;buildSim();goQ(qi);}
+function revealQ(qi){
+  if(!revealed[qi]){revealed[qi]=true;if(answers[qi]===questions[qi].correct)score++;
+  const ans=revealed.filter(Boolean).length;document.getElementById('sim-score-box').textContent=`Acertos: ${score} / ${ans}`;
+  const p=Math.round(ans/questions.length*100);document.getElementById('sb-bar').style.width=p+'%';document.getElementById('sb-pct').textContent=p+'%';document.getElementById('sb-score').textContent=`${score} acertos de ${ans} respondidas`;}
+  buildSim();goQ(qi);
+}
+function showResult(){
+  const ans=revealed.filter(Boolean).length;if(ans<questions.length&&!confirm('Há questões não respondidas. Ver resultado?'))return;
+  document.getElementById('result-panel').classList.add('show');document.getElementById('res-score').textContent=score;
+  const pct=Math.round(score/questions.length*100);document.getElementById('result-panel').querySelector('.result-score').style.color=pct>=50?'var(--green)':pct>=40?'var(--amber)':'var(--red)';
+  document.getElementById('res-analysis').innerHTML=`<div class="ra-card"><div class="ra-n" style="color:var(--green)">${score}</div><div class="ra-l">Acertos</div></div><div class="ra-card"><div class="ra-n" style="color:var(--red)">${questions.length-score}</div><div class="ra-l">Erros</div></div><div class="ra-card"><div class="ra-n" style="color:var(--rose)">${pct}%</div><div class="ra-l">Aproveitamento</div></div><div class="ra-card"><div class="ra-n" style="color:${pct>=50?'var(--green)':'var(--amber)'}">${pct>=50?'✓ OK':'↑ Rever'}</div><div class="ra-l">Status</div></div>`;
+}
+function resetSim(){answers=new Array(questions.length).fill(null);revealed=new Array(questions.length).fill(false);score=0;currentQ=0;document.getElementById('sim-score-box').textContent='Acertos: 0 / 0';document.getElementById('result-panel').classList.remove('show');document.getElementById('sb-bar').style.width='0%';document.getElementById('sb-pct').textContent='0%';document.getElementById('sb-score').textContent='— questões respondidas';buildSim();goQ(0);}
+buildSim();
+
+const checkItems=['Memorizei as 3 penalidades: Advertência Reservada, Censura Reservada, Censura Pública','Sei que "Advertência Pública" NÃO existe no item 20','Aprendi os 4 elementos obrigatórios da proposta de serviços (item 8)','Entendo a diferença entre opinião adversa (tem evidência e discorda) vs abstenção (sem evidência)','Sei que parágrafo de ênfase = assunto JÁ divulgado nas DCs, sem modificar a opinião','NBC TA 265: deficiência significativa → comunicação ESCRITA e TEMPESTIVA','NBC TA 620: responsabilidade da opinião é 100% do auditor, nunca do especialista','Perito nomeado = LAUDO; Assistente técnico = PARECER','Vistoria ≠ análise de livros (isso é Exame) — vistoria é constatação de fato','NBC PP 01: adiantamento é até 50% dos honorários (não 30%)','Receitas correntes: patrimonial e agropecuária são correntes','Receitas de capital: alienação de bens e operações de crédito são de capital','Princípio da Universalidade ≠ Unidade','EVA incorpora custo de oportunidade — vantagem sobre o ROI','Fiz o simulado e revisei os erros'];
+function buildChecklist(){
+  const wrap=document.getElementById('checklist-wrap'),saved=JSON.parse(localStorage.getItem('cfc-d3-check')||'[]');wrap.innerHTML='';
+  checkItems.forEach((item,i)=>{const done=saved.includes(i);const div=document.createElement('div');div.className='checklist-item'+(done?' done':'');div.id='ci-'+i;div.onclick=()=>toggleCheck(i);div.innerHTML=`<div class="chk-box">${done?'✓':''}</div><div class="chk-label">${item}</div>`;wrap.appendChild(div);});
+}
+function toggleCheck(i){const saved=JSON.parse(localStorage.getItem('cfc-d3-check')||'[]');const idx=saved.indexOf(i);if(idx>-1)saved.splice(idx,1);else saved.push(i);localStorage.setItem('cfc-d3-check',JSON.stringify(saved));buildChecklist();}
+buildChecklist();
+</script>
+</body>
+</html>
